@@ -1,7 +1,8 @@
 
 .container-login, .container-registr
 {
-    margin-top: 35%;
+    margin: 0;
+    padding: 0;
 }
 
 #panel-login, #panel-registr{
@@ -26,9 +27,6 @@
     background-color: #222;
 }
 
-.animate-show.ng-hide-add, .animate-show.ng-hide-remove {
-    transition: all linear 0.5s;
-}
 
 .error-login, .error-registr{
     margin-left: 5px;

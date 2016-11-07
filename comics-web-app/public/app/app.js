@@ -3,15 +3,13 @@
  */
 (function () {
     angular.module('comicsapp', [
-        'angularModalService',
+        'ngDialog',
         'ngRoute',
         'ngResource'
     ])
         .controller('comicsAppCtrl', comicsAppCtrl)
         .config(comicsappConfig)
-        .directive("popAuthorizationDialog", popAuthorizationDialog)
-        .directive("popRegistrationDialog", popRegistrationDialog)
-        .directive("topMenuBar", getTopMenu);
+        .directive("topMenuBar", getTopMenuCtrl);
 
     comicsappConfig.$inject = [ '$routeProvider' ];
 
@@ -24,26 +22,49 @@
             .when('/myCarousel', {
                 controller: 'comicsAppCtrl',
                 templateUrl: 'app/components/slider/slider.html'
-            });
+            })
+
     }
 
-    comicsAppCtrl.$inject = [ "ModalService" ];
+    comicsAppCtrl.$inject = [ '$scope', 'ngDialog' ];
 
-    function comicsAppCtrl(ModalService) {
-
-        ModalService.showModal({
-            templateUrl: 'app/components/user-enter/login/login.html',
-            controller: authorizationCtrl
-        }).then(function(modal) {
-           // modal.element.modal();
+    function comicsAppCtrl($scope, ngDialog) {
+        angular.element(document).ready(function () {
+            getDialogCreators($scope, ngDialog);
         });
-
     }
-    function getTopMenu(){
+
+    function getDialogCreators($scope, ngDialog){
+        $scope.popAuthorizationDialog = function () {
+            var url = 'app/components/user-enter/login/login.html';
+            var controller = authorizationCtrl;
+            openNgDialog($scope,ngDialog, url, controller);
+        };
+
+        $scope.popRegistrationDialog = function () {
+            var url = 'app/components/user-enter/registr/registr.html';
+            var controller = registrationCtrl;
+            openNgDialog($scope, ngDialog, url, controller);
+        };
+    }
+
+    function openNgDialog($scope, ngDialog, url, controller){
+        ngDialog.open({
+            template: url,
+            controller: controller,
+            closeByEscape : true,
+            scope: $scope
+        });
+    }
+
+    function getTopMenuCtrl(){
         return {
             restrict: 'E',
             scope: false,
-            templateUrl: 'app/components/top-menu/top-menu.html'
+            templateUrl: 'app/components/top-menu/top-menu.html',
+            controller: function($scope, ngDialog){
+                getDialogCreators($scope, ngDialog)
+            }
         }
     }
 
@@ -69,7 +90,6 @@
     }
 
    authorizationCtrl.$inject = [ '$scope', '$http' ];
-
     function authorizationCtrl($scope, $http){
         $scope.sendAuthData = function() {
             var data = {
@@ -83,12 +103,27 @@
         }
     }
 
-    function popAuthorizationDialog() {
-        return {
-            restrict: 'E',
-            scope: false,
-            templateUrl: 'app/components/user-enter/login/login.html',
-            controller: authorizationCtrl
+    registrationCtrl.$inject = [ '$scope', '$http' ];
+    function registrationCtrl($scope, $http){
+        $scope.sendRegistrData = function(){
+            if ($scope.registrPassword !== $scope.registrConfirm){
+                $scope.responseRegistr = "Passwords are different";
+            } else {
+                var data = {
+                    username: $scope.registrUsername,
+                    email: $scope.registrEmail,
+                    password: $scope.registrPassword,
+                    confirmedPassword: $scope.registrConfirm
+                };
+                var response =sendData($http, '/registr', data);
+                if(angular.isDefined(response.error)){
+                    $scope.responseRegistr = response.error;
+                } else {
+                    $scope.responseRegistr = "Confirmation was sent on your email";
+                    clearRegistrInput($scope);
+                }
+
+            }
         }
     }
 
@@ -97,34 +132,4 @@
             scope.registrPassword= scope.registrConfirm= "";
     }
 
-    function popRegistrationDialog(){
-        return {
-            restrict: 'E',
-            scope: false,
-            templateUrl: 'app/components/user-enter/registr/registr.html',
-            controller: function ($scope, $http) {
-
-                $scope.sendRegistrData = function(){
-                    if ($scope.registrPassword !== $scope.registrConfirm){
-                        $scope.responseRegistr = "Passwords are different";
-                    } else {
-                        var data = {
-                            username: $scope.registrUsername,
-                            email: $scope.registrEmail,
-                            password: $scope.registrPassword,
-                            confirmedPassword: $scope.registrConfirm
-                        };
-                        var response =sendData($http, '/registr', data);
-                        if(angular.isDefined(response.error)){
-                            $scope.responseRegistr = response.error;
-                        } else {
-                            $scope.responseRegistr = "Confirmation was sent on your email";
-                            clearRegistrInput($scope);
-                        }
-
-                    }
-                }
-            }
-        }
-    }
 }());
