@@ -11,6 +11,16 @@ function HttpError(status, message){
     this.message = message || http.STATUS_CODES[status] || "Error";
 }
 
+function AuthError(message){
+    Error.apply(this,arguments);
+    this.stack = (new Error).stack;
+    this.message = message  || "Error";
+}
+
 util.inherits(HttpError, Error);
+util.inherits(AuthError, Error);
 HttpError.prototype.name = "HttpError";
+AuthError.prototype.name = "AuthError";
+
 exports.HttpError = HttpError;
+exports.AuthError = AuthError;

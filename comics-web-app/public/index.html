@@ -8,58 +8,42 @@
     <!-- end config application styles-->
 
     <!-- main content styles-->
-    <link rel='stylesheet' href='css/starter-template.css'>
-    <link rel='stylesheet' href='css/logo.css'>
+    <link rel='stylesheet' href='app/components/top-menu/starter-template.css'>
+    <link rel='stylesheet' href='app/components/top-menu/logo.css'>
     <link rel='stylesheet' href='app/components/slider/slider.css' >
     <!-- end main content styles-->
+
+    <!-- user enter styles -->
+
+    <link rel='stylesheet' href='app/components/user-enter/user-enter.css'>
+    <!-- end user enter styles -->
 
     <!-- slider styles-->
     <link rel='stylesheet' href='app/components/slider/slider.css'>
     <!-- end slider styles-->
 
     <!-- config application scripts-->
-    <script type='text/javascript' src='vendor/bower_components/angular/angular.min.js'></script>
-    <script type='text/javascript'  src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js'></script>
+    <script type='text/javascript' src='vendor/bower_components/angular/angular.js'></script>
+    <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js'></script>
     <script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-resource.min.js"></script>
     <script type='text/javascript' src="vendor/bower_components/jquery/dist/jquery.min.js"></script>
     <script type='text/javascript' src='vendor/bower_components/bootstrap/dist/js/bootstrap.min.js'></script>
+    <script type='text/javascript' src="vendor/bower_components/angular-modal-service/dst/angular-modal-service.min.js"></script>
     <!--end  config application scripts-->
 
     <!-- slider scripts-->
-    <script type='text/babel' src='app/app.js'></script>
-    <script type='text/babel' src='app/app.controller.js'></script>
+    <script src='app/app.js'></script>
     <!--end slider scripts-->
+
+
+
 
 </head>
 <body>
-
-<nav class="navbar navbar-inverse navbar-fixed-top menu">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="ironman-logo-container navbar-brand" href="#">
-
-                    <img class="ironman-logo" src="assets/images/ironman.png">
-
-            </a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div><!--/.nav-collapse -->
-    </div>
-</nav>
-
+<top-menu-bar></top-menu-bar>
 <div class="main-content" ng-view></div>
-
+<pop-authorization-dialog></pop-authorization-dialog>
+<pop-registration-dialog></pop-registration-dialog>
 
 </body>
 </html>

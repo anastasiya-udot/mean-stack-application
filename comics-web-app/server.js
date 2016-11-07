@@ -3,7 +3,9 @@ var http      = require('http');
 var path      = require('path');
 var config    = require('./config');
 var log       = require('./app/libs/log')(module);
+var passport  = require('passport');
 var HttpError = require('./app/error/error').HttpError;
+var AuthError = require('./app/error/error').AuthError;
 var mongoose  = require('./app/libs/mongoose');
 
 
@@ -26,12 +28,15 @@ if( app.get('env') == 'development'){
 
 app.set('trust proxy', 1);
 app.use(favicon('public/assets/favicon.ico'));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(multer());
 app.use(cookieParser());
 app.use(require('./app/middleware/sendHttpError'));
-
+app.use(require('./app/middleware/sendAuthError'));
+require('./app/middleware/passport');
 app.use(session({
     name: 'session',
     keys: ['key1', 'key2'],
@@ -49,9 +54,14 @@ app.use(function(err, req, res, next) {
     }
 
     if(err instanceof HttpError){
-        console.log(err);
+        log.error(err);
         res.sendHttpError(err);
-    } else {
+    }
+    if(err instanceof AuthError){
+        log.error(err);
+        res.sendAuthError(err);
+    }
+    else {
         if (app.get('env') === 'development') {
             var errorHandler = require('errorhandler');
             errorHandler(err, req, res, next);
@@ -66,7 +76,7 @@ app.use(function(err, req, res, next) {
 
 //http comics-web-app creating
 http.createServer(app).listen(config.get('port'), function(){
-    log.info("Express comics-web-app listening on port " + config.get('port'));
+   log.info("Express comics-web-app listening on port " + config.get('port'));
 });
 
 module.exports = app;

@@ -35,6 +35,7 @@
  * @returns {function(code:string, template:string, ...templateArgs): Error} minErr instance
  */
 
+
 function minErr(module, ErrorConstructor) {
   ErrorConstructor = ErrorConstructor || Error;
   return function() {
@@ -59,6 +60,8 @@ function minErr(module, ErrorConstructor) {
 
     message += '\nhttp://errors.angularjs.org/1.5.8/' +
       (module ? module + '/' : '') + code;
+
+      console.log(message);
 
     for (i = SKIP_INDEXES, paramPrefix = '?'; i < templateArgs.length; i++, paramPrefix = '&') {
       message += paramPrefix + 'p' + (i - SKIP_INDEXES) + '=' +

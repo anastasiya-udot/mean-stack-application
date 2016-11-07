@@ -6,4 +6,6 @@ module.exports = function(app){
                 var file = new fs.ReadStream(path.join(__dirname.split('/').slice(0,-1).join('/'), '../public/index.html'));
                 file.pipe(res);
         });
+        app.post('/login', require('./../controller/login').post);
+        app.post('/registr', require('./../controller/registr').post);
 };
