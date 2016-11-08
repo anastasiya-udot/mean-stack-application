@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="comicsapp">
+<html lang="en" ng-app="comicsApp">
 <head>
     <meta charset="UTF-8">
     <title>Comics</title>
@@ -17,7 +17,7 @@
 
     <!-- user enter styles -->
 
-    <link rel='stylesheet' href='app/components/user-enter/user-enter.css'>
+    <link rel='stylesheet' href='app/components/authent/authent.css'>
     <!-- end user enter styles -->
 
     <!-- slider styles-->
@@ -31,11 +31,28 @@
     <script type='text/javascript' src="vendor/bower_components/jquery/dist/jquery.min.js"></script>
     <script type='text/javascript' src='vendor/bower_components/bootstrap/dist/js/bootstrap.min.js'></script>
     <script type='text/javascript' src="vendor/bower_components/ng-dialog/js/ngDialog.js"></script>
+    <script type='text/javascript' src='app/app.js'></script>
     <!--end  config application scripts-->
 
-    <!-- slider scripts-->
-    <script src='app/app.js'></script>
-    <!--end slider scripts-->
+    <!-- factories -->
+    <script type='text/javascript' src='app/app.factory.js'></script>
+    <script type='text/javascript' src='app/components/authent/registr/registr.factory.js'></script>
+    <script type='text/javascript' src='app/components/authent/login/login.factory.js'></script>
+    <script type='text/javascript' src='app/components/authent/authent.factory.js'></script>
+    <script type='text/javascript' src='app/components/slider/slider.factory.js'></script>
+    <!-- end factories -->
+
+    <!-- directives -->
+    <script type='text/javascript' src='app/components/top-menu/top-menu.directive.js'></script>
+    <!--end directives -->
+
+    <!-- controllers -->
+    <script type='text/javascript' src='app/app.controller.js'></script>
+    <!-- end controllers -->
+
+
+
+
 
 
 

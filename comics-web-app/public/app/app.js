@@ -1,14 +1,28 @@
 /**
  * Created by anastasiya on 5.11.16.
  */
-(function () {
-    angular.module('comicsapp', [
+var comicsApp = angular.module('comicsApp', [
         'ngDialog',
         'ngRoute',
         'ngResource'
     ])
-        .controller('comicsAppCtrl', comicsAppCtrl)
-        .config(comicsappConfig)
+        .config(comicsappConfig);
+
+    function comicsappConfig ($routeProvider) {
+        $routeProvider
+            .when('/', {
+                controller: 'initialPageCtrl',
+                templateUrl: 'app/components/slider/slider.html'
+            })
+            .when('/myCarousel', {
+                controller: 'initialPageCtrl',
+                templateUrl: 'app/components/slider/slider.html'
+            })
+
+    }
+
+
+ /*       .controller('comicsAppCtrl', comicsAppCtrl)
         .directive("topMenuBar", getTopMenuCtrl);
 
     comicsappConfig.$inject = [ '$routeProvider' ];
@@ -36,13 +50,13 @@
 
     function getDialogCreators($scope, ngDialog){
         $scope.popAuthorizationDialog = function () {
-            var url = 'app/components/user-enter/login/login.html';
+            var url = 'app/components/authent/login/login.html';
             var controller = authorizationCtrl;
             openNgDialog($scope,ngDialog, url, controller);
         };
 
         $scope.popRegistrationDialog = function () {
-            var url = 'app/components/user-enter/registr/registr.html';
+            var url = 'app/components/authent/registr/registr.html';
             var controller = registrationCtrl;
             openNgDialog($scope, ngDialog, url, controller);
         };
@@ -76,18 +90,28 @@
             }
         };
         var response = {};
-        http.post( url, data, config)
-            .success(function (data) {
-                response= data;
-            })
-            .error(function (data, status, header, config) {
-               console.log("Data: " + data +
-                   "<hr />status: " + status +
-                   "<hr />headers: " + header +
-                   "<hr />config: " + config);
-            });
+
+
+
+            http.post( url, data, config)
+                .success(function (data) {
+                    console.log(data);
+                    response = data;
+                    resolve();
+                })
+                .error(function (data, status, header, config) {
+                    console.log("Data: " + data +
+                        "<hr />status: " + status +
+                        "<hr />headers: " + header +
+                        "<hr />config: " + config);
+                    reject();
+                });
+
+        console.log("here " + response);
         return response;
     }
+
+
 
    authorizationCtrl.$inject = [ '$scope', '$http' ];
     function authorizationCtrl($scope, $http){
@@ -97,7 +121,9 @@
                 password: $scope.loginPassword
             };
             var response = sendData($http, '/login', data);
+            console.log(response);
             if (angular.isDefined(response.error)) {
+
                 $scope.responseLogin = response.error;
             }
         }
@@ -115,7 +141,7 @@
                     password: $scope.registrPassword,
                     confirmedPassword: $scope.registrConfirm
                 };
-                var response =sendData($http, '/registr', data);
+                var response = sendData($http, '/registr', data);
                 if(angular.isDefined(response.error)){
                     $scope.responseRegistr = response.error;
                 } else {
@@ -132,4 +158,4 @@
             scope.registrPassword= scope.registrConfirm= "";
     }
 
-}());
+}());*/

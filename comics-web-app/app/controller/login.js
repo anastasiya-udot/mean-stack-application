@@ -12,6 +12,7 @@ module.exports.post = function(req,res,next){
         token = user.generateJwt();
         res.status(200);
         res.json({
+            "message": "Hello :)",
             "token" : token
         });
 

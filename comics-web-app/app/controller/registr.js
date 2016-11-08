@@ -31,7 +31,8 @@ module.exports.post = function(req, res, next) {
                 token = newUser.generateJwt();
                 res.status(200);
                 res.json({
-                    "token" : token
+                    "message": "Confirmation was sent on youe email",
+                    "token": token
                 });
             });
         });

@@ -4,7 +4,7 @@
 module.exports = function(req,res,next){
     res.sendAuthError = function(error){
         console.log(error.message);
-        res.json({"error" : error.message});
+        res.json(error);
     };
     next();
 };
