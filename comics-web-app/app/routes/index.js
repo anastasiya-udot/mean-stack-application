@@ -8,4 +8,5 @@ module.exports = function(app){
         });
         app.post('/login', require('./../controller/login').post);
         app.post('/registr', require('./../controller/registr').post);
+        app.post('/forgot', require('./../controller/forgot').post);
 };

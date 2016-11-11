@@ -3,7 +3,16 @@
  */
 comicsApp.factory('RegistrDialog',[ 'DialogTemplate', 'SendData', function(DialogTemplate, SendData) {
 
-    var currentScope = {};
+    function resolve($scope, response){
+        clearInput($scope);
+        $scope.response = "Confirmation was sent on your email";
+    }
+
+    function clearInput($scope){
+        $scope.registrUsername= $scope.registrEmail =
+         $scope.registrPassword= $scope.registrConfirm= "";
+    }
+
 
     registrationCtrl.$inject = [ '$scope' ];
 
@@ -19,7 +28,7 @@ comicsApp.factory('RegistrDialog',[ 'DialogTemplate', 'SendData', function(Dialo
                     password: $scope.registrPassword,
                     confirmedPassword: $scope.registrConfirm
                 };
-                SendData($scope, '/registr', data);
+                SendData($scope, '/registr', data, resolve);
             }
         }
     }
@@ -29,7 +38,7 @@ comicsApp.factory('RegistrDialog',[ 'DialogTemplate', 'SendData', function(Dialo
       load: function(){
            var url = 'app/components/authent/registr/registr.html';
            var controller = registrationCtrl;
-           DialogTemplate( url, controller);
+           DialogTemplate.open( url, controller);
        }
    }
 

@@ -28,8 +28,6 @@ if( app.get('env') == 'development'){
 
 app.set('trust proxy', 1);
 app.use(favicon('public/assets/favicon.ico'));
-app.use(passport.initialize());
-app.use(passport.session());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(multer());
@@ -42,6 +40,8 @@ app.use(session({
     keys: ['key1', 'key2'],
     cookie: config.get('session:cookie')
 }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 require('./app/routes/index')(app);
 

@@ -26,9 +26,8 @@ var schema = new Schema({
         unique: true,
         required: true
     },
-    confirmed:{
-
-    }
+    resetPasswordToken: String,
+    resetPasswordExpires: Date
 });
 
 schema.methods.encryptPassword = function(password){
@@ -58,5 +57,6 @@ schema.methods.generateJwt = function(){
         exp: parseInt(expiry.getTime() / 1000),
     }, process.env.SECRET_USER_STRING);
 };
+
 
 exports.User = mongoose.model('User', schema);

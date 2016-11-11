@@ -1,0 +1,15 @@
+<div class="container-auth">
+    <div  id="panel-auth">
+        <div class="panel-body">
+            <h2 id="title-auth">Sign in</h2>
+            <form method="post">
+                <div class="form-group">
+                    <input type="password"  class="form-control" placeholder="Password" ng-model="newPassword" required>
+                    <input type="password"  class="form-control" placeholder="Confirm password" ng-model="newPasswordConfirm" required>
+                </div>
+                <button type="submit" class="btn-auth" ng-click="sendNewPassData()">Login</button>
+                <span class="error-auth">{{response}}</span>
+            </form>
+        </div>
+    </div>
+</div>

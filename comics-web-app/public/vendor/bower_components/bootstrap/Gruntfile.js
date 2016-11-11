@@ -101,7 +101,7 @@ module.exports = function (grunt) {
 
     concat: {
       options: {
-        banner: '<%= slider %>\n<%= jqueryCheck %>\n<%= jqueryVersionCheck %>',
+        banner: '<%= front-page %>\n<%= jqueryCheck %>\n<%= jqueryVersionCheck %>',
         stripBanners: false
       },
       bootstrap: {
@@ -489,7 +489,7 @@ module.exports = function (grunt) {
   grunt.registerTask('build-customizer', ['build-customizer-html', 'build-raw-files']);
   grunt.registerTask('build-customizer-html', 'pug');
   grunt.registerTask('build-raw-files', 'Add scripts/less files to customizer.', function () {
-    var banner = grunt.template.process('<%= slider %>');
+    var banner = grunt.template.process('<%= front-page %>');
     generateRawFiles(grunt, banner);
   });
 

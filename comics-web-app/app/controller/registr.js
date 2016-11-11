@@ -2,7 +2,6 @@
  * Created by anastasiya on 1.11.16.
  */
 
-var async = require('async');
 var User = require('../models/user').User;
 var AuthError = require('../error/error').AuthError;
 
@@ -31,7 +30,6 @@ module.exports.post = function(req, res, next) {
                 token = newUser.generateJwt();
                 res.status(200);
                 res.json({
-                    "message": "Confirmation was sent on youe email",
                     "token": token
                 });
             });

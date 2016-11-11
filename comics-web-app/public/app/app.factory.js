@@ -3,36 +3,37 @@
  */
 comicsApp
     .factory('DialogTemplate', [ 'ngDialog', function(ngDialog) {
-    return function (url, controller) {
-        ngDialog.open({
-            template: url,
-            controller: controller,
-            closeByEscape: true
-        });
+    return {
+        open: function (url, controller) {
+            return ngDialog.open({
+                template: url,
+                controller: controller,
+                closeByEscape: true
+            });
+        },
 
+        close: function(dialog){
+            ngDialog.close(dialog);
+        }
     }
 }])
 
     .factory('SendData', ['$http', function($http){
-    return function($scope, url, data){
+    return function($scope, url, data, resolve){
         var config = {
             headers : {
                 'Content-Type': 'application/json;charset=utf-8;'
             }
         };
 
-        function clearInput(){
-            $scope.loginEmail = $scope.loginPassword =
-                $scope.registrUsername= $scope.registrEmail =
-                    $scope.registrPassword= $scope.registrConfirm= "";
-        }
 
         $http.post( url, data, config)
             .success(function (data) {
-                $scope.response = data.message;
-            })
-            .error(function (data, status, header, config) {
-                $scope.response = data.error;
+                if( angular.isDefined(data.error)){
+                    $scope.response = data.error;
+                } else {
+                    resolve($scope, data);
+                }
             })
     };
 

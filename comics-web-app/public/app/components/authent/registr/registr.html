@@ -1,8 +1,8 @@
 
-                <div class="container-registr">
-                    <div id="panel-registr">
+                <div class="container-auth">
+                    <div id="panel-auth">
                         <div class="panel-body">
-                            <h2 id="title-registr">Sign up</h2>
+                            <h2 id="title-auth">Sign up</h2>
                             <form method="post">
                                 <div class="form-group">
                                     <input type="text" class="form-control" placeholder="Name" ng-model="registrUsername" required>
@@ -16,8 +16,8 @@
                                 <div class="form-group">
                                     <input type="password" class="form-control" placeholder="Confirm Password" ng-model="registrConfirm" required>
                                 </div>
-                                <button type="register" class="btn btn-default" ng-click="sendRegistrData()">Register</button>
-                                <span class="error-registr">{{response}}</span>
+                                <button type="register" class="btn-auth" ng-click="sendRegistrData()">Sign up</button>
+                                <span class="error-auth">{{response}}</span>
                             </form>
                         </div>
                     </div>

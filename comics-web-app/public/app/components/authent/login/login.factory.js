@@ -1,31 +1,41 @@
 /**
  * Created by anastasiya on 8.11.16.
  */
-comicsApp.factory('LoginDialog', ['DialogTemplate', 'SendData', function(DialogTemplate, SendData) {
+comicsApp.factory('LoginDialog', ['DialogTemplate', 'SendData',  function(DialogTemplate, SendData) {
 
-    var currentScope = {};
+    var currentDialog;
 
-    function authorizationCtrl($scope){
+    function resolve($scope, response){
+        clearInput($scope);
+    }
+
+    function clearInput($scope){
+        $scope.loginEmail = $scope.loginPassword = "";
+    }
+
+    authorizationCtrl.$inject = [ '$scope',  'ForgotPassDialog' ];
+
+    function authorizationCtrl($scope, ForgotPassDialog){
         $scope.sendAuthData = function() {
-            console.log($scope);
             var data = {
                 email: $scope.loginEmail,
                 password: $scope.loginPassword
             };
-            SendData($scope, '/login', data);
-      /*      console.log(response);
-            if (angular.isDefined(response.error)) {
+            SendData($scope, '/login', data, resolve);
+        };
 
-                $scope.responseLogin = response.error;
-            }*/
+        $scope.openForgotPassMenu = function(){
+            DialogTemplate.close(currentDialog);
+            ForgotPassDialog.load();
         }
+
     }
 
     return {
         load: function(){
             var url = 'app/components/authent/login/login.html';
             var controller = authorizationCtrl;
-            DialogTemplate(url, controller);
+            currentDialog = DialogTemplate.open(url, controller);
         }
     }
 
