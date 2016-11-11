@@ -34,7 +34,7 @@ app.use(multer());
 app.use(cookieParser());
 app.use(require('./app/middleware/sendHttpError'));
 app.use(require('./app/middleware/sendAuthError'));
-require('./app/middleware/passport');
+require('./app/controller/passport');
 app.use(session({
     name: 'session',
     keys: ['key1', 'key2'],

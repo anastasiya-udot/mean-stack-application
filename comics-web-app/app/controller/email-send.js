@@ -2,6 +2,7 @@
  * Created by anastasiya on 11.11.16.
  */
 var nodemailer = require('nodemailer');
+var AuthError  = require('../error/error').AuthError;
 
 var smtpTransport = nodemailer.createTransport('SMTP', {
     host: 'smtp.gmail.com',
@@ -28,5 +29,24 @@ module.exports.sendForgotEmail = function(email, host, token, callback) {
 
     smtpTransport.sendMail(mailOptions, function (err) {
         return callback(err, email);
+    });
+};
+
+module.exports.sendVerificationEmail = function(user, host, token, callback) {
+    var mailOptions = {
+        to: user.email,
+        from: 'comicsgenerator@comics.com',
+        subject: 'Confirm registration',
+        text: 'You\'ve received this letter, because ' +
+        'you\'ve signed up on our site and now you should confirm registration\n\n ' +
+        'Follow the link for confirming:\n\n ' +
+        'http://' + host + '#/confirm-registr/' + token + '\n\n ' +
+        'If you didn\'t sign up ' +
+        '- ignore this message.\n'
+    };
+
+    smtpTransport.sendMail(mailOptions, function (err) {
+        if (err) return next(new AuthError("Error during sending"));
+        return callback(null, token,  user);
     });
 };

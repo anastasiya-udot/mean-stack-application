@@ -22,7 +22,7 @@ comicsApp.factory('ResetPassDialog', ['DialogTemplate', function(DialogTemplate)
                         password: password,
                         confirmed: confirmPassword
                     };
-                    SendData($scope, '/recover', data, resolve);
+                    SendData($scope, '/recover-password', data, resolve);
                 } else {
                     $scope.response = "Passwords are different"
                 }

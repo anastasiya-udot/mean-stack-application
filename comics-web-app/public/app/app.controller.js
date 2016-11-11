@@ -3,7 +3,19 @@
  */
 comicsApp
     .controller('initialPageCtrl', initialPageCtrl)
-    .controller('resetPasswordPageCtrl', resetPasswordPageCtrl);
+    .controller('resetPasswordPageCtrl', resetPasswordPageCtrl)
+    .controller('confirmRegistrPageCtrl', confirmRegistrPageCtrl);
+
+
+function getToken($location){
+    var url = $location.absUrl();
+    var token = url.split('/').splice(-1,1);
+    return data={
+        "token":  token
+    };
+}
+
+
 
 initialPageCtrl.$inject = [ '$scope', 'InitialPageContent'];
 
@@ -12,7 +24,6 @@ function initialPageCtrl($scope, InitialPageContent) {
 }
 
 resetPasswordPageCtrl.$inject = [ '$scope', '$location', 'InitialPageContent', 'ResetPassDialog', 'SendData'];
-
 
 function resetPasswordPageCtrl($scope, $location, InitialPageContent, ResetPassDialog, SendData) {
 
@@ -23,10 +34,20 @@ function resetPasswordPageCtrl($scope, $location, InitialPageContent, ResetPassD
     }
 
     InitialPageContent.set($scope);
-    var url = $location.absUrl();
-    var tokenRecovery = url.split('/').splice(-1,1);
-    var data={
-        "token":  tokenRecovery
-    };
-    SendData($scope, '/reset', data, resolve);
+    var data = getToken($location);
+    SendData($scope, '/reset-password', data, resolve);
+}
+
+resetPasswordPageCtrl.$inject = [ '$scope', '$location', 'InitialPageContent', 'LoginDialog', 'SendData'];
+
+function confirmRegistrPageCtrl($scope, $location, InitialPageContent, LoginDialog, SendData){
+
+    function resolve($scope, res){
+        console.log("here");
+        LoginDialog.load();
+    }
+
+    InitialPageContent.set($scope);
+    var data = getToken($location);
+    SendData($scope, '/confirm-registr', data, resolve);
 }

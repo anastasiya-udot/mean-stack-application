@@ -18,5 +18,9 @@ var comicsApp = angular.module('comicsApp', [
                 controller: 'resetPasswordPageCtrl',
                 templateUrl: 'app/components/front-page/front-page.html'
             })
+            .when('/confirm-registr/:token',{
+                controller: 'confirmRegistrPageCtrl',
+                templateUrl: 'app/components/front-page/front-page.html'
+            })
 
     }

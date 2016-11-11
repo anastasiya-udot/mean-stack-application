@@ -26,19 +26,15 @@ comicsApp
             }
         };
 
-
         $http.post( url, data, config)
             .success(function (data) {
+                console.log(data);
                 if( angular.isDefined(data.error)){
+                    console.log(data.error);
                     $scope.response = data.error;
                 } else {
                     resolve($scope, data);
                 }
             })
     };
-
-
-
-
-
 }]);

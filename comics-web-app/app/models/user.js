@@ -27,7 +27,8 @@ var schema = new Schema({
         required: true
     },
     resetPasswordToken: String,
-    resetPasswordExpires: Date
+    resetPasswordExpires: Date,
+    verifyRegistrToken: String
 });
 
 schema.methods.encryptPassword = function(password){

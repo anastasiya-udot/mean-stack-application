@@ -3,7 +3,6 @@
  */
 var User        = require('../models/user').User;
 var AuthError   = require('../error/error').AuthError;
-
 var async       = require('async');
 var crypto      = require('crypto');
 
@@ -35,12 +34,14 @@ module.exports.post = function(req, res, next) {
                 },
 
                 function(token, user, callback){
-                    require('../controller/email').sendForgotEmail(user.email, req.headers.host, token, callback);
+                    require('./email-send').sendForgotEmail(user.email, req.headers.host, token, callback);
                 }
             ],
             function(err, email){
+
                 if(err) return next(new AuthError("Sending error"));
                 res.json({"message": "Confirmation was sent on your email"})
+
             }
         )
     };

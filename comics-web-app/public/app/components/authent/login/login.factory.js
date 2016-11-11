@@ -6,6 +6,7 @@ comicsApp.factory('LoginDialog', ['DialogTemplate', 'SendData',  function(Dialog
     var currentDialog;
 
     function resolve($scope, response){
+        console.log(response.token);
         clearInput($scope);
     }
 

@@ -4,13 +4,16 @@
 var passport = require('passport');
 
 module.exports.post = function(req,res,next){
+
     passport.authenticate('local', function(err, user){
+
         // If Passport throws/catches an error
         if (err) return next(err);
+
         // If a user is found
         var token;
         token = user.generateJwt();
-        res.status(200);
+        console.log("user");
         res.json({
             "token" : token
         });

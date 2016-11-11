@@ -9,29 +9,34 @@ var AuthError       = require('../error/error').AuthError;
 passport.use(new LocalStrategy({
     usernameField: 'email'
 },
-function(username, password, done){
+function(username, password, next){
     User.findOne({email: username}, function(err, user){
         if (err) {new AuthError("There is no user with such email"); }
         //Return if user not found in database
         if(!user){
-            return done(new AuthError("There is no user with such email"));
+            return next(new AuthError("There is no user with such email"));
+        }
+        
+        if(user.verifyRegistrToken !== null){
+            return next(new AuthError("User email is not verified"));
         }
         //Return if password is wrong
         if (!user.checkPassword(password)){
-            return done(new AuthError("Incorrect password"));
+            return next(new AuthError("Incorrect password"));
         }
+        
         //if credentials are correct, return the user object
-        return done(null,user);
+        return next(null,user);
     })
 }
 ));
 
-passport.serializeUser(function(user, done) {
-    done(null, user.id);
+passport.serializeUser(function(user, next) {
+    next(null, user.id);
 });
 
-passport.deserializeUser(function(id, done) {
+passport.deserializeUser(function(id, next) {
     User.findById(id, function(err, user) {
-        done(err, user);
+        next(err, user);
     });
 });

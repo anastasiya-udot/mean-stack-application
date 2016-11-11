@@ -5,7 +5,7 @@ comicsApp.factory('RegistrDialog',[ 'DialogTemplate', 'SendData', function(Dialo
 
     function resolve($scope, response){
         clearInput($scope);
-        $scope.response = "Confirmation was sent on your email";
+        $scope.response = response.message;
     }
 
     function clearInput($scope){
