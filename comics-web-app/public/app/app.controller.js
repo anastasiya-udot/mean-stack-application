@@ -3,16 +3,30 @@
  */
 comicsApp
     .controller('initialPageCtrl', initialPageCtrl)
-    .controller('resetPassword', resetPasswordCtrl);
+    .controller('resetPasswordPageCtrl', resetPasswordPageCtrl);
 
-initialPageCtrl.$inject = [ '$scope', 'InitialPageSlider'];
+initialPageCtrl.$inject = [ '$scope', 'InitialPageContent'];
 
-function initialPageCtrl($scope, InitialPageSlider) {
-    InitialPageSlider.set($scope)
+function initialPageCtrl($scope, InitialPageContent) {
+    InitialPageContent.set($scope)
 }
 
-initialPageCtrl.$inject = [ '$scope', 'InitialPageSlider'];
+resetPasswordPageCtrl.$inject = [ '$scope', '$location', 'InitialPageContent', 'ResetPassDialog', 'SendData'];
 
-function resetPasswordCtrl() {
 
+function resetPasswordPageCtrl($scope, $location, InitialPageContent, ResetPassDialog, SendData) {
+
+    function resolve($scope, res){
+        if(angular.isDefined(res.email)){
+            ResetPassDialog.load(res.email);
+        }
+    }
+
+    InitialPageContent.set($scope);
+    var url = $location.absUrl();
+    var tokenRecovery = url.split('/').splice(-1,1);
+    var data={
+        "token":  tokenRecovery
+    };
+    SendData($scope, '/reset', data, resolve);
 }

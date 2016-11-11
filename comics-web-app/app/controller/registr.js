@@ -23,7 +23,6 @@ module.exports.post = function(req, res, next) {
 
             newUser.save(function(err) {
                 if(err) {
-                    console.log(err.message);
                     return next(new AuthError("Error during saving"))
                 }
                 var token;

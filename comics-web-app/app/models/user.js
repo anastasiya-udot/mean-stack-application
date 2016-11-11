@@ -58,5 +58,10 @@ schema.methods.generateJwt = function(){
     }, process.env.SECRET_USER_STRING);
 };
 
+schema.methods.getHashPassword = function(password){
+    this.salt = crypto.randomBytes(16).toString('hex');
+    return  this.encryptPassword(password);
+};
+
 
 exports.User = mongoose.model('User', schema);

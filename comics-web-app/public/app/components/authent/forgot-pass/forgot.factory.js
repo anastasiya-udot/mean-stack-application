@@ -4,7 +4,7 @@
 comicsApp.factory('ForgotPassDialog', ['DialogTemplate', function(DialogTemplate) {
 
     function resolve($scope, response){
-        console.log("Email confirmed");
+        $scope.response = response.message;
     }
 
     enterEmailCtrl.$inject = ['$scope', 'SendData'];

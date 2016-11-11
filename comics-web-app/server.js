@@ -43,10 +43,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-require('./app/routes/index')(app);
-
 app.use(express.static(path.join(__dirname, 'public')));
 
+require('./app/routes/index')(app);
 
 app.use(function(err, req, res, next) {
     if (typeof err == 'number'){

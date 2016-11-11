@@ -40,7 +40,7 @@
 .thumbnail{
     height:300px;
     margin:10px;
-    opacity: 0.7;
+    opacity: 0.5;
 }
 
 .thumbnail:hover{

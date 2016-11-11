@@ -14,12 +14,8 @@ var comicsApp = angular.module('comicsApp', [
                 controller: 'initialPageCtrl',
                 templateUrl: 'app/components/front-page/front-page.html'
             })
-            .when('/myCarousel', {
-                controller: 'initialPageCtrl',
-                templateUrl: 'app/components/front-page/front-page.html'
-            })
-            .when('/passwordReset', {
-                controller: 'initialPageCtrl',
+            .when('/reset/:token', {
+                controller: 'resetPasswordPageCtrl',
                 templateUrl: 'app/components/front-page/front-page.html'
             })
 

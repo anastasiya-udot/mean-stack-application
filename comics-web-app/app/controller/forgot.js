@@ -39,9 +39,8 @@ module.exports.post = function(req, res, next) {
                 }
             ],
             function(err, email){
-                console.log(err);
-                if(err) return next(new AuthError("Error"));
-
+                if(err) return next(new AuthError("Sending error"));
+                res.json({"message": "Confirmation was sent on your email"})
             }
         )
     };
