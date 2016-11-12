@@ -15,7 +15,7 @@ comicsApp.factory('ForgotPassDialog', ['DialogTemplate', function(DialogTemplate
             var data = {
                 email: $scope.forgotPassEmail,
             };
-            SendData($scope, '/forgot-password', data, resolve);
+            SendData($scope, '/user/forgot-password', data, resolve);
         }
     }
 

@@ -1,7 +1,7 @@
 /**
  * Created by anastasiya on 10.11.16.
  */
-var User = require('../models/user').User;
+var User = require('../../models/user').User;
 
 module.exports.post = function(req,res){
     User.findOne(

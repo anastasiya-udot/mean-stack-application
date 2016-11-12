@@ -1,5 +1,5 @@
 var winston = require('winston');
-var ENV = process.env.NODE_ENV;
+var constant = require('../libs/constants').constant;
 
 function getLogger(module){
 
@@ -9,7 +9,7 @@ function getLogger(module){
         transports: [
             new winston.transports.Console({
                 colorize: true,
-                level: ENV == 'development' ? 'debug' : 'error',
+                level: constant.ENV == 'development' ? 'debug' : 'error',
                 label: path
             })
         ]

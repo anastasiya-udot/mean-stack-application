@@ -28,7 +28,7 @@ comicsApp.factory('RegistrDialog',[ 'DialogTemplate', 'SendData', function(Dialo
                     password: $scope.registrPassword,
                     confirmedPassword: $scope.registrConfirm
                 };
-                SendData($scope, '/registr', data, resolve);
+                SendData($scope, '/user/registr', data, resolve);
             }
         }
     }

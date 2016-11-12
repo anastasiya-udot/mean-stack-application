@@ -29,25 +29,25 @@ function resetPasswordPageCtrl($scope, $location, InitialPageContent, ResetPassD
 
     function resolve($scope, res){
         if(angular.isDefined(res.email)){
+            console.log("reset");
             ResetPassDialog.load(res.email);
         }
     }
 
     InitialPageContent.set($scope);
     var data = getToken($location);
-    SendData($scope, '/reset-password', data, resolve);
+    SendData($scope, '/user/reset-password', data, resolve);
 }
 
-resetPasswordPageCtrl.$inject = [ '$scope', '$location', 'InitialPageContent', 'LoginDialog', 'SendData'];
+confirmRegistrPageCtrl.$inject = [ '$scope', '$location', 'InitialPageContent', 'LoginDialog', 'SendData'];
 
 function confirmRegistrPageCtrl($scope, $location, InitialPageContent, LoginDialog, SendData){
 
     function resolve($scope, res){
-        console.log("here");
         LoginDialog.load();
     }
 
     InitialPageContent.set($scope);
     var data = getToken($location);
-    SendData($scope, '/confirm-registr', data, resolve);
+    SendData($scope, '/user/confirm-registr', data, resolve);
 }

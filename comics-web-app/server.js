@@ -34,7 +34,7 @@ app.use(multer());
 app.use(cookieParser());
 app.use(require('./app/middleware/sendHttpError'));
 app.use(require('./app/middleware/sendAuthError'));
-require('./app/controller/passport');
+require('./app/controller/user/passport');
 app.use(session({
     name: 'session',
     keys: ['key1', 'key2'],
@@ -58,6 +58,7 @@ app.use(function(err, req, res, next) {
     }
     if(err instanceof AuthError){
         log.error(err);
+        log.error(err.message);
         res.sendAuthError(err);
     }
     else {

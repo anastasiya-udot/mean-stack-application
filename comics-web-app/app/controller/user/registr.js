@@ -2,9 +2,10 @@
  * Created by anastasiya on 1.11.16.
  */
 
-var User        = require('../models/user').User;
-var AuthError   = require('../error/error').AuthError;
+var User        = require('../../models/user').User;
+var AuthError   = require('../../error/error').AuthError;
 var async       = require('async');
+var constant    = require('../../libs/constants').constant;
 
 module.exports.post = function(req, res, next) {
     async.waterfall(
@@ -18,15 +19,17 @@ module.exports.post = function(req, res, next) {
                 };
 
                 if(data.confirmedPassword !== data.password)
-                    next(new AuthError("Passwords are different"));
+                    next(new AuthError(constant.DIFFERENT_PASSWORDS));
+
                 callback(null, data);
             },
             function(data, callback){
+
                 User.findOne({email: data.email}, function (err, user) {
 
-                    if (err) return next(new AuthError("Error in sign up"));
+                    if (err) return next(new AuthError(constant.ERROR_SIGN_UP));
 
-                    if (user) return next(new AuthError("User with such email already exist"));
+                    if (user) return next(new AuthError(constant.USER_EMAIL_EXIST));
 
                     var newUser = new User();
 
@@ -43,22 +46,24 @@ module.exports.post = function(req, res, next) {
                     });
             },
             function(token, user, callback){
-                var email = require('../controller/email-send');
+                var email = require('./email-send');
                 email.sendVerificationEmail(user, req.headers.host, token, callback);
             },
 
             function(token, user, callback){
                 user.verifyRegistrToken = token;
+
                 user.save(function(err) {
-                    if (err)  return next(new AuthError("Error during saving"));
+                    if (err)  return next(new AuthError(constant.ERROR_SAVING));
                     callback(null);
                 });
             }
         ],
         function(err,user){
-            if(err) return next(new AuthError("Error"));
+            if(err) return next(new AuthError(constant.ERROR));
+
           //  var token = user.generateJwt();
-            res.json({"message" : "Confirmation was send on your email"});
+            res.json({"message" : constant.CONFIRM_MESSAGE});
         }
 
     );

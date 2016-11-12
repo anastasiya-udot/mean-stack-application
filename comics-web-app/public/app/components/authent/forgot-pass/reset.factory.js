@@ -22,7 +22,7 @@ comicsApp.factory('ResetPassDialog', ['DialogTemplate', function(DialogTemplate)
                         password: password,
                         confirmed: confirmPassword
                     };
-                    SendData($scope, '/recover-password', data, resolve);
+                    SendData($scope, '/user/recover-password', data, resolve);
                 } else {
                     $scope.response = "Passwords are different"
                 }
@@ -32,6 +32,7 @@ comicsApp.factory('ResetPassDialog', ['DialogTemplate', function(DialogTemplate)
     return {
         load: function(email){
             currentEmail = email;
+            console.log("reset");
             var url = 'app/components/authent/forgot-pass/reset.html';
             var controller = resetPassCtrl;
             currentDialog = DialogTemplate.open(url, controller);

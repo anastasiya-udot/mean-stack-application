@@ -1,3 +1,9 @@
+@font-face{
+    font-family: Comics font;
+    src: url(/fonts/BornaSinner.eot);
+    src: url(/fonts/BornaSinner.ttf);
+}
+
 .parallax-window {
     background-image: url(/assets/images/kvptI_croper_ru.jpeg);
     /* Set a specific height */
@@ -20,10 +26,7 @@
     font-size: 80px;
     color: #671e1e;
     text-shadow: -7px 7px 5px #5d4949;
-    font-family: 'Ranga', cursive;
-    font-family: 'Yellowtail', cursive;
-    font-family: 'Covered By Your Grace', cursive;
-    font-family: 'Permanent Marker', cursive;
+    font-family: "Comics font", cursive;
     position: relative;
 }
 
@@ -78,7 +81,7 @@
 }
 
 .menu-content{
-    padding-top: 150px;
+    padding-top: 110px;
     padding-bottom: 100px;
 
 }

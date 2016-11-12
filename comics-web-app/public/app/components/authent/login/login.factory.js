@@ -22,7 +22,7 @@ comicsApp.factory('LoginDialog', ['DialogTemplate', 'SendData',  function(Dialog
                 email: $scope.loginEmail,
                 password: $scope.loginPassword
             };
-            SendData($scope, '/login', data, resolve);
+            SendData($scope, '/user/login', data, resolve);
         };
 
         $scope.openForgotPassMenu = function(){
@@ -34,6 +34,7 @@ comicsApp.factory('LoginDialog', ['DialogTemplate', 'SendData',  function(Dialog
 
     return {
         load: function(){
+            console.log("login");
             var url = 'app/components/authent/login/login.html';
             var controller = authorizationCtrl;
             currentDialog = DialogTemplate.open(url, controller);

@@ -13,7 +13,6 @@ module.exports.post = function(req,res,next){
         // If a user is found
         var token;
         token = user.generateJwt();
-        console.log("user");
         res.json({
             "token" : token
         });

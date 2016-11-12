@@ -14,11 +14,11 @@ var comicsApp = angular.module('comicsApp', [
                 controller: 'initialPageCtrl',
                 templateUrl: 'app/components/front-page/front-page.html'
             })
-            .when('/reset/:token', {
+            .when('/user/reset/:token', {
                 controller: 'resetPasswordPageCtrl',
                 templateUrl: 'app/components/front-page/front-page.html'
             })
-            .when('/confirm-registr/:token',{
+            .when('/user/confirm-registr/:token',{
                 controller: 'confirmRegistrPageCtrl',
                 templateUrl: 'app/components/front-page/front-page.html'
             })
