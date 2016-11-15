@@ -73,7 +73,6 @@ app.use(function(err, req, res, next) {
     }
 });
 
-
 //http comics-web-app creating
 http.createServer(app).listen(config.get('port'), function(){
    log.info("Express comics-web-app listening on port " + config.get('port'));

@@ -29,7 +29,7 @@ module.exports.post = function(req, res, next) {
 
                     if (err) return next(new AuthError(constant.ERROR_SIGN_UP));
 
-                    if (user) return next(new AuthError(constant.USER_EMAIL_EXIST));
+                    if (user) return next(new AuthError(constant.USER_EXIST));
 
                     var newUser = new User();
 
@@ -47,7 +47,10 @@ module.exports.post = function(req, res, next) {
             },
             function(token, user, callback){
                 var email = require('./email-send');
-                email.sendVerificationEmail(user, req.headers.host, token, callback);
+                email.sendVerificationEmail(user, req.headers.host, token, function(err){
+                    if (err) return next(new AuthError(constant.ERROR_SENDING));
+                    callback(null, token, user);
+                });
             },
 
             function(token, user, callback){
@@ -55,7 +58,7 @@ module.exports.post = function(req, res, next) {
 
                 user.save(function(err) {
                     if (err)  return next(new AuthError(constant.ERROR_SAVING));
-                    callback(null);
+                    callback(null, user);
                 });
             }
         ],

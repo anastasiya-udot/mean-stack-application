@@ -49,7 +49,6 @@ module.exports.sendVerificationEmail = function(user, host, token, callback) {
     };
 
     smtpTransport.sendMail(mailOptions, function (err) {
-        if (err) return next(new AuthError(constant.ERROR_SENDING));
-        return callback(null, token,  user);
+        return callback(err);
     });
 };

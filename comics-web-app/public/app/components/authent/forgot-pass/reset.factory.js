@@ -10,9 +10,9 @@ comicsApp.factory('ResetPassDialog', ['DialogTemplate', function(DialogTemplate)
         $scope.response = response.message;
     }
 
-    resetPassCtrl.$inject = ['$scope', 'SendData'];
+    resetPassCtrl.$inject = ['$scope', 'PostData'];
 
-    function resetPassCtrl($scope, SendData){
+    function resetPassCtrl($scope, PostData){
             $scope.sendNewPassData = function() {
                 var password = $scope.newPassword;
                 var confirmPassword = $scope.newPasswordConfirm;
@@ -22,7 +22,7 @@ comicsApp.factory('ResetPassDialog', ['DialogTemplate', function(DialogTemplate)
                         password: password,
                         confirmed: confirmPassword
                     };
-                    SendData($scope, '/user/recover-password', data, resolve);
+                    PostData($scope, '/user/recover-password', data, resolve);
                 } else {
                     $scope.response = "Passwords are different"
                 }

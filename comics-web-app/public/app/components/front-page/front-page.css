@@ -1,11 +1,11 @@
 @font-face{
     font-family: Comics font;
-    src: url(/fonts/BornaSinner.eot);
-    src: url(/fonts/BornaSinner.ttf);
+    src: url('/fonts/BornaSinner.eot');
+    src: url('/fonts/BornaSinner.ttf');
 }
 
 .parallax-window {
-    background-image: url(/assets/images/kvptI_croper_ru.jpeg);
+    background-image: url('/assets/images/kvptI_croper_ru.jpeg');
     /* Set a specific height */
     height: 800px;
     text-align: center;
@@ -53,7 +53,7 @@
 
 
 .low-menu-item-image1{
-    background-image: url(/assets/images/36519.jpg);
+    background-image: url('/assets/images/36519.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -61,14 +61,14 @@
 
 
 .low-menu-item-image2{
-    background-image: url(/assets/images/36520.jpg);
+    background-image: url('/assets/images/36520.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 .low-menu-item-image3{
-    background-image: url(/assets/images/thumb-1920-32154.jpg);
+    background-image: url('/assets/images/thumb-1920-32154.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

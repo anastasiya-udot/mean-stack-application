@@ -18,7 +18,7 @@ comicsApp
     }
 }])
 
-    .factory('SendData', ['$http', function($http){
+    .factory('PostData', ['$http', function($http){
     return function($scope, url, data, resolve){
         var config = {
             headers : {
@@ -37,4 +37,23 @@ comicsApp
                 }
             })
     };
-}]);
+
+}])
+
+    .factory('GetData', ['$http', function($http){
+        return function($scope, url, resolve, reject){
+            var config = {
+                headers : {
+                    'Content-Type': 'application/json;charset=utf-8;'
+                }
+            };
+
+            $http.get( url, config)
+                .then(
+                    (response) => { resolve($scope, response)},
+                    (response) => { reject($scope, response)}
+                )
+        };
+
+    }]);
+

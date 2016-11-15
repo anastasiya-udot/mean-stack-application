@@ -4,7 +4,8 @@
 var comicsApp = angular.module('comicsApp', [
         'ngDialog',
         'ngRoute',
-        'ngResource'
+        'ngResource',
+        'ui.bootstrap'
     ])
         .config(comicsappConfig);
 
@@ -21,6 +22,10 @@ var comicsApp = angular.module('comicsApp', [
             .when('/user/confirm-registr/:token',{
                 controller: 'confirmRegistrPageCtrl',
                 templateUrl: 'app/components/front-page/front-page.html'
+            })
+            .when('/gallery', {
+                controller: 'browseGalleryCtrl',
+                templateUrl: 'app/components/gallery/gallery.html'
             })
 
     }

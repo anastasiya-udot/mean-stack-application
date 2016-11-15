@@ -13,25 +13,27 @@
     <link rel='stylesheet' href='app/components/top-menu/starter-template.css'>
     <link rel='stylesheet' href='app/components/top-menu/logo.css'>
     <link rel='stylesheet' href='app/components/front-page/front-page.css' >
-    <!-- end main content styles-->
-
-    <!-- authntication styles -->
     <link rel='stylesheet' href='app/components/authent/authent.css'>
-    <!-- authentication enter styles -->
-
-    <!-- front-page styles-->
     <link rel='stylesheet' href='app/components/front-page/front-page.css'>
-    <!-- end front-page styles-->
-
+    <link rel='stylesheet' href='app/components/gallery/gallery.css'>
+    <!-- end main-content styles-->
+\
     <!-- config application scripts-->
     <script type='text/javascript' src='vendor/bower_components/angular/angular.js'></script>
     <script type='text/javascript' src='vendor/bower_components/angular-route/angular-route.min.js'></script>
     <script type='text/javascript' src="vendor/bower_components/angular-resource/angular-resource.min.js"></script>
+    <script type='text/javascript' src="vendor/bower_components/angular-animate/angular-animate.js"></script>
+    <script type='text/javascript' src="vendor/bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script type='text/javascript' src="vendor/bower_components/jquery/dist/jquery.min.js"></script>
     <script type='text/javascript' src='vendor/bower_components/bootstrap/dist/js/bootstrap.min.js'></script>
     <script type='text/javascript' src="vendor/bower_components/ng-dialog/js/ngDialog.js"></script>
+    <script type='text/javascript' src="vendor/bower_components/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
     <script type='text/javascript' src='app/app.js'></script>
     <!--end  config application scripts-->
+
+    <!-- filters -->
+    <script type='text/javascript' src='app/components/gallery/gallery.filter.js'></script>
+    <!-- end filters -->
 
     <!-- factories -->
     <script type='text/javascript' src='app/app.factory.js'></script>
@@ -40,7 +42,8 @@
     <script type='text/javascript' src='app/components/authent/forgot-pass/reset.factory.js'></script>
     <script type='text/javascript' src='app/components/authent/login/login.factory.js'></script>
     <script type='text/javascript' src='app/components/authent/authent.factory.js'></script>
-    <script type='text/javascript' src='app/components/front-page/front-page.js'></script>
+    <script type='text/javascript' src='app/components/front-page/front-page.factory.js'></script>
+    <script type='text/javascript' src='app/components/gallery/gallery.factory.js'></script>
     <!-- end factories -->
 
     <!-- directives -->
@@ -49,13 +52,10 @@
 
     <!-- controllers -->
     <script type='text/javascript' src='app/app.controller.js'></script>
+    <script type='text/javascript' src='app/components/authent/forgot-pass/forgot-pass.controller.js'></script>
+    <script type='text/javascript' src='app/components/authent/registr/registr.controller.js'></script>
+    <script type='text/javascript' src='app/components/gallery/gallery.controller.js'></script>
     <!-- end controllers -->
-
-
-
-
-
-
 
 
 </head>

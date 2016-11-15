@@ -6,10 +6,10 @@ var jwt         = require('jsonwebtoken');
 var mongoose    = require('../libs/mongoose');
 var Schema      = mongoose.Schema;
 
-var schema = new Schema({
+var userSchema = new Schema({
     username: {
         type: String,
-        unique: false,
+        unique: true,
         required: true
     },
     hashedPassword: {
@@ -31,23 +31,23 @@ var schema = new Schema({
     verifyRegistrToken: String
 });
 
-schema.methods.encryptPassword = function(password){
+userSchema.methods.encryptPassword = function(password){
     return crypto.createHmac('sha1', this.salt).
     update(password).
     digest('hex');
 };
 
 
-schema.methods.checkPassword = function(password){
+userSchema.methods.checkPassword = function(password){
     return this.encryptPassword(password) === this.hashedPassword;
 };
 
-schema.methods.getHashPassword = function(password){
+userSchema.methods.getHashPassword = function(password){
     this.salt = crypto.randomBytes(16).toString('hex');
     return  this.encryptPassword(password);
 };
 
-schema.methods.generateJwt = function(){
+userSchema.methods.generateJwt = function(){
     var expiry = new Date();
     expiry.setDate(expiry.getDate() + 7);
 
@@ -59,10 +59,10 @@ schema.methods.generateJwt = function(){
     }, process.env.SECRET_USER_STRING);
 };
 
-schema.methods.getHashPassword = function(password){
+userSchema.methods.getHashPassword = function(password){
     this.salt = crypto.randomBytes(16).toString('hex');
     return  this.encryptPassword(password);
 };
 
 
-exports.User = mongoose.model('User', schema);
+exports.User = mongoose.model('User', userSchema);

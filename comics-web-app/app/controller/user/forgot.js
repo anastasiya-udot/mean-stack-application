@@ -35,10 +35,14 @@ module.exports.post = function(req, res, next) {
                 },
 
                 function(token, user, callback){
-                    require('./email-send').sendForgotEmail(user.email, req.headers.host, token, callback);
+                    var email = require('./email-send');
+                    email.sendForgotEmail(user.email, req.headers.host, token, function(err){
+                        if (err) return next(new AuthError(constant.ERROR_SENDING));
+                        callback(null);
+                    });
                 }
             ],
-            function(err, email){
+            function(err){
 
                 if(err) return next(new AuthError(constant.ERROR));
                 res.json({"message": constant.CONFIRM_MESSAGE})

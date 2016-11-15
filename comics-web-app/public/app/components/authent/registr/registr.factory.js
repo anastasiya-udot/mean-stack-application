@@ -1,7 +1,7 @@
 /**
  * Created by anastasiya on 8.11.16.
  */
-comicsApp.factory('RegistrDialog',[ 'DialogTemplate', 'SendData', function(DialogTemplate, SendData) {
+comicsApp.factory('RegistrDialog',[ 'DialogTemplate', 'PostData', function(DialogTemplate, PostData) {
 
     function resolve($scope, response){
         clearInput($scope);
@@ -28,7 +28,7 @@ comicsApp.factory('RegistrDialog',[ 'DialogTemplate', 'SendData', function(Dialo
                     password: $scope.registrPassword,
                     confirmedPassword: $scope.registrConfirm
                 };
-                SendData($scope, '/user/registr', data, resolve);
+                PostData($scope, '/user/registr', data, resolve);
             }
         }
     }

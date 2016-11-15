@@ -1,6 +1,8 @@
 
 module.exports = function(app){
         app.get('/', require('./../controller/init-page').get);
+        app.get('/gallery/get', require('./../controller/gallery/browse-gallery').get);
+
         app.post('/user/login', require('./../controller/user/login').post);
         app.post('/user/registr', require('./../controller/user/registr').post);
         app.post('/user/forgot-password', require('./../controller/user/forgot').post);

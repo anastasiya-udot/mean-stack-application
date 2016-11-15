@@ -1,0 +1,80 @@
+
+.list-group-item {
+    position: relative;
+    margin-top: 20px;
+    padding: 0;
+    display: block;
+    height: 150px;
+    z-index: 1;
+    opacity: 0.7;
+    background-color: rgba(45, 35, 35, 0.72);
+    border-color: rgba(45, 35, 35, 0.89);
+}
+
+.comicsName{
+    font-family: "Comics font", cursive;
+}
+
+img.comics-group-item-image {
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+    width: 100%;
+    position: relative;
+    height: 148px;
+}
+
+.comics-group-inner {
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.comics-group-item{
+    box-sizing: border-box;
+    color: white;
+    text-shadow: -4px 4px 3px #2b0f1c;
+    font-family: "Ubuntu Light", "Times New Roman";
+    position: absolute;
+    top: 0;
+    left: 20px;
+}
+
+.list-group-item:hover{
+    opacity: 1;
+}
+
+.pagination > li > a{
+    color: #ffffff;
+    background-color: #6b2121;
+}
+
+.pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus, .pagination>li>span:hover {
+    z-index: 2;
+    color: #ffffff;
+    background-color: #420505;
+    border-color: #ddd;
+}
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    z-index: 3;
+    color: #fff;
+    cursor: default;
+    background-color: #250405;
+    border-color: #6b1929;
+}
+
+.pagination>.disabled>a, .pagination>.disabled>a:focus, .pagination>.disabled>a:hover, .pagination>.disabled>span, .pagination>.disabled>span:focus, .pagination>.disabled>span:hover {
+    color: #fff;
+    background-color: #5f5d5d;
+
+}

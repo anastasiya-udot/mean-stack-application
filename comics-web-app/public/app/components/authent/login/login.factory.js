@@ -1,7 +1,7 @@
 /**
  * Created by anastasiya on 8.11.16.
  */
-comicsApp.factory('LoginDialog', ['DialogTemplate', 'SendData',  function(DialogTemplate, SendData) {
+comicsApp.factory('LoginDialog', ['DialogTemplate', 'PostData',  function(DialogTemplate, PostData) {
 
     var currentDialog;
 
@@ -22,7 +22,7 @@ comicsApp.factory('LoginDialog', ['DialogTemplate', 'SendData',  function(Dialog
                 email: $scope.loginEmail,
                 password: $scope.loginPassword
             };
-            SendData($scope, '/user/login', data, resolve);
+            PostData($scope, '/user/login', data, resolve);
         };
 
         $scope.openForgotPassMenu = function(){

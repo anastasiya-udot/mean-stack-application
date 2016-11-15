@@ -1,0 +1,21 @@
+<div class="comics-group">
+    <ul class="list-group">
+        <div ng-repeat="elem in comics | startFrom:(currentPage-1)*pageSize | limitTo: pageSize">
+            <li class="col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-12 col-xs-12 list-group-item">
+                <!-- <img data-ng-src="{{elem.comicsImagePath}}" class="comics-group-item-image"/> -->
+                <div class="comics-group-inner" ng-style="{ 'background-image': 'url(' + elem.comicsImagePath + ')' }"></div>
+                <div class="comics-group-item">
+                    <div class="comics-group-item-content">
+                        <h3><span class="comicsName">{{elem.comicsName}}</span></h3>
+                        <h4>{{elem.comicsAuthor}}</h4>
+                        <h4>{{elem.comicsDate}}</h4>
+                    </div>
+                </div>
+            </li>
+        </div>
+    </ul>
+</div>
+
+<div class="col-lg-offset-5 col-lg-3 col-md-offset-4 col-sm-offset-4 col-xs-offset-3">
+    <div uib-pagination total-items="comics.length" ng-model="currentPage" items-per-page="pageSize"></div>
+</div>
