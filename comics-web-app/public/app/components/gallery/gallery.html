@@ -1,7 +1,27 @@
+
+                <section class="webdesigntuts-workshop">
+                    <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <input type="search" placeholder="What are you looking for?" ng-model="searchValue">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-offset-1 col-lg-8 col-md-offset-2 col-md-8 col-sm-12 col-xs-12">
+                            <button  ng-click="OrderBy('comicsName')">Search by name</button>
+                            <button  ng-click="OrderBy('comicsAuthor')">Search by author</button>
+                            <button  ng-click="OrderBy('comicsDate')">Search by date</button>
+                        </div>
+                    </div>
+                    </div>
+                </section>
+
+
+
 <div class="comics-group">
     <ul class="list-group">
-        <div ng-repeat="elem in comics | startFrom:(currentPage-1)*pageSize | limitTo: pageSize">
-            <li class="col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-12 col-xs-12 list-group-item">
+        <div ng-repeat="elem in comics | filter:searchValue | orderBy:orderComics |  startFrom:(currentPage-1)*pageSize | limitTo: pageSize ">
+            <li class="col-lg-offset-2 col-lg-8 col-md-offset-1 col-md-8 col-sm-12 col-xs-12 list-group-item">
                 <!-- <img data-ng-src="{{elem.comicsImagePath}}" class="comics-group-item-image"/> -->
                 <div class="comics-group-inner" ng-style="{ 'background-image': 'url(' + elem.comicsImagePath + ')' }"></div>
                 <div class="comics-group-item">
@@ -15,7 +35,10 @@
         </div>
     </ul>
 </div>
-
-<div class="col-lg-offset-5 col-lg-3 col-md-offset-4 col-sm-offset-4 col-xs-offset-3">
-    <div uib-pagination total-items="comics.length" ng-model="currentPage" items-per-page="pageSize"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-offset-5 col-lg-3 col-md-offset-4 col-sm-offset-4 col-xs-offset-3">
+            <div uib-pagination total-items="comics.length" ng-model="currentPage" items-per-page="pageSize"></div>
+        </div>
+    </div>
 </div>

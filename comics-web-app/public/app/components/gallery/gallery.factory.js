@@ -3,6 +3,7 @@
  */
 comicsApp.factory( 'GalleryLoader', ['GetData', function(GetData){
 
+
     function getFullDate(elem){
         var date = new Date(elem.date);
         return date.getDate() + "." +
@@ -23,11 +24,20 @@ comicsApp.factory( 'GalleryLoader', ['GetData', function(GetData){
         });
     }
 
+    function initOrders($scope){
+        $scope.OrderBy = function(by){
+            $scope.orderComics  = by;
+            console.log($scope.orderComics);
+        };
+    }
+
     function resolve($scope, response){
+        scope = $scope;
         $scope.comics = [];
         $scope.pageSize = 5;
         $scope.currentPage = 1;
         initGroup(response, $scope.comics);
+        initOrders($scope)
     }
 
     function reject($scope, response){
