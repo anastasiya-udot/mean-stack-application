@@ -9,6 +9,11 @@ module.exports.constant = {
     CLOUD_API_KEY:                  process.env.API_KEY,
     CLOUD_API_SECRET:               process.env.API_SECRET,
 
+    SESSION_KEY_1:                  process.env.KEY_SESSION_1,
+    SESSION_KEY_2:                  process.env.KEY_SESSION_2,
+
+    SECRET_JWT:                     process.env.SECRET_JWT,
+
     ERROR:                          "Error",
     NOT_VERIFIED_EMAIL:             "User email is not verified",
     PASSWORD_ERROR:                 "Incorrect password",
@@ -19,6 +24,7 @@ module.exports.constant = {
     DIFFERENT_PASSWORDS:            "Passwords are different",
     ERROR_SIGN_UP:                  "Error in signing up",
     USER_EXIST:                     "User with such data already exist",
+    USER_NOT_FOUND:                 "User was not found",
     CONFIRM_MESSAGE:                "Confirmation was send on your email",
     SUCCESS_PASSWORD_CHANGED:       "Password was successfully changed"
 };

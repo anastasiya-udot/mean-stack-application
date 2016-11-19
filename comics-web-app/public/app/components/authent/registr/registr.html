@@ -16,7 +16,7 @@
                                 <div class="form-group">
                                     <input type="password" class="form-control" placeholder="Confirm Password" ng-model="registrConfirm" required>
                                 </div>
-                                <button type="register" class="btn-auth" ng-click="sendRegistrData()">Sign up</button>
+                                <button type="register" class="btn-auth" ng-disabled="buttonDisabled" ng-click="sendRegistrData()">Sign up</button>
                                 <span class="error-auth">{{response}}</span>
                             </form>
                         </div>

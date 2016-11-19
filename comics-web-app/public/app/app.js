@@ -27,5 +27,9 @@ var comicsApp = angular.module('comicsApp', [
                 controller: 'browseGalleryCtrl',
                 templateUrl: 'app/components/gallery/gallery.html'
             })
+            .when('/account', {
+                controller: 'browseAccountCtrl',
+                templateUrl: 'app/components/account/account.html'
+            });
 
     }

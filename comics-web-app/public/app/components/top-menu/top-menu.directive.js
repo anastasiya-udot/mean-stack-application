@@ -4,10 +4,16 @@
 comicsApp.directive('topMenuBar',  function(){
     return {
         restrict: 'E',
-        scope: false,
         templateUrl: 'app/components/top-menu/top-menu.html',
-        controller: ['$scope', 'AuthenticationButtons', function($scope, AuthenticationButtons){
+        controller: ['$scope', 'AuthenticationButtons', 'SessionService' , function($scope, AuthenticationButtons, SessionService){
+            SessionService.observe();
             AuthenticationButtons.listenPopDialogButtons($scope);
+
+            $scope.logOutUser = function(){
+                SessionService.isLogged = false;
+                SessionService.destroySession();
+                SessionService.observe();
+            }
         }]
     }
 });

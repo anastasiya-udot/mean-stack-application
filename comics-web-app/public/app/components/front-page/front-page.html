@@ -18,42 +18,51 @@
 <hr>
 <div class="menu-content">
     <div class="container">
+        <hr>
         <div class="row">
-            <div class="col-lg-4 col-sm-6  col-xs-6">
-                <div class="low-menu-item">
-                    <div class="thumbnail low-menu-item-image1" ng-click="popRegistrationDialog()"></div>
-                    <div class="site-greeting-comment">
-                        Sign Up today
-                    </div>
-                    <div class="low-menu-item-comment">
-                        Join our team and become one of the comics creators!
-                    </div>
-                </div>
+            <div class="col-sm-8">
+                <h2>What is this?</h2>
+                <p>This project was created as test MEAN-stack application and as a course project. This site was designed to create comics. All necessary instructions can be found on the website.</p>
             </div>
-            <div class="col-lg-4 col-sm-6 col-xs-6">
-                <div class="low-menu-item">
-                    <div class="thumbnail low-menu-item-image2" ng-click="popAuthorizationDialog()">
-                    </div>
-                    <div class="site-greeting-comment">
-                        Sign in now
-                    </div>
-                    <div class="low-menu-item-comment">
-                        Get to work logging into your account
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-lg-offset-0 col-sm-offset-3  col-xs-6 col-xs-offset-3">
-                <div class="low-menu-item">
-                    <div class="thumbnail low-menu-item-image3">
-                    </div>
-                    <div class="site-greeting-comment">
-                        Browse the gallery
-                    </div>
-                    <div class="low-menu-item-comment">
-                    Do not miss the chance to read other comics
-                    </div>
-                </div>
+            <div class="col-sm-4">
+                <h2>Contact me</h2>
+                <address>
+                    <strong>Anastasiya Udot</strong>
+                    <br>BSUIR
+                    <br>2016
+                    <br>
+                </address>
+                <address>
+                    <abbr title="Phone">P:</abbr>375 (29) 5030445
+                    <br>
+                    <abbr title="Email">E:</abbr> <a href="mailto:#">anastasiya.udot@gmail.com</a>
+                </address>
             </div>
         </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <div class="row">
+            <div class="col-sm-4" ng-show="!loggedIn">
+                <img class="img-circle img-responsive img-center " src="https://res.cloudinary.com/dq83k7kbp/image/upload/c_scale,h_300,w_300/v1479486133/36519_ke79zp.jpg" alt="">
+                <h2 class="low-menu-reference" align="center" ng-click="popRegistrationDialog()">Sign Up today</h2>
+                <p align="center">Join our team and become one of the comics creators!</p>
+            </div>
+            <div class="col-sm-4" ng-show="!loggedIn">
+                <img class="img-circle img-responsive img-center" src="https://res.cloudinary.com/dq83k7kbp/image/upload/c_scale,h_300,w_300/v1479486137/36520_wqcl6v.jpg" alt="">
+                <h2 class="low-menu-reference" align="center" ng-click="popAuthorizationDialog()">Sign in now</h2>
+                <p align="center">Get to work logging into your account</p>
+            </div>
+            <div class="col-sm-4">
+                <img class="img-circle img-responsive img-center" src="https://res.cloudinary.com/dq83k7kbp/image/upload/c_scale,h_300,w_300/v1479486141/thumb-1920-32154_hzomqd.jpg" alt="">
+                <a  class="low-menu-reference" align="center" href="#gallery"><h2>Browse the gallery</h2></a>
+                <p align="center">Do not miss the chance to read other comics</p>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
     </div>
 </div>

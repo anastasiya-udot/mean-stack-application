@@ -4,6 +4,7 @@
 comicsApp.factory('RegistrDialog',[ 'DialogTemplate', 'PostData', function(DialogTemplate, PostData) {
 
     function resolve($scope, response){
+        $scope.buttonDisabled = false;
         clearInput($scope);
         $scope.response = response.message;
     }
@@ -13,11 +14,16 @@ comicsApp.factory('RegistrDialog',[ 'DialogTemplate', 'PostData', function(Dialo
          $scope.registrPassword= $scope.registrConfirm= "";
     }
 
+    function checkFieldsEmpty($scope){
+        return $scope.registrUsername && $scope.registrEmail &&
+            $scope.registrPassword && $scope.registrConfirm;
+    }
+
 
     registrationCtrl.$inject = [ '$scope' ];
 
     function registrationCtrl($scope){
-
+        $scope.buttonDisabled = false;
         $scope.sendRegistrData = function(){
             if ($scope.registrPassword !== $scope.registrConfirm){
                 $scope.response = "Passwords are different";
@@ -28,7 +34,10 @@ comicsApp.factory('RegistrDialog',[ 'DialogTemplate', 'PostData', function(Dialo
                     password: $scope.registrPassword,
                     confirmedPassword: $scope.registrConfirm
                 };
-                PostData($scope, '/user/registr', data, resolve);
+                if (checkFieldsEmpty($scope)){
+                    $scope.buttonDisabled = true;
+                    PostData($scope, '/user/registr', data, resolve);
+                }
             }
         }
     }

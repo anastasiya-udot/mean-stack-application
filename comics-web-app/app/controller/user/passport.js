@@ -18,7 +18,7 @@ function(username, password, next){
         if(!user){
             return next(new AuthError(constant.EMAIL_ERROR));
         }
-        
+
         if(user.verifyRegistrToken !== null){
             return next(new AuthError(constant.NOT_VERIFIED_EMAIL));
         }

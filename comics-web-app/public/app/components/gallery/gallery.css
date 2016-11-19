@@ -1,6 +1,4 @@
-.comics-group{
-    padding-top: 100px;
-}
+
 .sort-search-container{
     background-color: #1b0c13;
     padding: 20px;
@@ -95,7 +93,6 @@ img.comics-group-item-image {
 .webdesigntuts-workshop {
     background: #151515;
     height: 100%;
-    position: absolute;
     text-align: center;
     width: 100%;
 }

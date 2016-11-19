@@ -1,43 +1,45 @@
-
-                <section class="webdesigntuts-workshop">
-                    <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <input type="search" placeholder="What are you looking for?" ng-model="searchValue">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-offset-1 col-lg-8 col-md-offset-2 col-md-8 col-sm-12 col-xs-12">
-                            <button  ng-click="OrderBy('comicsName')">Search by name</button>
-                            <button  ng-click="OrderBy('comicsAuthor')">Search by author</button>
-                            <button  ng-click="OrderBy('comicsDate')">Search by date</button>
-                        </div>
-                    </div>
-                    </div>
-                </section>
-
-
+<section class="webdesigntuts-workshop">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <input type="search" placeholder="What are you looking for?" ng-model="searchValue">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-offset-1 col-lg-8 col-md-offset-2 col-md-8 col-sm-12 col-xs-12">
+                <button  ng-click="OrderBy('comicsName')">Sort by name</button>
+                <button  ng-click="OrderBy('comicsAuthor')">Sort by author</button>
+                <button  ng-click="OrderBy('comicsDate')">Sort by date</button>
+            </div>
+        </div>
+    </div>
+</section>
 
 <div class="comics-group">
     <ul class="list-group">
         <div ng-repeat="elem in comics | filter:searchValue | orderBy:orderComics |  startFrom:(currentPage-1)*pageSize | limitTo: pageSize ">
-            <li class="col-lg-offset-2 col-lg-8 col-md-offset-1 col-md-8 col-sm-12 col-xs-12 list-group-item">
-                <!-- <img data-ng-src="{{elem.comicsImagePath}}" class="comics-group-item-image"/> -->
-                <div class="comics-group-inner" ng-style="{ 'background-image': 'url(' + elem.comicsImagePath + ')' }"></div>
-                <div class="comics-group-item">
-                    <div class="comics-group-item-content">
-                        <h3><span class="comicsName">{{elem.comicsName}}</span></h3>
-                        <h4>{{elem.comicsAuthor}}</h4>
-                        <h4>{{elem.comicsDate}}</h4>
-                    </div>
+            <div class="container">
+                <div class="row">
+                    <li class="col-lg-12 col-md-12 col-sm-12 col-xs-12 list-group-item">
+                        <!-- <img data-ng-src="{{elem.comicsImagePath}}" class="comics-group-item-image"/> -->
+                        <div class="comics-group-inner" ng-style="{ 'background-image': 'url(' + elem.comicsImagePath + ')' }"></div>
+                        <div class="comics-group-item">
+                            <div class="comics-group-item-content">
+                                <h3><span class="comicsName">{{elem.comicsName}}</span></h3>
+                                <h4>{{elem.comicsAuthor}}</h4>
+                                <h4>{{elem.comicsDate}}</h4>
+                            </div>
+                        </div>
+                    </li>
                 </div>
-            </li>
+            </div>
         </div>
     </ul>
 </div>
+
 <div class="container">
     <div class="row">
-        <div class="col-lg-offset-5 col-lg-3 col-md-offset-4 col-sm-offset-4 col-xs-offset-3">
+        <div class="col-lg-offset-5 col-lg-3 col-md-offset-4  col-sm-offset-2 col-sm-10 col-xs-offset-2 col-xs-10">
             <div uib-pagination total-items="comics.length" ng-model="currentPage" items-per-page="pageSize"></div>
         </div>
     </div>

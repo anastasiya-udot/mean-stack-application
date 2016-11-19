@@ -5,6 +5,7 @@ var crypto      =  require('crypto');
 var jwt         = require('jsonwebtoken');
 var mongoose    = require('../libs/mongoose');
 var Schema      = mongoose.Schema;
+var constant    = require('../libs/constants').constant;
 
 var userSchema = new Schema({
     username: {
@@ -25,6 +26,9 @@ var userSchema = new Schema({
         type: String,
         unique: true,
         required: true
+    },
+    avatar: {
+        type: String,
     },
     resetPasswordToken: String,
     resetPasswordExpires: Date,
@@ -52,11 +56,10 @@ userSchema.methods.generateJwt = function(){
     expiry.setDate(expiry.getDate() + 7);
 
     return jwt.sign({
-        _id: this._id,
+        id: this._id,
         email: this.email,
-        name: this.name,
-        exp: parseInt(expiry.getTime() / 1000),
-    }, process.env.SECRET_USER_STRING);
+        name: this.name
+    }, constant.SECRET_JWT);
 };
 
 userSchema.methods.getHashPassword = function(password){

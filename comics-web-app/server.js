@@ -16,7 +16,6 @@ var logger       = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var multer       = require('multer');
-var session      = require('cookie-session');
 var favicon      = require('serve-favicon');
 
 
@@ -35,11 +34,7 @@ app.use(cookieParser());
 app.use(require('./app/middleware/sendHttpError'));
 app.use(require('./app/middleware/sendAuthError'));
 require('./app/controller/user/passport');
-app.use(session({
-    name: 'session',
-    keys: ['key1', 'key2'],
-    cookie: config.get('session:cookie')
-}));
+//app.use(require('./app/middleware/session-config'));
 app.use(passport.initialize());
 app.use(passport.session());
 

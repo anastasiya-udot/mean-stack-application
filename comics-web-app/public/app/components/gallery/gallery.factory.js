@@ -1,7 +1,8 @@
 /**
  * Created by anastasiya on 13.11.16.
  */
-comicsApp.factory( 'GalleryLoader', ['GetData', function(GetData){
+comicsApp
+    .factory( 'GalleryLoader', ['GetData', function(GetData){
 
 
     function getFullDate(elem){
@@ -24,20 +25,9 @@ comicsApp.factory( 'GalleryLoader', ['GetData', function(GetData){
         });
     }
 
-    function initOrders($scope){
-        $scope.OrderBy = function(by){
-            $scope.orderComics  = by;
-            console.log($scope.orderComics);
-        };
-    }
 
     function resolve($scope, response){
-        scope = $scope;
-        $scope.comics = [];
-        $scope.pageSize = 5;
-        $scope.currentPage = 1;
         initGroup(response, $scope.comics);
-        initOrders($scope)
     }
 
     function reject($scope, response){
@@ -50,4 +40,21 @@ comicsApp.factory( 'GalleryLoader', ['GetData', function(GetData){
             GetData($scope, url, resolve, reject);
         }
     }
-}]);
+}])
+    .factory('Sorter', [function(){
+
+        function initOrder($scope){
+            $scope.OrderBy = function(by){
+                $scope.orderComics  = by;
+            };
+        }
+
+        return {
+            initialize: function($scope){
+                $scope.comics = [];
+                $scope.pageSize = 5;
+                $scope.currentPage = 1;
+                initOrder($scope);
+            }
+        }
+    }]);

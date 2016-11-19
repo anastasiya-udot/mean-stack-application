@@ -28,7 +28,6 @@ comicsApp
 
         $http.post( url, data, config)
             .success(function (data) {
-                console.log(data);
                 if( angular.isDefined(data.error)){
                     console.log(data.error);
                     $scope.response = data.error;
@@ -55,5 +54,31 @@ comicsApp
                 )
         };
 
-    }]);
+    }])
 
+
+
+    .factory('SessionService',[ '$window', '$rootScope', '$location', function($window, $rootScope, $location){
+
+        return {
+
+            isLogged: false,
+
+            observe: function(){
+                $rootScope.loggedIn = false;
+                if ($window.sessionStorage.token){
+                    $rootScope.loggedIn = true;
+                }
+            },
+
+            startSession: function(token){
+                $window.sessionStorage.token =token;
+            },
+
+            destroySession: function(){
+                delete $window.sessionStorage.token;
+                $location.path('/');
+            }
+        }
+
+    }]);
