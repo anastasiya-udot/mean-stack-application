@@ -17,7 +17,8 @@ module.exports.get = function(req, res, next){
                 id: user._id,
                 username: user.username,
                 email: user.email,
-                avatar: user.avatar
+                avatar: user.avatar,
+                followers: user.followers
             })
         }
     })

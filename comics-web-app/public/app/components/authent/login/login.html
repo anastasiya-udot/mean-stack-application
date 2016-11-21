@@ -1,20 +1,19 @@
-
-                <div class="container-auth">
-                    <div  id="panel-auth">
-                        <div class="panel-body">
-                            <h2 id="title-auth">Sign in</h2>
-                            <form method="post">
-                                <div class="form-group">
-                                    <input type="email"  class="form-control" placeholder="email" ng-model="loginEmail" required>
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Password" ng-model="loginPassword" required>
-                                </div>
-                                <h5 id="title-auth" class="forgot-pass" ng-click="openForgotPassMenu()">Forgot something?</h5>
-                                <button type="submit" class="btn-auth" ng-disabled="buttonDisabled"  ng-click="sendAuthData()">Login</button>
-                                <span class="error-auth">{{response}}</span>
-                            </form>
-                        </div>
-                    </div>
+<div class="container-auth">
+    <div  id="panel-auth">
+        <div class="panel-body">
+            <h2 id="title-auth">Sign in</h2>
+            <form method="post">
+                <div class="form-group">
+                    <input type="email"  class="form-control" placeholder="email" ng-model="loginEmail" required>
                 </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Password" ng-model="loginPassword" required>
+                </div>
+                <h5 id="title-auth" class="forgot-pass" ng-click="openForgotPassMenu()">Forgot something?</h5>
+                <button type="submit" class="btn-auth" ng-disabled="buttonDisabled"  ng-click="sendAuthData()">Login</button>
+                <span class="error-auth">{{response}}</span>
+            </form>
+        </div>
+    </div>
+</div>
 

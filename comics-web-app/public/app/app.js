@@ -5,7 +5,8 @@ var comicsApp = angular.module('comicsApp', [
         'ngDialog',
         'ngRoute',
         'ngResource',
-        'ui.bootstrap'
+        'ui.bootstrap',
+        'ngAnimate'
     ])
         .config(comicsappConfig);
 
@@ -27,7 +28,7 @@ var comicsApp = angular.module('comicsApp', [
                 controller: 'browseGalleryCtrl',
                 templateUrl: 'app/components/gallery/gallery.html'
             })
-            .when('/account', {
+            .when('/account/:id', {
                 controller: 'browseAccountCtrl',
                 templateUrl: 'app/components/account/account.html'
             });

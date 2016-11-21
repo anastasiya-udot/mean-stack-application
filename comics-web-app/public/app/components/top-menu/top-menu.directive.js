@@ -6,8 +6,12 @@ comicsApp.directive('topMenuBar',  function(){
         restrict: 'E',
         templateUrl: 'app/components/top-menu/top-menu.html',
         controller: ['$scope', 'AuthenticationButtons', 'SessionService' , function($scope, AuthenticationButtons, SessionService){
+
             SessionService.observe();
+
             AuthenticationButtons.listenPopDialogButtons($scope);
+
+            $scope.userId = SessionService.getSessionUserId();
 
             $scope.logOutUser = function(){
                 SessionService.isLogged = false;

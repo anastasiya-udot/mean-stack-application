@@ -56,8 +56,6 @@ comicsApp
 
     }])
 
-
-
     .factory('SessionService',[ '$window', '$rootScope', '$location', function($window, $rootScope, $location){
 
         return {
@@ -78,6 +76,14 @@ comicsApp
             destroySession: function(){
                 delete $window.sessionStorage.token;
                 $location.path('/');
+            },
+
+            getSessionUserId : function(){
+                var token =  $window.sessionStorage.token;
+                var payload = token.split('.')[1];
+                payload = $window.atob(payload);
+                payload = JSON.parse(payload);
+                return payload.id;
             }
         }
 

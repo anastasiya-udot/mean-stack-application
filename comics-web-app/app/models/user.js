@@ -7,6 +7,8 @@ var mongoose    = require('../libs/mongoose');
 var Schema      = mongoose.Schema;
 var constant    = require('../libs/constants').constant;
 
+var followerSchema = new Schema({ _id: Schema.Types.ObjectId, username: String, avatar: String});
+
 var userSchema = new Schema({
     username: {
         type: String,
@@ -30,6 +32,8 @@ var userSchema = new Schema({
     avatar: {
         type: String,
     },
+    followers: [followerSchema],
+
     resetPasswordToken: String,
     resetPasswordExpires: Date,
     verifyRegistrToken: String

@@ -29,8 +29,11 @@ comicsApp.factory('LoginDialog', ['DialogTemplate', 'PostData', 'SessionService'
     authorizationCtrl.$inject = [ '$scope',  'ForgotPassDialog' ];
 
     function authorizationCtrl($scope, ForgotPassDialog){
+
         $scope.buttonDisabled = false;
+
         $scope.sendAuthData = function() {
+
             var data = {
                 email: $scope.loginEmail,
                 password: $scope.loginPassword

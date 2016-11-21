@@ -1,9 +1,9 @@
 /**
  * Created by anastasiya on 9.11.16.
  */
-comicsApp.factory('InitialPageContent',['AuthenticationButtons', function(AuthenticationButtons){
+comicsApp.factory('InitialPageLoader',['AuthenticationButtons', function(AuthenticationButtons){
     return{
-        set : function($scope){
+        load : function($scope){
             AuthenticationButtons.listenPopDialogButtons($scope);
         }
     }

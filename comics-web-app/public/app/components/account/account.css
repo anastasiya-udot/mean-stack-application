@@ -9,7 +9,7 @@
 .image-bg-fluid-height {
     background: url('https://res.cloudinary.com/dq83k7kbp/image/upload/c_lfill,h_500,w_1900/v1479490241/Catwoman-DC-Comics-1920x1080_jbbpvt.jpg') no-repeat scroll;
     padding: 100px 0;
-    height: 400px;
+    height: 500px;
 }
 
 
@@ -44,4 +44,94 @@ section {
     .section-heading {
         font-size: 2em;
     }
+}
+
+.user-avatar{
+    border:5px inset rgba(131, 121, 124, 0.65);
+}
+
+
+.user-avatar-change{
+    cursor: pointer;
+    margin-bottom: 10px;
+    border:5px inset rgba(131, 121, 124, 0.65);
+}
+
+.user-avatar-change:hover  {
+    animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+
+@keyframes shake {
+    10%, 90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+
+    20%, 80% {
+        transform: translate3d(2px, 0, 0);
+    }
+
+    30%, 50%, 70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+
+    40%, 60% {
+        transform: translate3d(4px, 0, 0);
+    }
+}
+
+
+.user-info{
+    color: #c9bfc2
+}
+
+.change-user-info:hover {
+    animation: glow 800ms ease-out infinite alternate;
+    border-color: #990007;
+    box-shadow: 0 0 5px rgba(72, 12, 16, 0.88), inset 0 0 5px rgba(82, 14, 14, 0.78), 0 2px 0 #000;
+    color: #efe;
+    outline: none;
+    cursor: pointer;
+}
+
+
+.box { color: white; text-align: center; height: 100px; font-size: 86px; }
+.on  { background-color: green; }
+.off { background-color: red; }
+
+
+
+/*
+.animate-follow
+{
+    -webkit-transition: 1s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -moz-transition: 1s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -ms-transition: 1s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -o-transition: 1s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    transition: 1s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+}
+
+.animate-follow.ng-enter {
+    opacity
+}
+.animate-follow.ng-enter .ng-enter-active {
+    left: 0;
+}
+
+.animate-follow.ng-leave {
+    left: 0;
+}
+.animate-follow.ng-leave.ng-leave-active{
+    left: -100%;
+}*/
+
+.animate-followers {
+    transition: all linear 0.5s;
+}
+.animate-followers.ng-hide {
+    opacity: 0;
 }
