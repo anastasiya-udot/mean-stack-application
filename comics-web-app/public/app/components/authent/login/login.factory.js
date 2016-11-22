@@ -3,7 +3,7 @@
  */
 comicsApp.factory('LoginDialog', ['DialogTemplate', 'PostData', 'SessionService', function(DialogTemplate, PostData, SessionService) {
 
-    var currentDialog;
+    let currentDialog;
 
     function resolve($scope, response){
         clearInput($scope);
@@ -32,9 +32,10 @@ comicsApp.factory('LoginDialog', ['DialogTemplate', 'PostData', 'SessionService'
 
         $scope.buttonDisabled = false;
 
+
         $scope.sendAuthData = function() {
 
-            var data = {
+            let data = {
                 email: $scope.loginEmail,
                 password: $scope.loginPassword
             };

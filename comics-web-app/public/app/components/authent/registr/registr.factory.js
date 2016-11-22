@@ -24,16 +24,19 @@ comicsApp.factory('RegistrDialog',[ 'DialogTemplate', 'PostData', function(Dialo
 
     function registrationCtrl($scope){
         $scope.buttonDisabled = false;
+
         $scope.sendRegistrData = function(){
-            if ($scope.registrPassword !== $scope.registrConfirm){
+            if ($scope.password !== $scope.confirmedPassword){
                 $scope.response = "Passwords are different";
             } else {
+
                 var data = {
-                    username: $scope.registrUsername,
-                    email: $scope.registrEmail,
-                    password: $scope.registrPassword,
-                    confirmedPassword: $scope.registrConfirm
+                    username: $scope.username,
+                    email: $scope.email,
+                    password: $scope.password,
+                    confirmed: $scope.confirmedPassword
                 };
+
                 if (checkFieldsEmpty($scope)){
                     $scope.buttonDisabled = true;
                     PostData($scope, '/user/registr', data, resolve);

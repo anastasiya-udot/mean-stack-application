@@ -15,10 +15,10 @@ module.exports.post = function(req, res, next) {
                         email : req.body.email,
                         username : req.body.username,
                         password : req.body.password,
-                        confirmedPassword : req.body.confirmedPassword
+                        confirmed : req.body.confirmed
                 };
 
-                if(data.confirmedPassword !== data.password)
+                if(data.confirmed !== data.password)
                     next(new AuthError(constant.DIFFERENT_PASSWORDS));
 
                 callback(null, data);
@@ -40,6 +40,7 @@ module.exports.post = function(req, res, next) {
                 });
             },
             function(user, callback){
+
                 var crypto = require('crypto');
                     crypto.randomBytes(20, function (err, buf) {
                         callback(null, buf.toString('hex'), user);
@@ -47,6 +48,7 @@ module.exports.post = function(req, res, next) {
             },
             function(token, user, callback){
                 var email = require('./email-send');
+
                 email.sendVerificationEmail(user, req.headers.host, token, function(err){
                     if (err) return next(new AuthError(constant.ERROR_SENDING));
                     callback(null, token, user);
@@ -65,7 +67,6 @@ module.exports.post = function(req, res, next) {
         function(err,user){
             if(err) return next(new AuthError(constant.ERROR));
 
-          //  var token = user.generateJwt();
             res.json({"message" : constant.CONFIRM_MESSAGE});
         }
 

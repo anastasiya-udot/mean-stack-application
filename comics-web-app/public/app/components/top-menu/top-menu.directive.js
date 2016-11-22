@@ -11,7 +11,10 @@ comicsApp.directive('topMenuBar',  function(){
 
             AuthenticationButtons.listenPopDialogButtons($scope);
 
-            $scope.userId = SessionService.getSessionUserId();
+
+            $scope.getUserIdForAccount = function(){
+                return SessionService.getSessionUserId();
+            };
 
             $scope.logOutUser = function(){
                 SessionService.isLogged = false;

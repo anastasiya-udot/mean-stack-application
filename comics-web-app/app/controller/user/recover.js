@@ -22,7 +22,7 @@ module.exports.post = function(req,res, next){
             },
             function(user,callback){
 
-                if( req.body.password !== req.body.password){
+                if( req.body.password !== req.body.confirmed){
                     next(new AuthError(constant.DIFFERENT_PASSWORDS));
 
                 } else {

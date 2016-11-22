@@ -1,0 +1,14 @@
+{
+  "name": "comics-web",
+  "description": "",
+  "main": "",
+  "authors": [
+    "anastasiya-udot <anastasiya.udot@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/anastasiya-udot/mean-stack-application",
+  "private": true,
+  "dependencies": {
+    "ng-file-upload": "^12.2.13"
+  }
+}

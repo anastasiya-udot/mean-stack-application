@@ -1,11 +1,7 @@
 {
-  "name": "application-name",
+  "name": "comics-web-app",
   "version": "0.0.1",
   "private": true,
-  "scripts": {
-    "start": "nodejs ./bin/www",
-    "build": "babel server.js"
-  },
   "engines": {
     "node": "3.10.8",
     "npm": "6.0.0"

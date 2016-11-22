@@ -20,7 +20,7 @@ comicsApp
 
     .factory('PostData', ['$http', function($http){
     return function($scope, url, data, resolve){
-        var config = {
+        const config = {
             headers : {
                 'Content-Type': 'application/json;charset=utf-8;'
             }
@@ -41,7 +41,7 @@ comicsApp
 
     .factory('GetData', ['$http', function($http){
         return function($scope, url, resolve, reject){
-            var config = {
+            const config = {
                 headers : {
                     'Content-Type': 'application/json;charset=utf-8;'
                 }
@@ -70,7 +70,7 @@ comicsApp
             },
 
             startSession: function(token){
-                $window.sessionStorage.token =token;
+                $window.sessionStorage.token = token;
             },
 
             destroySession: function(){
@@ -79,11 +79,14 @@ comicsApp
             },
 
             getSessionUserId : function(){
-                var token =  $window.sessionStorage.token;
-                var payload = token.split('.')[1];
-                payload = $window.atob(payload);
-                payload = JSON.parse(payload);
-                return payload.id;
+                let token =  $window.sessionStorage.token;
+                if(token){
+                    let payload = token.split('.')[1];
+                    payload = $window.atob(payload);
+                    payload = JSON.parse(payload);
+                    return payload.id;
+                }
+                return null;
             }
         }
 

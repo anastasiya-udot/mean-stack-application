@@ -1,0 +1,77 @@
+@keyframes shake {
+    10%, 90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+
+    20%, 80% {
+        transform: translate3d(2px, 0, 0);
+    }
+
+    30%, 50%, 70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+
+    40%, 60% {
+        transform: translate3d(4px, 0, 0);
+    }
+}
+
+@keyframes rotation {
+    from {
+        transform:rotate(0deg);
+    }
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+.drop-zone-avatar {
+    border: dotted 3px lightgray;
+    height: 200px;
+    width: 200px;
+    margin-bottom: 40px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 200px;
+}
+
+
+.nv-file-over {
+    border: dotted 3px red;
+}
+
+canvas {
+    height: 200px;
+    width: 200px;
+}
+
+.change-user-avatar{
+    position: relative;
+}
+
+
+.change-user-avatar .img-center:hover {
+    animation: shake 800ms ease-out alternate;
+    outline: none;
+    cursor: pointer;
+}
+
+.input-user-avatar{
+    display: none !important;
+
+}
+
+
+.img-cancel{
+    width: 30px;
+    height: 30px;
+    right: 0;
+    top: 0;
+    position: absolute;
+}
+
+.img-cancel:hover{
+    cursor: pointer;
+    animation: rotation 1s ease infinite;
+}
+

@@ -28,6 +28,7 @@ comicsApp
         };
 
         $scope.isUserFound = true;
+
         asyncGetInfo().then(
             function(response){
                 if(checkIsUserFound(response)){

@@ -14,13 +14,11 @@ comicsApp.factory('ResetPassDialog', ['DialogTemplate', function(DialogTemplate)
 
     function resetPassCtrl($scope, PostData){
             $scope.sendNewPassData = function() {
-                var password = $scope.newPassword;
-                var confirmPassword = $scope.newPasswordConfirm;
-                if(password === confirmPassword){
+                if($scope.password === $scope.confirmedPassword){
                     var data = {
                         email: currentEmail,
-                        password: password,
-                        confirmed: confirmPassword
+                        password: $scope.password,
+                        confirmed: $scope.confirmedPassword
                     };
                     PostData($scope, '/user/recover-password', data, resolve);
                 } else {
@@ -32,7 +30,6 @@ comicsApp.factory('ResetPassDialog', ['DialogTemplate', function(DialogTemplate)
     return {
         load: function(email){
             currentEmail = email;
-            console.log("reset");
             var url = 'app/components/authent/forgot-pass/reset.html';
             var controller = resetPassCtrl;
             currentDialog = DialogTemplate.open(url, controller);
