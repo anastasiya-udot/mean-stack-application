@@ -12,6 +12,7 @@ function HttpError(status, message){
 }
 
 function AuthError(message){
+    console.log(message);
     Error.apply(this,arguments);
     this.stack = (new Error).stack;
     this.message = message  || "Error";

@@ -5,23 +5,24 @@
 comicsApp
     .controller('confirmRegistrPageCtrl', confirmRegistrPageCtrl);
 
-confirmRegistrPageCtrl.$inject = [ '$scope', '$location', 'InitialPageContent', 'LoginDialog', 'PostData'];
+confirmRegistrPageCtrl.$inject = [ '$scope', '$location', 'InitialPageLoader', 'LoginDialog', 'PostData'];
 
 function getToken($location){
-    var url = $location.absUrl();
-    var token = url.split('/').splice(-1,1);
+    let url = $location.absUrl();
+    let token = url.split('/').splice(-1,1);
     return data={
         "token":  token
     };
 }
 
-function confirmRegistrPageCtrl($scope, $location, InitialPageContent, LoginDialog, PostData){
+function confirmRegistrPageCtrl($scope, $location, InitialPageLoader, LoginDialog, PostData){
 
-    function resolve($scope, res){
+    function resolve(){
         LoginDialog.load();
     }
 
-    InitialPageContent.set($scope);
-    var data = getToken($location);
+    InitialPageLoader.load($scope);
+    let data = getToken($location);
+    console.log(data);
     PostData($scope, '/user/confirm-registr', data, resolve);
 }

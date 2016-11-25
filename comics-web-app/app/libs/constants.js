@@ -22,9 +22,14 @@ module.exports.constant = {
     ERROR_SAVING:                   "Error during saving",
     ERROR_SENDING:                  "Error during sending",
     DIFFERENT_PASSWORDS:            "Passwords are different",
-    ERROR_SIGN_UP:                  "Error in signing up",
+    ERROR_SIGN_UP:                  "Error during signing up",
     USER_EXIST:                     "User with such data already exist",
     USER_NOT_FOUND:                 "User was not found",
     CONFIRM_MESSAGE:                "Confirmation was send on your email",
-    SUCCESS_PASSWORD_CHANGED:       "Password was successfully changed"
+    SUCCESS_PASSWORD_CHANGED:       "Password was successfully changed",
+
+    ERROR_DURING_IMAGE_UPLOAD:      "Image was not changed",
+    ERROR_CHANGE_USERNAME:          "Username was not changed",
+    ERROR_CHANGE_EMAIL:             "Email was not changed"
+
 };

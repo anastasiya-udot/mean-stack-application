@@ -3,21 +3,20 @@
  */
 var passport        = require('passport');
 var LocalStrategy   = require('passport-local').Strategy;
-var User            = require('../../models/user').User;
-var AuthError       = require('../../error/error').AuthError;
-var constant           = require('../../libs/constants').constant;
+var AuthError       = require('../error/error').AuthError;
+var constant           = require('../libs/constants').constant;
+var searchUserService = require('./get-user.service');
 
 passport.use(new LocalStrategy({
     usernameField: 'email'
 },
-function(username, password, next){
+function(email, password, next){
 
-    User.findOne({email: username}, function(err, user){
-        if (err) {new AuthError(constant.EMAIL_ERROR); }
-        //Return if user not found in database
-        if(!user){
+    searchUserService.getUserByEmail(email, function(user){
+
+        if(!user)
             return next(new AuthError(constant.EMAIL_ERROR));
-        }
+
 
         if(user.verifyRegistrToken !== null){
             return next(new AuthError(constant.NOT_VERIFIED_EMAIL));
@@ -32,13 +31,3 @@ function(username, password, next){
     })
 }
 ));
-
-passport.serializeUser(function(user, next) {
-    next(null, user.id);
-});
-
-passport.deserializeUser(function(id, next) {
-    User.findById(id, function(err, user) {
-        next(err, user);
-    });
-});

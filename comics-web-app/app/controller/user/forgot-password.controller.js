@@ -35,8 +35,8 @@ module.exports.post = function(req, res, next) {
                 },
 
                 function(token, user, callback){
-                    var email = require('./email-send');
-                    email.sendForgotEmail(user.email, req.headers.host, token, function(err){
+                    var sendEmailService = require('./../../service/send-email.service');
+                    sendEmailService.sendForgotEmail(user.email, req.headers.host, token, function(err){
                         if (err) return next(new AuthError(constant.ERROR_SENDING));
                         callback(null);
                     });

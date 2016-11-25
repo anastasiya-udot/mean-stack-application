@@ -33,7 +33,7 @@ app.use(multer());
 app.use(cookieParser());
 app.use(require('./app/middleware/sendHttpError'));
 app.use(require('./app/middleware/sendAuthError'));
-require('./app/controller/user/passport');
+require('./app/service/passport.service.js');
 //app.use(require('./app/middleware/session-config'));
 app.use(passport.initialize());
 app.use(passport.session());

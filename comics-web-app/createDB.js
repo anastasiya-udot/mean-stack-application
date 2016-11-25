@@ -8,7 +8,7 @@ async.series([
     open,
     dropDatabase,
     requireModels,
-    createUsers,
+   // createUsers,
     createComics
 ], function(err, results){
     console.log(arguments);

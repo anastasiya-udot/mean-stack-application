@@ -2,10 +2,10 @@
  * Created by anastasiya on 11.11.16.
  */
 var nodemailer = require('nodemailer');
-var AuthError  = require('../../error/error').AuthError;
-var constant   = require('../../libs/constants').constant;
+var AuthError  = require('../error/error').AuthError;
+var constant   = require('../libs/constants').constant;
 
-var smtpTransport = nodemailer.createTransport('SMTP', {
+const smtpTransport = nodemailer.createTransport('SMTP', {
     host: 'smtp.gmail.com',
     secureConnection : false,
     port: 587,
@@ -17,7 +17,7 @@ var smtpTransport = nodemailer.createTransport('SMTP', {
 
 module.exports.sendForgotEmail = function(email, host, token, callback) {
 
-    var mailOptions = {
+    const mailOptions = {
         to: email,
         from: 'comicsgenerator@comics.com',
         subject: 'Password reset',
@@ -34,9 +34,9 @@ module.exports.sendForgotEmail = function(email, host, token, callback) {
     });
 };
 
-module.exports.sendVerificationEmail = function(user, host, token, callback) {
+module.exports.sendConfirmRegistrEmail = function(user, host, token, callback) {
 
-    var mailOptions = {
+    const mailOptions = {
         to: user.email,
         from: 'comicsgenerator@comics.com',
         subject: 'Confirm registration',
@@ -44,6 +44,25 @@ module.exports.sendVerificationEmail = function(user, host, token, callback) {
         'you\'ve signed up on our site and now you should confirm registration\n\n ' +
         'Follow the link for confirming:\n\n ' +
         'http://' + host + '#/user/confirm-registr/' + token + '\n\n ' +
+        'If you didn\'t sign up ' +
+        '- ignore this message.\n'
+    };
+
+    smtpTransport.sendMail(mailOptions, function (err) {
+        return callback(err);
+    });
+};
+
+module.exports.sendConfirmChangeEmail = function(user, host, token, callback) {
+
+    const mailOptions = {
+        to: user.email,
+        from: 'comicsgenerator@comics.com',
+        subject: 'Confirm email change',
+        text: 'You\'ve received this letter, because ' +
+        'you\'ve changed email on our site and now you should confirm it\n\n ' +
+        'Follow the link for confirming:\n\n ' +
+        'http://' + host + '#/user/confirm-change-email/' + token + '\n\n ' +
         'If you didn\'t sign up ' +
         '- ignore this message.\n'
     };

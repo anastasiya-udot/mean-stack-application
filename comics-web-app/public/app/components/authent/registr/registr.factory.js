@@ -5,6 +5,7 @@ comicsApp.factory('RegistrDialog',[ 'DialogTemplate', 'PostData', function(Dialo
 
     function resolve($scope, response){
         $scope.buttonDisabled = false;
+        console.log("here");
         clearInput($scope);
         $scope.response = response.message;
     }
@@ -12,11 +13,6 @@ comicsApp.factory('RegistrDialog',[ 'DialogTemplate', 'PostData', function(Dialo
     function clearInput($scope){
         $scope.registrUsername= $scope.registrEmail =
          $scope.registrPassword= $scope.registrConfirm= "";
-    }
-
-    function checkFieldsEmpty($scope){
-        return $scope.registrUsername && $scope.registrEmail &&
-            $scope.registrPassword && $scope.registrConfirm;
     }
 
 
@@ -27,20 +23,18 @@ comicsApp.factory('RegistrDialog',[ 'DialogTemplate', 'PostData', function(Dialo
 
         $scope.sendRegistrData = function(){
             if ($scope.password !== $scope.confirmedPassword){
-                $scope.response = "Passwords are different";
+                $scope.response = "Check your passwords";
             } else {
-
-                var data = {
+                let data = {
                     username: $scope.username,
                     email: $scope.email,
                     password: $scope.password,
                     confirmed: $scope.confirmedPassword
                 };
 
-                if (checkFieldsEmpty($scope)){
-                    $scope.buttonDisabled = true;
-                    PostData($scope, '/user/registr', data, resolve);
-                }
+                $scope.buttonDisabled = true;
+                PostData($scope, '/user/registr', data, resolve);
+
             }
         }
     }
@@ -48,8 +42,8 @@ comicsApp.factory('RegistrDialog',[ 'DialogTemplate', 'PostData', function(Dialo
 
    return {
       load: function(){
-           var url = 'app/components/authent/registr/registr.html';
-           var controller = registrationCtrl;
+           let url = 'app/components/authent/registr/registr.html';
+           let controller = registrationCtrl;
            DialogTemplate.open( url, controller);
        }
    }

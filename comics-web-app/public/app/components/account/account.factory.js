@@ -31,6 +31,7 @@ comicsApp
                 avatar : response.data.avatar || spareAvatar,
                 email : response.data.email
             };
+            console.log($scope.user);
             returnId(getId());
         }
 
