@@ -8,6 +8,7 @@ var Schema      = mongoose.Schema;
 var constant    = require('../libs/constants').constant;
 
 var followerSchema = new Schema({ _id: Schema.Types.ObjectId, username: String, avatar: String});
+var avatarSchema = new Schema({public_id: String, url: String});
 
 var userSchema = new Schema({
     username: {
@@ -29,14 +30,13 @@ var userSchema = new Schema({
         unique: true,
         required: true
     },
-    avatar: {
-        type: String,
-    },
-    followers: [followerSchema],
+    avatar: avatarSchema,
 
     resetPasswordToken: String,
     resetPasswordExpires: Date,
-    verifyRegistrToken: String
+    verifyRegistrToken: String,
+    verifyEmailChangeToken: String,
+    tempEmail: String
 });
 
 userSchema.methods.encryptPassword = function(password){

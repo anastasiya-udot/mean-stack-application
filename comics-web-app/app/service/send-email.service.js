@@ -15,10 +15,10 @@ const smtpTransport = nodemailer.createTransport('SMTP', {
     }
 });
 
-module.exports.sendForgotEmail = function(email, host, token, callback) {
+module.exports.sendForgotEmail = function(user, host, token, callback) {
 
     const mailOptions = {
-        to: email,
+        to: user.email,
         from: 'comicsgenerator@comics.com',
         subject: 'Password reset',
         text: 'You\'ve received this letter, because ' +
@@ -56,13 +56,13 @@ module.exports.sendConfirmRegistrEmail = function(user, host, token, callback) {
 module.exports.sendConfirmChangeEmail = function(user, host, token, callback) {
 
     const mailOptions = {
-        to: user.email,
+        to: user.tempEmail,
         from: 'comicsgenerator@comics.com',
         subject: 'Confirm email change',
         text: 'You\'ve received this letter, because ' +
         'you\'ve changed email on our site and now you should confirm it\n\n ' +
         'Follow the link for confirming:\n\n ' +
-        'http://' + host + '#/user/confirm-change-email/' + token + '\n\n ' +
+        'http://' + host + '#/account/confirm-change-email/' + token + '\n\n ' +
         'If you didn\'t sign up ' +
         '- ignore this message.\n'
     };

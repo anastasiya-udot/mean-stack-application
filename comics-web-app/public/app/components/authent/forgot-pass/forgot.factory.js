@@ -7,22 +7,27 @@ comicsApp.factory('ForgotPassDialog', ['DialogTemplate', function(DialogTemplate
         $scope.response = response.message;
     }
 
+    function reject($scope, response){
+        console.log(response.error);
+        $scope.response = response.error;
+    }
+
     enterEmailCtrl.$inject = ['$scope', 'PostData'];
 
     function enterEmailCtrl($scope, PostData){
 
         $scope.sendEmailData = function() {
-            var data = {
+            let data = {
                 email: $scope.forgotPassEmail,
             };
-            PostData($scope, '/user/forgot-password', data, resolve);
+            PostData($scope, '/user/forgot-password', data, resolve, reject);
         }
     }
 
     return {
         load: function(){
-            var url = 'app/components/authent/forgot-pass/forgot.html';
-            var controller = enterEmailCtrl;
+            let url = 'app/components/authent/forgot-pass/forgot.html';
+            let controller = enterEmailCtrl;
             DialogTemplate.open(url, controller);
         }
     }

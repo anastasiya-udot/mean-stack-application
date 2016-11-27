@@ -6,12 +6,12 @@ var async       = require('async');
 var constant    = require('../libs/constants').constant;
 
 
-module.exports.verify = function(user, send, host, callback){
+module.exports.verify = function(user, send, host, tokenType, callback){
 
     async.waterfall([
             generateToken,
             sendMail,
-            setVerifyRegistrToken
+            setVerifyToken
         ],
 
     function(err){
@@ -22,6 +22,7 @@ module.exports.verify = function(user, send, host, callback){
     function generateToken(callback){
 
         let crypto = require('crypto');
+
         crypto.randomBytes(20, function (err, buf) {
             callback(null, buf.toString('hex'));
         });
@@ -38,9 +39,9 @@ module.exports.verify = function(user, send, host, callback){
         });
     }
 
-    function setVerifyRegistrToken(token, callback){
+    function setVerifyToken(token, callback){
 
-        user.verifyRegistrToken = token;
+        user[tokenType] = token;
 
         user.save(function(err) {
             if (err) {

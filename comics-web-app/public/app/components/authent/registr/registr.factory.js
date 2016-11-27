@@ -10,6 +10,11 @@ comicsApp.factory('RegistrDialog',[ 'DialogTemplate', 'PostData', function(Dialo
         $scope.response = response.message;
     }
 
+    function reject($scope, response){
+        console.log(response.error);
+        $scope.response = response.error;
+    }
+
     function clearInput($scope){
         $scope.registrUsername= $scope.registrEmail =
          $scope.registrPassword= $scope.registrConfirm= "";
@@ -33,7 +38,7 @@ comicsApp.factory('RegistrDialog',[ 'DialogTemplate', 'PostData', function(Dialo
                 };
 
                 $scope.buttonDisabled = true;
-                PostData($scope, '/user/registr', data, resolve);
+                PostData($scope, '/user/registr', data, resolve, reject);
 
             }
         }

@@ -11,12 +11,17 @@ module.exports.get = function(req, res){
     searchUserService.getUserById(id, function(user){
 
         if(user){
+
+            let avatar = null;
+
+            if(user.avatar)
+                avatar = user.avatar.url;
+
             res.status(200).json({
                 id: user._id,
                 username: user.username,
+                avatar: avatar,
                 email: user.email,
-                avatar: user.avatar,
-                followers: user.followers
             })
 
         } else {

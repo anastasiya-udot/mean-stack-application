@@ -11,6 +11,11 @@ comicsApp.factory('LoginDialog', ['DialogTemplate', 'PostData', 'SessionService'
         DialogTemplate.close(currentDialog);
     }
 
+    function reject($scope, response){
+        console.log(response.error);
+        $scope.response = response.error;
+    }
+
     function startSession(token){
         SessionService.isLogged = true;
         SessionService.startSession(token);
@@ -41,7 +46,7 @@ comicsApp.factory('LoginDialog', ['DialogTemplate', 'PostData', 'SessionService'
             };
             if (checkFieldsEmpty($scope)){
                 $scope.buttonDisabled = true;
-                PostData($scope, '/user/login', data, resolve);
+                PostData($scope, '/user/login', data, resolve, reject);
                 $scope.buttonDisabled = false;
             }
         };

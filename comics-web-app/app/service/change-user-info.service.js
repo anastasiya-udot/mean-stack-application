@@ -7,29 +7,36 @@ var constant           = require('../libs/constants').constant;
 
 module.exports.initializeQueue = function(req) {
     return [
+        extractData,
         getUser,
         analyzeChanges
     ];
 
+    function extractData(callback){
 
-    function getUser(callback) {
         let data = {
-            id: body.req.id,
-            avatar: body.req.avatar,
-            username: body.req.username,
-            email: body.req.email,
-            previousPassword: body.req.previousPassword,
-            password: body.req.password,
-            confirmPassword: body.req.confirmPassword
+            id: req.body.id,
+            username: req.body.username,
+            email: req.body.email,
+            previousPassword: req.body.previousPassword,
+            password: req.body.password,
+            confirmPassword: req.body.confirmPassword
         };
 
+        callback(null, data);
+    }
+
+    function getUser(data, callback) {
+
         let getUserService = require('./get-user.service');
+
         getUserService.getUserById(data.id, function (user) {
 
             if (user) {
                 callback(null, data, user);
+            } else {
+                callback(new AuthError(constant.NO_VALID_USER));
             }
-            callback(new AuthError(constant.NO_VALID_USER));
 
         });
 
@@ -39,12 +46,18 @@ module.exports.initializeQueue = function(req) {
 
         let analyzeChangesService = require('./analyze-changes.service');
         let async = require('async');
+
         async.series(
 
-            analyzeChangesService.initializeQueue(data, user),
+            analyzeChangesService.initializeQueue(data, user, req.headers.host),
 
             function (err, results) {
-                if (err) callback(err)
+
+                if (err) {
+                    callback( { "message" : new AuthError(constant.ERROR)} );
+                } else {
+                    callback(null, results);
+                }
             }
         );
 

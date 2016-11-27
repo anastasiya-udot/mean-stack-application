@@ -31,7 +31,7 @@ comicsApp
                 avatar : response.data.avatar || spareAvatar,
                 email : response.data.email
             };
-            console.log($scope.user);
+
             returnId(getId());
         }
 
@@ -48,7 +48,7 @@ comicsApp
 
         return {
           getInfo: function($scope, callback){
-               let url = '/user/get/' + getId();
+               let url = '/account/get/' + getId();
                returnId = callback;
                GetData($scope, url, resolve, reject);
            }
@@ -64,7 +64,7 @@ comicsApp
         };
         function ListenChangeInfoButton($scope){
             $scope.changeUserInfo = function(){
-                ChangeInfoDialog.load($scope.user);
+                ChangeInfoDialog.load($scope);
             }
         }
     }]);

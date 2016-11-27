@@ -70,7 +70,7 @@ section {
     color: #c9bfc2
 }
 
-.change-user-info:hover {
+.change-user-info:hover, .show-gallery:hover, .create-new-comics:hover {
     animation: glow 800ms ease-out infinite alternate;
     border-color: #990007;
     box-shadow: 0 0 5px rgba(72, 12, 16, 0.88), inset 0 0 5px rgba(82, 14, 14, 0.78), 0 2px 0 #000;

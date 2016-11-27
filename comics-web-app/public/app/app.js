@@ -6,7 +6,8 @@ var comicsApp = angular.module('comicsApp', [
         'ngRoute',
         'ngResource',
         'ui.bootstrap',
-        'ngAnimate'
+        'ngAnimate',
+        'ngFileUpload'
     ])
         .config(comicsappConfig);
 
@@ -31,6 +32,10 @@ var comicsApp = angular.module('comicsApp', [
             .when('/account/:id', {
                 controller: 'browseAccountCtrl',
                 templateUrl: 'app/components/account/account.html'
+            })
+            .when('/account/confirm-change-email/:token', {
+                controller: 'confirmEmailChangeCtrl',
+                templateUrl: 'app/components/front-page/front-page.html'
             });
 
     }

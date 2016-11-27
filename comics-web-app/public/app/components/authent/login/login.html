@@ -7,7 +7,7 @@
                     <input type="email"  class="form-control" placeholder="email" ng-model="loginEmail" required>
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Password" ng-model="loginPassword" required>
+                    <input type="password" class="form-control" placeholder="Password" ng-model="loginPassword" min="4" max="99" required>
                 </div>
                 <h5 id="title-auth" class="forgot-pass" ng-click="openForgotPassMenu()">Forgot something?</h5>
                 <button type="submit" class="btn-auth" ng-disabled="buttonDisabled"  ng-click="sendAuthData()">Login</button>

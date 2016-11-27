@@ -21,8 +21,13 @@ function confirmRegistrPageCtrl($scope, $location, InitialPageLoader, LoginDialo
         LoginDialog.load();
     }
 
+    function reject($scope, response){
+        console.log(response.error);
+        $scope.response = response.error;
+    }
+
     InitialPageLoader.load($scope);
     let data = getToken($location);
     console.log(data);
-    PostData($scope, '/user/confirm-registr', data, resolve);
+    PostData($scope, '/user/confirm-registr', data, resolve, reject);
 }

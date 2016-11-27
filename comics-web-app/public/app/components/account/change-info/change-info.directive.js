@@ -15,10 +15,12 @@ comicsApp
         };
 
         function preventRedirecting(){
+
             $window.addEventListener("dragover",function(e){
                 e = e || event;
                 e.preventDefault();
             },false);
+
             $window.addEventListener("drop",function(e){
                 e = e || event;
                 e.preventDefault();
@@ -58,6 +60,23 @@ comicsApp
                     canvas.attr({ width: width, height: height });
                     canvas[0].getContext('2d').drawImage(this, 0, 0, width, height);
                 }
+            }
+        };
+    }])
+
+    .directive('fileModel', ['$parse', function($parse) {
+        return {
+            restrict: 'A',
+            link: function(scope, element, attrs) {
+
+                let model = $parse(attrs.fileModel);
+                let modelSetter = model.assign;
+
+                element.bind('change', function(){
+                    scope.$apply(function(){
+                        modelSetter(scope, element[0].files[0]);
+                    });
+                });
             }
         };
     }]);

@@ -3,15 +3,18 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-4">
-                <img class="img-responsive img-center user-avatar" ng-src="{{user.avatar}}" alt="">
+                <img class="img-responsive img-center user-avatar" ng-src="{{user.avatar}}" alt="" max-width="200" max-height="200">
             </div>
             <p class="col-lg-8 col-md-12">
                 <h2 align="center" class="section-heading user-info">Welcome, {{user.username}}</h2>
                 <p align="center" class="lead section-lead user-info">{{user.email}}</p>
                 <p align="center">
-                    <img class="change-user-info" width="60" heigth="60" src="/assets/images/settings.png" ng-click="changeUserInfo()" ng-show="role == 'owner'"/>
+                    <img class="change-user-info" width="80" heigth="80" src="/assets/images/settings.png" ng-click="changeUserInfo()" title="Change your Information" ng-show="role == 'owner'"/>
+                    <img class="show-gallery" width="80" heigth="80" src="/assets/images/photo.jpg" title="Show your gallery"/>
+                    <img class="create-new-comics" width="80" heigth="80" src="/assets/images/capA.png" title="Create new comics" ng-show="role == 'owner'"/>
                 </p>
-                <button ng-show="role == 'guest'">Something</button>
+
+               <!-- <button ng-show="role == 'guest'">Something</button>-->
             </div>
         </div>
     </div>

@@ -42,7 +42,7 @@ module.exports.post = function(req,res, next){
         function(err){
 
             if (err) return next(new AuthError(constant.ERROR));
-            res.json({"message": constant.SUCCESS_PASSWORD_CHANGED});
+            res.json({"message": constant.PASSWORD_CHANGED});
         }
     );
 };

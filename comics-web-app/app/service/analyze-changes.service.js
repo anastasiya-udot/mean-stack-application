@@ -3,33 +3,46 @@
  */
 var editUserService      = require('./edit-user-data.service.js');
 
-module.exports.initializeQueue = function(data, user){
+module.exports.initializeQueue = function(data, user, host){
     return [
-        analyzeAvatarChange,
         analyzeUserNameChange,
-        analyzeUserEmailChange
+        analyzeUserEmailChange,
+        analyzeUserPasswordChange
     ];
 
-    function analyzeAvatarChange(callback){
-        if (data.avatar){
-            let sendImageService = require('./send-image.service');
-            let result = sendImageService.changeAvatar(data.avatar, user.avatar);
-            callback(null, result);
-        }
-    }
-
     function analyzeUserNameChange(callback){
+
         if(data.username && (data.username != user.username) ){
-            let result = editUserService.changeUsername(data.username, data.id);
-            callback(null, result);
+
+            editUserService.changeUsername(user, data.username, function(result){
+
+                callback(null, result);
+            });
+        } else {
+            callback(null, null);
         }
     }
 
     function analyzeUserEmailChange(callback){
 
         if(data.email && (data.email != user.email)){
-            let result = editUserService.changeEmail(data.email);
-            callback(null, result);
+
+            editUserService.changeEmail(user, data.email, host, function(result){
+                callback(null, result);
+            });
+
+        } else {
+            callback(null, null);
+        }
+    }
+
+    function analyzeUserPasswordChange(callback){
+        if (data.password){
+            editUserService.changePassword(user, data.password, data.previousPassword, data.confirmPassword, function(result){
+                callback(null, result);
+            });
+        } else {
+            callback(null,null);
         }
     }
 };

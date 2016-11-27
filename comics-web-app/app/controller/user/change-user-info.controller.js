@@ -4,17 +4,19 @@
 
 
 var async                 = require('async');
-var changeUserInfoService = require()
+var changeUserInfoService = require('../../service/change-user-info.service');
 
-module.exports.post = function(req, res, next){
+module.exports.post = function(req, res){
 
-    async.waterfall([
-        getUser,
-        analyzeChanges
+    async.waterfall(
 
-    ], function(err){
+        changeUserInfoService.initializeQueue(req),
 
-    });
+        function(err, result){
+
+            res.send(result)
+        }
+    );
 
 
 };

@@ -3,12 +3,15 @@
  */
 
 var async                   = require('async');
-var cofirmRegistrService    = require('../../service/confirm-registr.service');
+var cofirmEmailService    = require('../../service/confirm-email.service.js');
 
 module.exports.post = function(req,res, next){
+
+    let tokenType = 'verifyRegistrToken';
+
     async.waterfall(
 
-        cofirmRegistrService.initializeQueue(req.body.token),
+        cofirmEmailService.initializeQueue(tokenType, req.body.token),
 
         function(err){
         if(err) return next(err);

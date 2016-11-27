@@ -9,8 +9,8 @@ comicsApp
 resetPasswordPageCtrl.$inject = [ '$scope', '$location', 'InitialPageContent', 'ResetPassDialog', 'PostData'];
 
 function getToken($location){
-    var url = $location.absUrl();
-    var token = url.split('/').splice(-1,1);
+    let url = $location.absUrl();
+    let token = url.split('/').splice(-1,1);
     return data={
         "token":  token
     };
@@ -26,7 +26,12 @@ function resetPasswordPageCtrl($scope, $location, InitialPageContent, ResetPassD
         }
     }
 
+    function reject($scope, response){
+        console.log(response.error);
+        $scope.response = response.error;
+    }
+
     InitialPageContent.set($scope);
-    var data = getToken($location);
-    PostData($scope, '/user/reset-password', data, resolve);
+    let data = getToken($location);
+    PostData($scope, '/user/reset-password', data, resolve, reject);
 }

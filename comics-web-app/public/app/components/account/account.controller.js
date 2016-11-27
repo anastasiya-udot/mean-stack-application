@@ -4,14 +4,16 @@
 comicsApp
     .controller('browseAccountCtrl', browseAccountCtrl);
 
-    browseAccountCtrl.$inject =[ '$scope', '$q', 'AccountInfoService', 'UserRoleService', 'AccountButtonsService'];
+
+    browseAccountCtrl.$inject =[ '$scope', '$q', 'AccountInfoService', 'UserRoleService', 'AccountButtonsService',];
 
     function browseAccountCtrl($scope, $q, AccountInfoService, UserRoleService, AccountButtonsService){
+
 
         function checkIsUserFound(id){
 
             if(!id){
-               $scope.isUserFound = false;
+                $scope.isUserFound = false;
             }
             return $scope.isUserFound;
         }
@@ -30,6 +32,7 @@ comicsApp
         $scope.isUserFound = true;
 
         asyncGetInfo().then(
+
             function(response){
                 if(checkIsUserFound(response)){
                     $scope.role = UserRoleService.getRole(response);
@@ -39,3 +42,4 @@ comicsApp
             }
         );
     }
+
