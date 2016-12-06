@@ -1,34 +1,27 @@
 /**
  * Created by anastasiya on 13.11.16.
  */
-var mongoose    = require('../libs/mongoose');
-var Schema      = mongoose.Schema;
+let mongoose    = require('../libs/mongoose');
+let Schema      = mongoose.Schema;
 
-// var chapterSchema = new Schema({ _id: Schema.Types.ObjectID});
-// var authorSchema = new Schema({_id: Schema.Types.ObjectID, name: 'string'});
+let authorSchema = new Schema({ _id: String, name: String});
+let coverSchema = new Schema({public_id: String, url: String});
 
-var comicsSchema = new Schema({
+let comicsSchema = new Schema({
     name: {
         type: String,
         required: true
     },
-    author: {
-        // authorSchema,
-        type: String,
-        required: true
-    },
+    author: authorSchema,
 
-    // chapters: [chapterSchema],
+    cover: coverSchema,
 
-    picture:{
-        type: String,
+    description:{
+        type: String
     },
 
     date: {
         type: Date
-    },
-    declaration: {
-        type: String
     }
 });
 

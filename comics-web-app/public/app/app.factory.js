@@ -3,37 +3,38 @@
  */
 comicsApp
     .factory('DialogTemplate', [ 'ngDialog', function(ngDialog) {
-    return {
-        open: function (url, controller) {
-            return ngDialog.open({
-                template: url,
-                controller: controller,
-                closeByEscape: true
-            });
-        },
+        return {
+            open: function (url, controller) {
+                return ngDialog.open({
+                    template: url,
+                    controller: controller,
+                    closeByEscape: true
+                });
+            },
 
-        close: function(dialog){
-            ngDialog.close(dialog);
-        }
+            close: function(dialog){
+                ngDialog.close(dialog);
+            }
     }
 }])
 
     .factory('PostData', ['$http', function($http){
-    return function($scope, url, data, resolve, reject){
-        const config = {
-            headers : {
-                'Content-Type': 'application/json;charset=utf-8;'
-            }
-        };
+        return function($scope, url, data, resolve, reject){
 
-        $http.post( url, data, config)
-            .success(function (data) {
-                if( angular.isDefined(data.error)){
-                    reject($scope, data);
-                } else {
-                    resolve($scope, data);
+            const config = {
+                headers : {
+                    'Content-Type': 'application/json;charset=utf-8;'
                 }
-            })
+            };
+
+            $http.post( url, data, config)
+                .success(function (data) {
+                    if( angular.isDefined(data.error)){
+                        reject($scope, data);
+                    } else {
+                        resolve($scope, data);
+                    }
+                })
     };
 
 }])
@@ -56,7 +57,6 @@ comicsApp
     }])
 
     .factory('SessionService',[ '$window', '$rootScope', '$location', function($window, $rootScope, $location){
-
         return {
 
             isLogged: false,
@@ -124,6 +124,7 @@ comicsApp
             },
 
             previewImage: function(input, $scope, imageID, triggerValue){
+
                 if (input.files && input.files[0]) {
 
                     if (isImage(input.files[0])){
@@ -132,8 +133,8 @@ comicsApp
                 }
             },
 
-            cancelImageUpload: function(previousAvatar, imageId){
-                document.getElementById(imageId).setAttribute('src', previousAvatar);
+            cancelImageUpload: function(previous, imageId){
+                document.getElementById(imageId).setAttribute('src', previous);
             },
 
             uploadImage: function(data, url, callback){

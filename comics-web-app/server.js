@@ -1,22 +1,22 @@
-var express   = require('express');
-var http      = require('http');
-var path      = require('path');
-var config    = require('./config');
-var log       = require('./app/libs/log')(module);
-var passport  = require('passport');
-var HttpError = require('./app/error/error').HttpError;
-var AuthError = require('./app/error/error').AuthError;
-var mongoose  = require('./app/libs/mongoose');
+let express   = require('express');
+let http      = require('http');
+let path      = require('path');
+let config    = require('./config');
+let log       = require('./app/libs/log')(module);
+let passport  = require('passport');
+let HttpError = require('./app/error/error').HttpError;
+let AuthError = require('./app/error/error').AuthError;
+let mongoose  = require('./app/libs/mongoose');
 
 
 //creates express application
-var app = express();
+let app = express();
 
-var logger       = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser   = require('body-parser');
-var multer       = require('multer');
-var favicon      = require('serve-favicon');
+let logger       = require('morgan');
+let cookieParser = require('cookie-parser');
+let bodyParser   = require('body-parser');
+let multer       = require('multer');
+let favicon      = require('serve-favicon');
 
 
 if( app.get('env') == 'development'){
@@ -27,22 +27,23 @@ if( app.get('env') == 'development'){
 
 app.set('trust proxy', 1);
 app.use(favicon('public/assets/favicon.ico'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({limmit: '10mb'}));
+app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
 app.use(multer());
 app.use(cookieParser());
 app.use(require('./app/middleware/sendHttpError'));
 app.use(require('./app/middleware/sendAuthError'));
 require('./app/service/passport.service.js');
-//app.use(require('./app/middleware/session-config'));
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 app.use(express.static(path.join(__dirname, 'public')));
 
 require('./app/routes/index')(app);
 
 app.use(function(err, req, res, next) {
+
     if (typeof err == 'number'){
         err = new HttpError(err);
     }
@@ -58,7 +59,7 @@ app.use(function(err, req, res, next) {
     }
     else {
         if (app.get('env') === 'development') {
-            var errorHandler = require('errorhandler');
+            let errorHandler = require('errorhandler');
             errorHandler(err, req, res, next);
         } else {
             log.error(err);

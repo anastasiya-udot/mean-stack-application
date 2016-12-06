@@ -1,7 +1,8 @@
 /**
  * Created by anastasiya on 25.11.16.
  */
-var constant = require('../libs/constants').constant;
+let constant = require('../libs/constants').constant;
+let Comics = require('../models/comics').Comics;
 
 module.exports.changeUsername = function(user, newUsername, callback){
 
@@ -11,9 +12,19 @@ module.exports.changeUsername = function(user, newUsername, callback){
         if (err) {
             callback({ "message" : constant.ERROR_CHANGE_USERNAME } );
         } else {
-            callback({  "message" : constant.USERNAME_CHANGED,
-                        "username": newUsername
+
+            let cursor = Comics.find({ 'author._id': user._id.valueOf() }).cursor();
+
+            cursor.on('data', function(doc){
+                doc.author.name = newUsername;
+                doc.save();
             });
+
+            cursor.on('close', function(){
+                callback({ "message" : constant.USERNAME_CHANGED,
+                    "username": newUsername });
+            });
+
         }
     });
 

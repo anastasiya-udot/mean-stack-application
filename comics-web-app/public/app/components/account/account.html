@@ -1,30 +1,133 @@
+
+
 <header class="image-bg-fluid-height"></header>
 <section ng-show="isUserFound">
     <div class="container">
         <div class="row">
-            <div class="col-lg-4">
-                <img class="img-responsive img-center user-avatar" ng-src="{{user.avatar}}" alt="" max-width="200" max-height="200">
+            <div class="col-lg-offset-0 col-lg-4 col-lg-offset-3 col-md-6  col-sm-offset-3 col-sm-6" align="center">
+                <img class="img-responsive img-center user-avatar" ng-src="{{user.avatar}}" alt="" width="100%" height="200">
             </div>
-            <p class="col-lg-8 col-md-12">
+            <div class="col-lg-8 col-md-12">
                 <h2 align="center" class="section-heading user-info">Welcome, {{user.username}}</h2>
                 <p align="center" class="lead section-lead user-info">{{user.email}}</p>
-                <p align="center">
-                    <img class="change-user-info" width="80" heigth="80" src="/assets/images/settings.png" ng-click="changeUserInfo()" title="Change your Information" ng-show="role == 'owner'"/>
-                    <img class="show-gallery" width="80" heigth="80" src="/assets/images/photo.jpg" title="Show your gallery"/>
-                    <img class="create-new-comics" width="80" heigth="80" src="/assets/images/capA.png" title="Create new comics" ng-show="role == 'owner'"/>
-                </p>
-
                <!-- <button ng-show="role == 'guest'">Something</button>-->
             </div>
         </div>
     </div>
 </section>
+<hr>
 
-<section ng-show="!isUserFound">
-        <div class="col-lg-8 col-md-12">
-            <h2 align="center" class="section-heading user-info">Sorry, user is not available :(</h2>
+<section ng-show="isUserFound">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 col-xs-12" align="center" ng-show="role == 'owner'">
+                <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                    <div class="flipper">
+                        <div class="front">
+                            <div class="flipping change-user-info-front"  ng-click="changeUserInfo()" >
+                                Edit your profile
+                            </div>
+                        </div>
+                        <div class="back">
+                            <div class="flipping change-user-info-back"  ng-click="changeUserInfo()" >
+                                Edit your profile
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 col-xs-12" align="center">
+                <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                    <div class="flipper">
+                        <div class="front">
+                            <div class="flipping show-gallery-front"  ng-click="openUserGallery()">
+                                Show user's comics
+                            </div>
+                        </div>
+                        <div class="back">
+                            <div class="flipping show-gallery-back"  ng-click="openUserGallery()">
+                                Show user's comics
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 col-xs-12" align="center" ng-show="role == 'owner'">
+                <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                    <div class="flipper">
+                        <div class="front">
+                            <div class="flipping create-new-comics-front"  ng-click="createNewComics()" >
+                                Create new comics
+                            </div>
+                        </div>
+                        <div class="back">
+                            <div class="flipping create-new-comics-back"  ng-click="createNewComics()" >
+                                Create new comics
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 col-xs-12" align="center" ng-show="role != 'owner'">
+                <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                    <div class="flipper">
+                        <div class="front">
+                            <a href="#gallery"><div class="flipping create-new-comics-front"  >
+                                Back to gallery
+                            </div></a>
+                        </div>
+                        <div class="back">
+                            <a href="#gallery"><div class="flipping create-new-comics-back" >
+                                Back to gallery
+                            </div></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 col-xs-12" align="center" ng-show="role != 'owner'">
+                <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                    <div class="flipper">
+                        <div class="front">
+                            <a href="#"><div class="flipping change-user-info-front" >
+                                Back to main
+                            </div></a>
+                        </div>
+                        <div class="back">
+                            <a href="#/"><div class="flipping change-user-info-back" >
+                                Back to main
+                            </div></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
 </section>
-<!--<button ng-click="showFollowers = !showFollowers">Toggle!</button>
-<div class="box on animate-followers" ng-show="showFollowers">On</div>
--->
+<hr>
+<div class="animate-gallery" ng-show="showGallery">
+    <h2 align="center" class="section-heading user-info">Gallery</h2>
+    <div class="comics-group">
+        <ul class="list-group">
+            <div ng-repeat="elem in comics | filter:searchValue | orderBy:orderComics |  startFrom:(currentPage-1)*pageSize | limitTo: pageSize ">
+                <div class="container">
+                    <div class="row">
+                        <li class="col-lg-12 col-md-12 col-sm-12 col-xs-12 list-group-item">
+                            <!-- <img data-ng-src="{{elem.comicsImagePath}}" class="comics-group-item-image"/> -->
+                            <div class="comics-group-inner" ng-style="{ 'background-image': 'url(' + elem.comicsCover + ')' }">
+                            </div>
+                            <img class="edit-comics-pen" src="assets/images/settings.png" ng-click="editComics(elem)" width="40px" height="40px" ng-show="role == 'owner'">
+                            <div class="comics-group-item">
+                                <div class="comics-group-item-content">
+                                    <h3><span class="comicsName">{{elem.comicsName}}</span></h3>
+                                    <a class="auth-name-reference" href="#/account/{{elem.authorId}}"> <h4>{{elem.authorName}}</h4></a>
+                                    <h4>{{elem.comicsDate}}</h4>
+                                </div>
+                            </div>
+                        </li>
+                    </div>
+                </div>
+            </div>
+        </ul>
+    </div>
+</div>
+<hr style="position: relative; top: 200px; border-top: 1px solid #141414">

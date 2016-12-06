@@ -30,9 +30,10 @@ module.exports.initializeQueue = function(tokenType, token) {
     }
 
     function resetVerifyToken(user, callback) {
-
+        console.log(user);
+        console.log("verify " + user[tokenType]);
         user[tokenType] = null;
-
+        console.log("after verify " + user[tokenType]);
         let tempEmail = user.tempEmail || null;
 
         if(tempEmail){

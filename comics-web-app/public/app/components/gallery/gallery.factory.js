@@ -6,7 +6,7 @@ comicsApp
 
 
     function getFullDate(elem){
-        var date = new Date(elem.date);
+       let date = new Date(elem.comicsDate);
         return date.getDate() + "." +
             date.getMonth() + "." +
             date.getFullYear() + " " +
@@ -15,18 +15,23 @@ comicsApp
     }
 
     function initGroup(response, comics){
+
         response.data.forEach(function(elem){
-            var comicsData = {};
-            comicsData.comicsName= elem.name;
-            comicsData.comicsAuthor = elem.author;
+            let comicsData = {};
+            comicsData.comicsName = elem.comicsName;
+            comicsData.authorName = elem.authorName;
+            comicsData.authorId = elem.authorId;
             comicsData.comicsDate = getFullDate(elem);
-            comicsData.comicsImagePath= elem.picture || '/assets/images/WDF_778700.jpg';
+            comicsData.comicsDescription =  elem.comicsDescription
+            comicsData.comicsId = elem.comicsId;
+            comicsData.comicsCover = elem.comicsCover || '/assets/images/WDF_778700.jpg';
             comics.push(comicsData);
         });
     }
 
 
     function resolve($scope, response){
+        console.log(response);
         initGroup(response, $scope.comics);
     }
 
@@ -35,8 +40,7 @@ comicsApp
     }
 
     return {
-        load: function($scope){
-            var url = '/gallery/get';
+        load: function($scope, url){
             GetData($scope, url, resolve, reject);
         }
     }

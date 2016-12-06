@@ -3,8 +3,8 @@
  */
 
 
-var async                 = require('async');
-var changeUserInfoService = require('../../service/change-user-info.service');
+let async                 = require('async');
+let changeUserInfoService = require('../../service/change-user-info.service');
 
 module.exports.post = function(req, res){
 

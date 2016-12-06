@@ -79,7 +79,7 @@ comicsApp
             function reject(response){
                 $scope.buttonDisabled = false;
                 console.log(response.error);
-                $scope.response = response.error;
+                $scope.response += response.error + " ";
             }
 
             function sendAvatar(){
@@ -91,12 +91,18 @@ comicsApp
                     let data = {
                         file: $scope.previewFile
                     };
+                   // console.log(sizeof(data.file));
 
                     let url = '/account/avatar';
+
                     ImageService.uploadImage(data, url, function(response){
                         resolve(response)
                     });
                 }
+            }
+
+            function putInnerButton(inner){
+                document.getElementById('load').innerHTML = inner;
             }
 
             $scope.changeUserInfo = function(){
@@ -115,17 +121,22 @@ comicsApp
                     };
 
                     $scope.buttonDisabled = true;
+                    putInnerButton('Sending...');
+
                     PostData($scope, '/account/change-info', data,
                         function(scope, response){
                             sendAvatar();
-                            console.log(response);
                             resolve(response);
+                            putInnerButton('Change');
                         },
                         function(scope, response){
                             sendAvatar();
                             reject(response);
+                            putInnerButton('Change');
                         });
 
+                } else {
+                    $scope.response = "Check your fields";
                 }
 
             };
@@ -139,7 +150,7 @@ comicsApp
             $scope.cancelImageUpload = function(previousAvatar, imageId){
                 ImageService.cancelImageUpload(previousAvatar, imageId);
                 ImageService.clearInputImage($scope.previewFile);
-            }
+            };
 
         }
 

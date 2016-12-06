@@ -1,14 +1,18 @@
 /**
  * Created by anastasiya on 25.11.16.
  */
-var editUserService      = require('./edit-user-data.service.js');
+let editUserService      = require('./edit-user-data.service.js');
+let editComicsService    = require('./edit-comics-data.service');
 
-module.exports.initializeQueue = function(data, user, host){
+
+module.exports.initializeUserQueue = function(data, user, host){
     return [
         analyzeUserNameChange,
         analyzeUserEmailChange,
         analyzeUserPasswordChange
     ];
+
+
 
     function analyzeUserNameChange(callback){
 
@@ -41,6 +45,40 @@ module.exports.initializeQueue = function(data, user, host){
             editUserService.changePassword(user, data.password, data.previousPassword, data.confirmPassword, function(result){
                 callback(null, result);
             });
+        } else {
+            callback(null,null);
+        }
+    }
+};
+
+
+module.exports.initializeComicsQueue = function(comics, data) {
+
+    return [
+        analyzeComicsNameChange,
+        analyzeComicsDescriptionChange
+    ];
+
+    function analyzeComicsNameChange(callback){
+
+        if(data.comicsName && (data.comicsName != comics.name)){
+
+           editComicsService.changeComicsName(comics, data.comicsName, function(result){
+                callback(null, result);
+           })
+        } else {
+            callback(null,null);
+        }
+    }
+
+    function analyzeComicsDescriptionChange(callback){
+
+        if(data.comicsDescription && (data.comicsDescription != comics.description)){
+
+            editComicsService.changeComicsDescription(comics, data.comicsDescription, function(result){
+                callback(null, result);
+            })
+
         } else {
             callback(null,null);
         }

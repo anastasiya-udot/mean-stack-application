@@ -3,6 +3,7 @@
  */
 comicsApp.
     controller('browseGalleryCtrl', [ '$scope', 'GalleryLoader', 'Sorter', function($scope, GalleryLoader, Sorter){
-        GalleryLoader.load($scope);
+        let url = '/gallery/get';
+        GalleryLoader.load($scope, url);
         Sorter.initialize($scope);
 }]);

@@ -14,19 +14,18 @@
         </div>
     </div>
 </section>
-
+<hr>
 <div class="comics-group">
     <ul class="list-group">
         <div ng-repeat="elem in comics | filter:searchValue | orderBy:orderComics |  startFrom:(currentPage-1)*pageSize | limitTo: pageSize ">
             <div class="container">
                 <div class="row">
                     <li class="col-lg-12 col-md-12 col-sm-12 col-xs-12 list-group-item">
-                        <!-- <img data-ng-src="{{elem.comicsImagePath}}" class="comics-group-item-image"/> -->
-                        <div class="comics-group-inner" ng-style="{ 'background-image': 'url(' + elem.comicsImagePath + ')' }"></div>
+                        <div class="comics-group-inner" ng-style="{ 'background-image': 'url(' + elem.comicsCover + ')' }"></div>
                         <div class="comics-group-item">
                             <div class="comics-group-item-content">
                                 <h3><span class="comicsName">{{elem.comicsName}}</span></h3>
-                                <h4>{{elem.comicsAuthor}}</h4>
+                               <a class="auth-name-reference" href="#/account/{{elem.authorId}}"> <h4>{{elem.authorName}}</h4></a>
                                 <h4>{{elem.comicsDate}}</h4>
                             </div>
                         </div>

@@ -2,7 +2,7 @@
  * Created by anastasiya on 24.11.16.
  */
 
-var User = require('../models/user').User;
+let User = require('../models/user').User;
 
 module.exports.getUserById = function(id, callback){
 
@@ -31,16 +31,14 @@ module.exports.getUserByEmail = function(email, callback){
                 callback(user);
             }
 
-        })
+        }
+    )
 };
 
 module.exports.getUserByToken = function(tokenType, token, callback){
 
-    let searchObject = {};
-
-    Object.defineProperty(searchObject, tokenType, {
-        value: token
-    });
+    let searchObject= {};
+    searchObject[tokenType] = token;
 
     User.findOne( searchObject,
 
@@ -52,5 +50,4 @@ module.exports.getUserByToken = function(tokenType, token, callback){
                 callback(user);
             }
         })
-
 };

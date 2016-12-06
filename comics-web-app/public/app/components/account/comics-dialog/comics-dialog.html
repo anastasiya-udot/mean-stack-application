@@ -1,0 +1,33 @@
+<div class="container-auth">
+    <div  id="panel-auth">
+        <div class="panel-body">
+            <h2 id="title-auth">Comics</h2>
+            <form method="post">
+                <div class="form-group">
+                    <div class="new-comics-cover">
+                        <img  id="currentCover" class="img-responsive img-center" ng-click="openFileDialog('inputCover')"  ng-src="{{coverSrc}}" max-width="200" max-height="200"/>
+                        <img class="img-cancel" ng-click="cancelImageUpload(coverSrc, 'currentCover')" src="assets/images/cancel.png" />
+                    </div>
+                    <input id="inputCover" class="input-comics-cover" type="file" onchange="angular.element(this).scope().previewImage(this, 'currentCover', 'previewFile')" ng-model="previewFile"
+                           ngf-pattern="'image/*'" accept="image/*" />
+                </div>
+                <div class="form-group">
+                    <input type="text" ng-model="comicsName"  class="form-control" placeholder="{{placeholderName}}" >
+                </div>
+                <div class="form-group">
+                    <textarea ng-change="checkInputDescription()" ng-trim="false" rows="10" cols="35" ng-model="comicsDescription"  class="form-control" placeholder="{{placeholderDescription}}"></textarea>
+                </div>
+                <div class="form-group">
+                    <span class="error-auth">{{symbolsLeft}}</span>
+                </div>
+                <div class="form-group">
+                    <button id="load" class="btn-auth" ng-disabled="buttonDisabled"  ng-click="sendComicsData()">Create</button>
+                </div>
+                <div class="form-group">
+                    <span class="error-auth">{{response}}</span>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

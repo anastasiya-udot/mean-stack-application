@@ -16,6 +16,7 @@ module.exports.constant = {
 
     ERROR:                          "Error.",
     NOT_VERIFIED_EMAIL:             "User email is not verified.",
+    PERMISSION_ERROR:               "Permission error",
     PASSWORD_ERROR:                 "Incorrect password.",
     EMAIL_ERROR:                    "Incorrect email.",
     NO_VALID_USER:                  "No valid user.",
@@ -33,6 +34,13 @@ module.exports.constant = {
     USERNAME_CHANGED:               "Your name was successfully changed.",
     PASSWORD_CHANGED:               "Your password was successfully changed.",
     AVATAR_CHANGED:                 "Your avatar was successfully changed.",
-    ERROR_PREVIOUS_PASSWORD:        "Previous password is wrong."
+    ERROR_PREVIOUS_PASSWORD:        "Previous password is wrong.",
+
+    COMICS_CREATED:                 "Comics was created.",
+    NO_COMICS_FOUND:                "There is no such comics.",
+    ERROR_CHANGE_COMICS:            "There was an error during comics editing.",
+    COVER_CHANGED:                  "Cover was changed.",
+    COMICS_NAME_CHANGED:            "Comics name was changed.",
+    COMICS_DESCR_CHANGED:           "Comics description was changed."
 
 };

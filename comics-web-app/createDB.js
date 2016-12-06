@@ -9,7 +9,7 @@ async.series([
     dropDatabase,
     requireModels,
    // createUsers,
-    createComics
+  //  createComics
 ], function(err, results){
     console.log(arguments);
     mongoose.disconnect();

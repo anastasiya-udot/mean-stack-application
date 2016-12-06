@@ -2,8 +2,8 @@
  * Created by anastasiya on 19.11.16.
  */
 
-var constant = require('../../libs/constants').constant;
-var searchUserService = require('../../service/get-user.service');
+let constant = require('../../libs/constants').constant;
+let searchUserService = require('../../service/get-user.service');
 
 module.exports.get = function(req, res){
     let id = req.url.split('/')[3];

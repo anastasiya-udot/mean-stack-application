@@ -18,6 +18,7 @@ function AuthError(message){
     this.message = message  || "Error";
 }
 
+
 util.inherits(HttpError, Error);
 util.inherits(AuthError, Error);
 HttpError.prototype.name = "HttpError";

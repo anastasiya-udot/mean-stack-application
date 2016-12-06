@@ -4,7 +4,9 @@
 comicsApp
 
     .factory('UserRoleService', [ 'SessionService', function(SessionService){
+
         return {
+
             getRole: function(id){
                 let myId = SessionService.getSessionUserId();
                 if (myId){
@@ -16,6 +18,16 @@ comicsApp
                 } else {
                     return "unauthorized";
                 }
+            }
+        }
+    }])
+
+
+    .factory('AccountGalleryLoader', ['GalleryLoader', 'UserRoleService', function(GalleryLoader){
+        return {
+            load: function ($scope) {
+                let url = `/gallery/get/${$scope.currentPageId}`;
+                GalleryLoader.load($scope, url);
             }
         }
     }])
@@ -46,6 +58,7 @@ comicsApp
             return url.split('/').splice(-1,1);
         }
 
+
         return {
           getInfo: function($scope, callback){
                let url = '/account/get/' + getId();
@@ -55,7 +68,7 @@ comicsApp
        }
     }])
 
-    .factory('AccountButtonsService',['ChangeInfoDialog', function(ChangeInfoDialog){
+    .factory('AccountButtonsService',['ChangeInfoDialog', 'ComicsDialog', 'AccountGalleryLoader', function(ChangeInfoDialog, ComicsDialog, AccountGalleryLoader){
 
         return {
              start: function($scope){
@@ -65,6 +78,22 @@ comicsApp
         function ListenChangeInfoButton($scope){
             $scope.changeUserInfo = function(){
                 ChangeInfoDialog.load($scope);
+            };
+
+            $scope.createNewComics = function(){
+                ComicsDialog.openNewComicsDlg($scope);
+            };
+
+            $scope.editComics = function(elem){
+                ComicsDialog.openEditComicsDlg(elem);
+            };
+
+            $scope.openUserGallery = function(){
+                $scope.showGallery = !$scope.showGallery;
+                if($scope.showGallery){
+                    $scope.comics = [];
+                    AccountGalleryLoader.load($scope);
+                }
             }
         }
     }]);

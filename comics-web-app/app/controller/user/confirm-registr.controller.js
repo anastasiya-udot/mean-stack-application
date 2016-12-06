@@ -2,13 +2,13 @@
  * Created by anastasiya on 11.11.16.
  */
 
-var async                   = require('async');
-var cofirmEmailService    = require('../../service/confirm-email.service.js');
+let async                   = require('async');
+let cofirmEmailService    = require('../../service/confirm-email.service.js');
 
 module.exports.post = function(req,res, next){
 
     let tokenType = 'verifyRegistrToken';
-
+    console.log(req.body.token);
     async.waterfall(
 
         cofirmEmailService.initializeQueue(tokenType, req.body.token),

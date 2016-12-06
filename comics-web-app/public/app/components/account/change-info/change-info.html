@@ -1,12 +1,12 @@
 <div class="container-auth">
     <div  id="panel-auth">
         <div class="panel-body">
-            <h2 id="title-auth">Account settings</h2>
+            <h2 id="title-auth">Account settings</h2><i class="fa fa-circle-o-notch fa-spin"></i>
             <form method="post">
 
                 <div class="form-group">
                     <div class="change-user-avatar">
-                        <img  id="currentAvatar" class="img-responsive img-center" ng-click="openFileDialog('inputAvatar')"  ng-src="{{currentUser.avatar}}" max-width="200" max-height="200"/>
+                        <img  id="currentAvatar" class="img-responsive img-center" ng-click="openFileDialog('inputAvatar')" ng-src="{{currentUser.avatar}}" max-width="200" max-height="200"/>
                         <img class="img-cancel"  ng-click="cancelImageUpload(currentUser.avatar, 'currentAvatar')" src="assets/images/cancel.png" />
                     </div>
                     <input id="inputAvatar" class="input-user-avatar" type="file" onchange="angular.element(this).scope().previewImage(this, 'currentAvatar', 'previewFile')" ng-model="previewFile"
@@ -30,8 +30,12 @@
                 <div class="form-group">
                     <input type="password" class="form-control" placeholder="Confirm password" ng-model="confirmPassword" min="4" max="99" autocomplete="off">
                 </div>
-                <button type="submit" class="btn-auth" ng-disabled="buttonDisabled"  ng-click="changeUserInfo()">Change</button>
-                <span class="error-auth">{{response}}</span>
+                <div class="form-group">
+                    <button id="load" class="btn-auth" ng-disabled="buttonDisabled"  ng-click="changeUserInfo()">Change</button>
+                </div>
+                <div class="form-group">
+                    <span class="error-auth">{{response}}</span>
+                </div>
             </form>
         </div>
     </div>

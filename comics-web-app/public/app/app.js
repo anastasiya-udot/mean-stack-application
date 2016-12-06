@@ -12,6 +12,8 @@ var comicsApp = angular.module('comicsApp', [
         .config(comicsappConfig);
 
     function comicsappConfig ($routeProvider) {
+
+
         $routeProvider
             .when('/', {
                 controller: 'initialPageCtrl',

@@ -3,7 +3,6 @@
  */
 
 var constant = require('../libs/constants').constant;
-var AuthError = require('../error/error').AuthError;
 var imageService = require('./image.serivce.js');
 
 module.exports.initializeQueue = function(reqBody){
@@ -40,11 +39,9 @@ module.exports.initializeQueue = function(reqBody){
 
     }
 
-
     function changeAvatar(data, user, callback){
 
         if (data.avatar){
-
             imageService.changeAvatar(user, data.avatar,function(err, result){
                 if(err){
                     callback(err);

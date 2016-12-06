@@ -60,8 +60,8 @@ comicsApp.factory('LoginDialog', ['DialogTemplate', 'PostData', 'SessionService'
 
     return {
         load: function(){
-            var url = 'app/components/authent/login/login.html';
-            var controller = authorizationCtrl;
+            let url = 'app/components/authent/login/login.html';
+            let controller = authorizationCtrl;
             currentDialog = DialogTemplate.open(url, controller);
         }
     }

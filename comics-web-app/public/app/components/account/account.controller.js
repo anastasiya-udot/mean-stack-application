@@ -5,7 +5,7 @@ comicsApp
     .controller('browseAccountCtrl', browseAccountCtrl);
 
 
-    browseAccountCtrl.$inject =[ '$scope', '$q', 'AccountInfoService', 'UserRoleService', 'AccountButtonsService',];
+    browseAccountCtrl.$inject =[ '$scope', '$q', 'AccountInfoService', 'UserRoleService', 'AccountButtonsService'];
 
     function browseAccountCtrl($scope, $q, AccountInfoService, UserRoleService, AccountButtonsService){
 
@@ -22,8 +22,8 @@ comicsApp
 
             let defered = $q.defer();
 
-            AccountInfoService.getInfo($scope, function(currentUserId){
-                defered.resolve(currentUserId);
+            AccountInfoService.getInfo($scope, function(currentPageId){
+                defered.resolve(currentPageId);
             });
 
             return defered.promise;
@@ -33,12 +33,13 @@ comicsApp
 
         asyncGetInfo().then(
 
-            function(response){
-                if(checkIsUserFound(response)){
-                    $scope.role = UserRoleService.getRole(response);
+            function(currentPageId){
+                if(checkIsUserFound(currentPageId)){
+                    $scope.role = UserRoleService.getRole(currentPageId);
                     AccountButtonsService.start($scope);
+                    $scope.comics = [];
+                    $scope.currentPageId = currentPageId;
                 }
-
             }
         );
     }

@@ -2,8 +2,8 @@
  * Created by anastasiya on 25.11.16.
  */
 
-var AuthError          = require('../error/error').AuthError;
-var constant           = require('../libs/constants').constant;
+let AuthError          = require('../error/error').AuthError;
+let constant           = require('../libs/constants').constant;
 
 module.exports.initializeQueue = function(req) {
     return [
@@ -49,7 +49,7 @@ module.exports.initializeQueue = function(req) {
 
         async.series(
 
-            analyzeChangesService.initializeQueue(data, user, req.headers.host),
+            analyzeChangesService.initializeUserQueue(data, user, req.headers.host),
 
             function (err, results) {
 

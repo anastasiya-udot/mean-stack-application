@@ -45,18 +45,18 @@ canvas {
     width: 200px;
 }
 
-.change-user-avatar{
+.change-user-avatar, .new-comics-cover{
     position: relative;
 }
 
 
-.change-user-avatar .img-center:hover {
+.change-user-avatar .img-center:hover, .new-comics-cover .img-center:hover {
     animation: shake 800ms ease-out alternate;
     outline: none;
     cursor: pointer;
 }
 
-.input-user-avatar{
+.input-user-avatar, .input-comics-cover{
     display: none !important;
 
 }
