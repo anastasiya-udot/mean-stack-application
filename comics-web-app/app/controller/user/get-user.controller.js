@@ -3,30 +3,33 @@
  */
 
 let constant = require('../../libs/constants').constant;
-let searchUserService = require('../../service/get-user.service');
+let getUserById = require('../../service/user.service.js').getUserById;
 
 module.exports.get = function(req, res){
+
     let id = req.url.split('/')[3];
 
-    searchUserService.getUserById(id, function(user){
+    getUserById(id, function(user){
 
-        if(user){
-
-            let avatar = null;
-
-            if(user.avatar)
-                avatar = user.avatar.url;
-
-            res.status(200).json({
-                id: user._id,
-                username: user.username,
-                avatar: avatar,
-                email: user.email,
-            })
-
-        } else {
+        if(!user) {
             res.status(404).send({ "message": constant.USER_NOT_FOUND});
+            return;
         }
+
+        let avatar = null;
+
+        if(user.avatar)
+            avatar = user.avatar.url;
+
+        let data = {
+            id: user._id,
+            username: user.username,
+            avatar: avatar,
+            email: user.email
+        };
+
+        res.json({ "data" : data })
+
     });
 
 };

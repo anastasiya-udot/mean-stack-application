@@ -16,13 +16,13 @@ comicsApp
 
     function initGroup(response, comics){
 
-        response.data.forEach(function(elem){
+        response.forEach(function(elem){
             let comicsData = {};
             comicsData.comicsName = elem.comicsName;
             comicsData.authorName = elem.authorName;
             comicsData.authorId = elem.authorId;
             comicsData.comicsDate = getFullDate(elem);
-            comicsData.comicsDescription =  elem.comicsDescription
+            comicsData.comicsDescription =  elem.comicsDescription;
             comicsData.comicsId = elem.comicsId;
             comicsData.comicsCover = elem.comicsCover || '/assets/images/WDF_778700.jpg';
             comics.push(comicsData);
@@ -31,7 +31,6 @@ comicsApp
 
 
     function resolve($scope, response){
-        console.log(response);
         initGroup(response, $scope.comics);
     }
 

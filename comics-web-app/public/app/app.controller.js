@@ -7,8 +7,10 @@ comicsApp
 initialPageCtrl.$inject = [ '$scope', 'SessionService', 'InitialPageLoader'];
 
 function initialPageCtrl($scope, SessionService, InitialPageLoader) {
-    // check is user logged in and change page content according to it
+    // SessionService.observe: check is user logged in and change page content according to it
     SessionService.observe();
+
+    $scope.userId = SessionService.getSessionUserId();
 
     InitialPageLoader.load($scope)
 }

@@ -1,9 +1,9 @@
-var winston = require('winston');
-var constant = require('../libs/constants').constant;
+let winston = require('winston');
+let constant = require('../libs/constants').constant;
 
 function getLogger(module){
 
-    var path = module.filename.split('/').slice(-2).join('/');
+    let path = module.filename.split('/').slice(-2).join('/');
 
     return new winston.Logger({
         transports: [

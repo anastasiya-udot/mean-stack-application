@@ -4,15 +4,15 @@
 comicsApp.factory('RegistrDialog',[ 'DialogTemplate', 'PostData', function(DialogTemplate, PostData) {
 
     function resolve($scope, response){
-        $scope.buttonDisabled = false;
-        console.log("here");
         clearInput($scope);
         $scope.response = response.message;
+        setButtonDisable($scope.buttonDisabled, false);
     }
 
     function reject($scope, response){
         console.log(response.error);
         $scope.response = response.error;
+        setButtonDisable($scope.buttonDisabled, false);
     }
 
     function clearInput($scope){
@@ -20,28 +20,43 @@ comicsApp.factory('RegistrDialog',[ 'DialogTemplate', 'PostData', function(Dialo
          $scope.registrPassword= $scope.registrConfirm= "";
     }
 
+    function putInnerButton(inner){
+        document.getElementById('load').innerHTML = inner;
+    }
+
+    function setButtonDisable(buttonDisableTrigger, value){
+        buttonDisableTrigger = value;
+        if(value){
+            putInnerButton("Creating...")
+        } else {
+            putInnerButton("Sign up")
+        }
+    }
 
     registrationCtrl.$inject = [ '$scope' ];
 
     function registrationCtrl($scope){
-        $scope.buttonDisabled = false;
 
         $scope.sendRegistrData = function(){
-            if ($scope.password !== $scope.confirmedPassword){
+
+            setButtonDisable($scope.buttonDisabled, true);
+
+            if ($scope.password != $scope.confirmedPassword){
                 $scope.response = "Check your passwords";
-            } else {
-                let data = {
-                    username: $scope.username,
-                    email: $scope.email,
-                    password: $scope.password,
-                    confirmed: $scope.confirmedPassword
-                };
-
-                $scope.buttonDisabled = true;
-                PostData($scope, '/user/registr', data, resolve, reject);
-
+                setButtonDisable($scope.buttonDisabled,false);
+                return;
             }
-        }
+
+            let data = {
+                username: $scope.username,
+                email: $scope.email,
+                password: $scope.password,
+                confirmed: $scope.confirmedPassword
+            };
+
+            PostData($scope, '/user/registr', data, resolve, reject);
+        };
+
     }
 
 

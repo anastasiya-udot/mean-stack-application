@@ -1,0 +1,29 @@
+
+<div class="container-auth">
+    <div  id="panel-auth">
+        <div class="panel-body">
+            <h2 id="title-auth">
+                Enter email
+            </h2>
+            <form method="post">
+                <div class="form-group">
+                    <input type="email"
+                           class="form-control"
+                           placeholder="email"
+                           ng-model="forgotPassEmail"
+                           required>
+                </div>
+                <button type="submit"
+                        class="btn-auth"
+                        id="load"
+                        ng-disabled="buttonDisabled"
+                        ng-click="sendEmailData()">
+                    Send
+                </button>
+                <span class="error-auth">
+                    {{response}}
+                </span>
+            </form>
+        </div>
+    </div>
+</div>

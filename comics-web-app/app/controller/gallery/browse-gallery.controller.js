@@ -2,7 +2,7 @@
  * Created by anastasiya on 13.11.16.
  */
 let async = require('async');
-let browserService = require('../../service/browser.service');
+let browserService = require('../../service/gallery.service.js');
 
 module.exports.gallery = function(req,res){
 

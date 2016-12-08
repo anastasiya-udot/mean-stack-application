@@ -3,26 +3,6 @@
  */
 comicsApp
 
-    .factory('UserRoleService', [ 'SessionService', function(SessionService){
-
-        return {
-
-            getRole: function(id){
-                let myId = SessionService.getSessionUserId();
-                if (myId){
-                    if(myId == id){
-                        return "owner";
-                    } else {
-                        return "guest";
-                    }
-                } else {
-                    return "unauthorized";
-                }
-            }
-        }
-    }])
-
-
     .factory('AccountGalleryLoader', ['GalleryLoader', 'UserRoleService', function(GalleryLoader){
         return {
             load: function ($scope) {
@@ -75,7 +55,9 @@ comicsApp
                  ListenChangeInfoButton($scope)
              }
         };
+
         function ListenChangeInfoButton($scope){
+
             $scope.changeUserInfo = function(){
                 ChangeInfoDialog.load($scope);
             };

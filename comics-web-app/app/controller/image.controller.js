@@ -7,23 +7,9 @@ let multiparty = require('multiparty');
 
 module.exports.avatar = function(req,res){
 
-   let avatarService = require('../service/avatar.service.js');
+   let avatarService = require('../service/image/avatar.service.js');
+
     console.log("size " + sizeof(req.body.file));
-
- /*   var form = new multiparty.Form();
-
-    form.on('part', function(part) {
-
-    });
-
-
-    form.parse(req, function(err, fields, files){
-        console.log(err);
-        console.log();
-        console.log(fields);
-        console.log();
-        console.log(files);
-    });*/
 
     async.waterfall(
 
@@ -41,7 +27,7 @@ module.exports.avatar = function(req,res){
 
 module.exports.cover = function(req,res){
 
-    let coverService = require('../service/cover.service.js');
+    let coverService = require('../service/image/cover.service.js');
 
     async.waterfall(
 

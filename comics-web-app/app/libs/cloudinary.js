@@ -1,8 +1,8 @@
 /**
  * Created by anastasiya on 14.11.16.
  */
-var cloudinary = require('cloudinary');
-var constant = require('./constants').constant;
+let cloudinary = require('cloudinary');
+let constant = require('./constants').constant;
 
 cloudinary.config({
     cloud_name: constant.CLOUD_NAME,

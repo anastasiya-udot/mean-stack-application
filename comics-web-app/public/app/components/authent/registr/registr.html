@@ -1,24 +1,51 @@
-
-                <div class="container-auth">
-                    <div id="panel-auth">
-                        <div class="panel-body">
-                            <h2 id="title-auth">Sign up</h2>
-                            <form method="post">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Name" ng-model="username" required>
-                                </div>
-                                <div class="form-group">
-                                    <input type="email" class="form-control"  placeholder="Enter email" ng-model="email" min="4" max="99" required>
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" class="form-control"  placeholder="Password" ng-model="password"  min="4" max="99" required>
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Confirm Password" ng-model="confirmedPassword" required>
-                                </div>
-                                <button type="register" class="btn-auth" ng-disabled="buttonDisabled" ng-click="sendRegistrData()">Sign up</button>
-                                <span class="error-auth">{{response}}</span>
-                            </form>
-                        </div>
-                    </div>
+<div class="container-auth">
+    <div id="panel-auth">
+        <div class="panel-body">
+            <h2 id="title-auth">Sign up</h2>
+            <form method="post">
+                <div class="form-group">
+                    <input type="text"
+                           class="form-control"
+                           placeholder="Name"
+                           ng-model="username"
+                           required>
                 </div>
+                <div class="form-group">
+                    <input type="email"
+                           class="form-control"
+                           placeholder="Enter email"
+                           ng-model="email"
+                           min="4"
+                           max="99"
+                           required>
+                </div>
+                <div class="form-group">
+                    <input type="password"
+                           class="form-control"
+                           placeholder="Password"
+                           ng-model="password"
+                           min="4"
+                           max="99"
+                           required>
+                </div>
+                <div class="form-group">
+                    <input type="password"
+                           class="form-control"
+                           placeholder="Confirm Password"
+                           ng-model="confirmedPassword"
+                           required>
+                </div>
+                <button type="register"
+                        id="load"
+                        ng-disabled="buttonDisabled"
+                        class="btn-auth"
+                        ng-click="sendRegistrData()">
+                    Sign up
+                </button>
+                <span class="error-auth">
+                    {{response}}
+                </span>
+            </form>
+        </div>
+    </div>
+</div>

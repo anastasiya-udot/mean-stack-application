@@ -48,10 +48,13 @@ comicsApp
             };
 
             $http.get( url, config)
-                .then(
-                    (response) => { resolve($scope, response)},
-                    (response) => { reject($scope, response)}
-                )
+                .success(function (data) {
+                    if( angular.isDefined(data.error)){
+                        reject($scope, data);
+                    } else {
+                        resolve($scope, data);
+                    }
+                })
         };
 
     }])
@@ -63,8 +66,9 @@ comicsApp
 
             observe: function(){
                 $rootScope.loggedIn = false;
+
                 if ($window.sessionStorage.token){
-                    $rootScope.loggedIn = true;
+                    return $rootScope.loggedIn = true;
                 }
             },
 
@@ -152,4 +156,23 @@ comicsApp
                 })
             }
         }
-    }]);
+    }])
+
+    .factory('UserRoleService', [ 'SessionService', function(SessionService){
+
+        return {
+
+            getRole: function(id){
+                let myId = SessionService.getSessionUserId();
+                if (myId){
+                    if(myId == id){
+                        return "owner";
+                    } else {
+                        return "guest";
+                    }
+                } else {
+                    return "unauthorized";
+                }
+            }
+        }
+    }])

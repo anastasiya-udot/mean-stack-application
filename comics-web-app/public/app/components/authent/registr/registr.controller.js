@@ -28,6 +28,6 @@ function confirmRegistrPageCtrl($scope, $location, InitialPageLoader, LoginDialo
 
     InitialPageLoader.load($scope);
     let data = getToken($location);
-    console.log(data);
+
     PostData($scope, '/user/confirm-registr', data, resolve, reject);
 }

@@ -5,35 +5,58 @@ comicsApp
 
     .factory('ChangeInfoDialog', [ 'DialogTemplate', 'PostData', 'ImageService', 'SessionService', function(DialogTemplate,PostData, ImageService,SessionService){
 
+
+        // VARIABLES AND FUNCTIONS USED IN changeInfoCtrl
+
+
         let currentDialog;
         let currentUser;
         let accScope;
+
+        function setButtonDisable(buttonDisabledTrigger, value){
+
+            buttonDisabledTrigger = value;
+
+            if(value){
+                putInnerButton("Changing...")
+            } else {
+                putInnerButton("Change")
+            }
+        }
+
+        function putInnerButton(inner){
+            document.getElementById('load').innerHTML = inner;
+        }
+
+        function canChangeInfo($scope){
+
+            let prev    = $scope.previousPassword || null,
+                pass    = $scope.password || null,
+                conf    = $scope.confirmPassword || null,
+                name    = $scope.username || null,
+                email   = $scope.email || null,
+                preview = $scope.previewFile;
+
+
+            let allEmptyPasswords    = (!prev && !pass && !conf),
+                allEmptyFields       =  allEmptyPasswords &&  (!name && !email && !preview),
+                anyEmptyPassword     = (!prev || !pass || !conf),
+                filledPasswords      = (!anyEmptyPassword && (conf === pass));
+
+            return (allEmptyPasswords || filledPasswords) && !allEmptyFields;
+        }
+
+
+        // CONTROLLER
+
 
         changeInfoCtrl.$inject = ['$scope'];
 
         function changeInfoCtrl($scope){
 
-            $scope.buttonDisabled   = false;
-            $scope.currentUser      = currentUser;
+            $scope.currentUser = currentUser;
             ImageService.clearInputImage($scope.previewFile);
 
-            function canChangeInfo(){
-
-                let prev    = $scope.previousPassword || null,
-                    pass    = $scope.password || null,
-                    conf    = $scope.confirmPassword || null,
-                    name    = $scope.username || null;
-                    email   = $scope.email || null;
-                    preview = $scope.previewFile;
-
-
-                let allEmptyPasswords    = (!prev && !pass && !conf),
-                    allEmptyFields       =  allEmptyPasswords &&  (!name && !email && !preview),
-                    anyEmptyPassword     = (!prev || !pass || !conf),
-                    filledPasswords      = (!anyEmptyPassword && (conf === pass));
-
-                return (allEmptyPasswords || filledPasswords) && !allEmptyFields;
-            }
 
             function showPageInfoChanges($scope, response){
 
@@ -52,93 +75,90 @@ comicsApp
                 });
             }
 
-            function composeMessage(response){
-
-                response.forEach(function (elem) {
-                        if (elem) {
-                            $scope.response += " " + elem.message;
-                        }
-                    });
-            }
-
 
             function ClearInputFields($scope){
                 $scope.previousPassword = $scope.password =
                 $scope.confirmPassword  = $scope.username =
-                $scope.email = null;
+                $scope.email = '';
                 ImageService.clearInputImage($scope.previewFile);
             }
 
             function resolve(response){
-                $scope.buttonDisabled = false;
                 showPageInfoChanges($scope, response);
-                composeMessage(response);
+
+                response.forEach(function (elem) {
+                    if (elem) {
+                        $scope.response += " " + elem.message;
+                    }
+                });
+
                 ClearInputFields($scope);
             }
 
             function reject(response){
-                $scope.buttonDisabled = false;
-                console.log(response.error);
-                $scope.response += response.error + " ";
+
+                response.forEach(function (elem) {
+                    if (elem) {
+                        console.log(elem.error);
+                        $scope.response += " " + elem.error;
+                    }
+                });
             }
 
             function sendAvatar(){
 
                 if($scope.previewFile){
 
-                    $scope.buttonDisabled = true;
-
                     let data = {
                         file: $scope.previewFile
                     };
-                   // console.log(sizeof(data.file));
+
+                    console.log(sizeof(data.file));
 
                     let url = '/account/avatar';
 
                     ImageService.uploadImage(data, url, function(response){
-                        resolve(response)
+                        resolve(response);
+                        setButtonDisable($scope.buttonDisabled, false)
                     });
+                } else {
+                    setButtonDisable($scope.buttonDisabled, false)
                 }
             }
 
-            function putInnerButton(inner){
-                document.getElementById('load').innerHTML = inner;
-            }
 
             $scope.changeUserInfo = function(){
 
                 $scope.response = '';
 
-                if(canChangeInfo()){
-
-                    let data = {
-                        id: SessionService.getSessionUserId(),
-                        username: $scope.username,
-                        email: $scope.email,
-                        password: $scope.password,
-                        confirmPassword: $scope.confirmPassword,
-                        previousPassword: $scope.previousPassword
-                    };
-
-                    $scope.buttonDisabled = true;
-                    putInnerButton('Sending...');
-
-                    PostData($scope, '/account/change-info', data,
-                        function(scope, response){
-                            sendAvatar();
-                            resolve(response);
-                            putInnerButton('Change');
-                        },
-                        function(scope, response){
-                            sendAvatar();
-                            reject(response);
-                            putInnerButton('Change');
-                        });
-
-                } else {
-                    $scope.response = "Check your fields";
+                if(!canChangeInfo($scope)) {
+                    $scope.response = "Check your input fields";
+                    return;
                 }
 
+                setButtonDisable($scope.buttonDisabled, true);
+
+                let data = {
+                    id: SessionService.getSessionUserId(),
+                    username: $scope.username,
+                    email: $scope.email,
+                    password: $scope.password,
+                    confirmPassword: $scope.confirmPassword,
+                    previousPassword: $scope.previousPassword
+                };
+
+                PostData($scope, '/account/change-info', data,
+
+                    function(scope, response){
+                        resolve(response);
+                        sendAvatar();
+                    },
+
+                    function(scope, response){
+                        reject(response);
+                        sendAvatar();
+                    }
+                );
             };
 
             $scope.openFileDialog = ImageService.openFileDialog;
@@ -203,9 +223,8 @@ comicsApp
 
                 let token = url.split('/').splice(-1,1);
 
-                return data={
-                    "token":  token
-                };
+                return data=token;
+
             } else {
                 return null;
             }
