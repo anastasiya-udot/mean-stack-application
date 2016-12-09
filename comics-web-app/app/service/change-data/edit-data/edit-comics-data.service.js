@@ -1,7 +1,7 @@
 /**
  * Created by anastasiya on 6.12.16.
  */
-//let Comics = require('../models/comics').Comics;
+
 let constant  = require('../../../libs/constants').constant;
 
 module.exports.changeComicsName = function(comics, newName, callback){

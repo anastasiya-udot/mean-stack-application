@@ -50,7 +50,8 @@ module.exports.initializeQueue = function(data){
             author: comics.author,
             comicsId: comics._id,
             comicsName: comics.name,
-            comicsDate: comics.date
+            comicsDate: comics.date,
+            comicsDescription: comics.description
 
         };
 

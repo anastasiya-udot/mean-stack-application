@@ -1,0 +1,46 @@
+<div class="container-auth">
+    <div  id="panel-auth">
+        <div class="panel-body">
+            <h2 id="title-auth" ng-show="beforeSending">
+                Do you want to delete {{item}}?
+            </h2>
+            <h2 id="title-auth" ng-show="!beforeSending && successResult">
+                Your {{item}} was successfully deleted.
+            </h2>
+            <h2 id="title-auth" ng-show="!beforeSending && !successResult">
+                Error while deleting your {{item}}.
+            </h2>
+            <div class="form-group">
+                <span class="error-auth">
+                    {{response}}
+                </span>
+            </div>
+            <form method="post" >
+                <span>
+                    <button class="btn-auth"
+                            id="load"
+                            style="width:90px; margin-left: 20%"
+                            ng-click="confirm()"
+                            ng-show="beforeSending"
+                            ng-disabled="buttonDisabled">
+                        Delete
+                    </button>
+                    <button class="btn-auth"
+                            id="load"
+                            style="width:90px; margin-left: 20%"
+                            ng-click="cancel()"
+                            ng-show="beforeSending"
+                            ng-disabled="buttonDisabled">
+                        Cancel
+                    </button>
+                    <button class="btn-auth"
+                            style="width:90px; margin-left: 60%"
+                            ng-click="cancel()"
+                            ng-show="!beforeSending">
+                        Close
+                    </button>
+                </span>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,14 +1,15 @@
 .image-bg-fluid-height{
     text-align: center;
+    background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
-    background-size: cover;
     -o-background-size: cover;
 }
 
 .image-bg-fluid-height {
     background: url('https://res.cloudinary.com/dq83k7kbp/image/upload/c_lfill,h_500,w_1900/v1479490241/Catwoman-DC-Comics-1920x1080_jbbpvt.jpg') no-repeat scroll;
     padding: 100px 0;
+    width: 100%;
     height: 500px;
 }
 

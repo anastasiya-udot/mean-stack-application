@@ -49,8 +49,8 @@ comicsApp
     }])
 
     .factory('AccountButtonsService',['ChangeInfoDialog',
-        'ComicsDialog', 'DeleteDialog', 'AccountGalleryLoader',
-        function(ChangeInfoDialog, ComicsDialog, DeleteDialog, AccountGalleryLoader){
+        'ComicsDialog', 'DeleteDialog', 'AccountGalleryLoader', 'SessionService',
+        function(ChangeInfoDialog, ComicsDialog, DeleteDialog, AccountGalleryLoader, SessionService){
 
         return {
              start: function($scope){
@@ -82,11 +82,29 @@ comicsApp
 
             $scope.deleteComics = function(elem){
 
-                function okFunction(){
-                    console.log("deleted");
+                function resolve(res){
+                    if ($scope.comics) {
+
+                        let index = $scope.comics.indexOf(elem);
+
+                        if (index > -1) {
+                            $scope.comics.splice(index, 1);
+                        }
+                    }
                 }
 
-                DeleteDialog.open(okFunction, "comics");
+                function reject(res){
+                    console.log(res.error);
+                }
+
+                let url = '/comics/delete';
+
+                let data = {
+                    comicsId: elem.comicsId,
+                    userId: SessionService.getSessionUserId()
+                };
+
+                DeleteDialog.open(url, data, resolve, reject, "comics");
             }
         }
     }]);

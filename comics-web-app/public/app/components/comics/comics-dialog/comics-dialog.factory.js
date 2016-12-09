@@ -10,6 +10,41 @@ comicsApp
 
         let parentScope = null;
         let currentComics = null;
+        let newComicsIndex = null;
+
+        function getFullDate(elem){
+            let date = new Date(elem.comicsDate);
+            return date.getDate() + "." +
+                date.getMonth() + "." +
+                date.getFullYear() + " " +
+                date.getHours() + ":" +
+                date.getMinutes();
+        }
+
+        function showNewComicsInfo(response){
+            if (parentScope.comics){
+                let comicsData = {};
+                comicsData.comicsName = response.comicsName;
+                comicsData.authorName = response.author.name;
+                comicsData.authorId = response.author._id;
+                comicsData.comicsDate = getFullDate(response);
+                comicsData.comicsDescription =  response.comicsDescription;
+                comicsData.comicsId = response.comicsId;
+                parentScope.comics.push(comicsData);
+                console.log(parentScope.comics);
+                return parentScope.comics.indexOf(comicsData);
+            }
+            return null;
+        }
+
+        function showNewComicsCover(response){
+            console.log(newComicsIndex);
+            if(newComicsIndex){
+                console.log(parentScope.comics);
+                console.log(response.data);
+                parentScope.comics[newComicsIndex].comicsCover  = response.data.comicsCover || '/assets/images/WDF_778700.jpg';
+            }
+        }
 
         comicsDialogCtrl.$inject = ['$scope', 'PostData', 'ImageService', 'SessionService'];
 
@@ -42,7 +77,9 @@ comicsApp
             }
 
             function putInnerButton(inner){
-                document.getElementById('load').innerHTML = inner;
+
+                if( document.getElementById('load'))
+                    document.getElementById('load').innerHTML = inner;
             }
 
 
@@ -62,8 +99,10 @@ comicsApp
                         parentScope.comicsDescription = response.data.comicsDescription;
                     if(response.data.comicsCover)
                         parentScope.comicsCover = response.data.comicsCover;
+                } else {
+                    if(!newComicsIndex)
+                        newComicsIndex = showNewComicsInfo(response.data);
                 }
-
             }
 
             function reject($scope, response){
@@ -83,8 +122,6 @@ comicsApp
 
                 if($scope.previewFile){
 
-                    console.log("here");
-
                     let data = {
                         file: $scope.previewFile,
                         comics_id: response.data.comicsId,
@@ -101,6 +138,7 @@ comicsApp
                         }
 
                         setButtonDisable(false);
+                        showNewComicsCover(response);
                         clearInput();
 
                     });
@@ -137,7 +175,7 @@ comicsApp
 
             function getComicsDescription(){
                 let length;
-                ($scope.comicsDescription.length - 1 > 200) ? length = 200 : length = $scope.comicsDescription.length - 1;
+                ($scope.comicsDescription.length > 200) ? length = 200 : length = $scope.comicsDescription.length;
                 return $scope.comicsDescription.substr(0, length);
             }
 
@@ -155,6 +193,8 @@ comicsApp
             };
 
             $scope.sendComicsData = function(){
+
+                newComicsIndex = null;
 
                 if(!canChangeInfo()){
                     $scope.response = "Check your fields.";
@@ -197,7 +237,7 @@ comicsApp
         }
 
         function initDialog(){
-            let url = 'app/components/comics/comics-dialog/delete-dialog.html';
+            let url = 'app/components/comics/comics-dialog/comics-dialog.html';
             let controller =  comicsDialogCtrl;
 
             DialogTemplate.open(url, controller);

@@ -67,6 +67,11 @@ module.exports.changeCover = function(data, comics, callback){
 };
 
 
+module.exports.deleteCover = function(cover){
+    cloudinary.uploader.destroy(cover.public_id);
+};
+
+
 
 module.exports.getAvatar = function(user){
     if(user.avatar){

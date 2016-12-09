@@ -56,3 +56,28 @@ module.exports.edit = function(req,res){
     )
 
 };
+
+module.exports.delete = function(req,res){
+
+    let deleteComicsService = require('../../service/delete/delete-comics.service');
+
+    async.waterfall(
+
+        deleteComicsService.initializeQueue(req.body),
+
+        function(err, result){
+
+            let response = {};
+
+            if (err){
+                response.error = err;
+                return res.send(response);
+            }
+            if(result) {
+                response.message = result;
+                return res.send(response);
+            }
+        }
+    )
+
+};

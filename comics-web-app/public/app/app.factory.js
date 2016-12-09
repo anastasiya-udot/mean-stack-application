@@ -3,6 +3,7 @@
  */
 comicsApp
     .factory('DialogTemplate', [ 'ngDialog', function(ngDialog) {
+
         return {
             open: function (url, controller) {
                 return ngDialog.open({
@@ -19,6 +20,7 @@ comicsApp
 }])
 
     .factory('PostData', ['$http', function($http){
+
         return function($scope, url, data, resolve, reject){
 
             const config = {
@@ -38,6 +40,26 @@ comicsApp
     };
 
 }])
+
+    .factory('DeleteData', ['$http', function($http){
+
+        return function(url, data, resolve, reject){
+
+            $http({
+                method: 'DELETE',
+                url: url,
+                data: data,
+                headers: {'Content-Type': 'application/json;charset=utf-8'}})
+                .then(function(response){
+                    console.log(response);
+                    if( angular.isDefined(response.data.error)){
+                        reject(response.data);
+                    } else {
+                        resolve(response.data)
+                    }
+                })
+        }
+    }])
 
     .factory('GetData', ['$http', function($http){
         return function($scope, url, resolve, reject){
@@ -60,8 +82,8 @@ comicsApp
     }])
 
     .factory('SessionService',[ '$window', '$rootScope', '$location', function($window, $rootScope, $location){
-        return {
 
+        return {
             isLogged: false,
 
             observe: function(){
@@ -175,4 +197,4 @@ comicsApp
                 }
             }
         }
-    }])
+    }]);

@@ -41,6 +41,9 @@ module.exports.constant = {
     ERROR_CHANGE_COMICS:            "There was an error during comics editing.",
     COVER_CHANGED:                  "Cover was changed.",
     COMICS_NAME_CHANGED:            "Comics name was changed.",
-    COMICS_DESCR_CHANGED:           "Comics description was changed."
+    COMICS_DESCR_CHANGED:           "Comics description was changed.",
+
+    ERROR_DELETING:                 "Error while deleting from database",
+    DELETE_SUCCESS:                 "Deleting was completed"
 
 };

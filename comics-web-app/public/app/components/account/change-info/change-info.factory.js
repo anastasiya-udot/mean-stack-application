@@ -25,7 +25,8 @@ comicsApp
         }
 
         function putInnerButton(inner){
-            document.getElementById('load').innerHTML = inner;
+            if( document.getElementById('load'))
+                document.getElementById('load').innerHTML = inner;
         }
 
         function canChangeInfo($scope){
