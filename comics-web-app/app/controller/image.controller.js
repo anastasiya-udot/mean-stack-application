@@ -3,7 +3,6 @@
  */
 let async = require('async');
 let sizeof = require('object-sizeof');
-let multiparty = require('multiparty');
 
 module.exports.avatar = function(req,res){
 

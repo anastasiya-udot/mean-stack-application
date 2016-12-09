@@ -161,6 +161,11 @@
                                  ng-click="editComics(elem)"
                                  width="40px" height="40px"
                                  ng-show="role == 'owner'">
+                            <img class="delete-comics-basket"
+                                 src="assets/images/reject-512.png"
+                                 ng-click="deleteComics(elem.comicsId)"
+                                 width="40px" height="40px"
+                                 ng-show="role == 'owner'">
                             <div class="comics-group-item">
                                 <div class="comics-group-item-content">
                                     <h3>

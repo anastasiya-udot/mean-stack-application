@@ -197,7 +197,7 @@ comicsApp
         }
 
         function initDialog(){
-            let url = 'app/components/comics/comics-dialog/comics-dialog.html';
+            let url = 'app/components/comics/comics-dialog/delete-dialog.html';
             let controller =  comicsDialogCtrl;
 
             DialogTemplate.open(url, controller);

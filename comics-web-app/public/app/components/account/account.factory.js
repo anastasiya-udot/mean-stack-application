@@ -48,7 +48,9 @@ comicsApp
        }
     }])
 
-    .factory('AccountButtonsService',['ChangeInfoDialog', 'ComicsDialog', 'AccountGalleryLoader', function(ChangeInfoDialog, ComicsDialog, AccountGalleryLoader){
+    .factory('AccountButtonsService',['ChangeInfoDialog',
+        'ComicsDialog', 'DeleteDialog', 'AccountGalleryLoader',
+        function(ChangeInfoDialog, ComicsDialog, DeleteDialog, AccountGalleryLoader){
 
         return {
              start: function($scope){
@@ -76,6 +78,15 @@ comicsApp
                     $scope.comics = [];
                     AccountGalleryLoader.load($scope);
                 }
+            };
+
+            $scope.deleteComics = function(elem){
+
+                function okFunction(){
+                    console.log("deleted");
+                }
+
+                DeleteDialog.open(okFunction, "comics");
             }
         }
     }]);

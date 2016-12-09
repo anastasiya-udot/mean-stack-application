@@ -34,7 +34,6 @@ module.exports.initializeQueue = function(reqBody){
             } else {
                 callback({"message" : constant.NO_COMICS_FOUND});
             }
-
         });
 
     }

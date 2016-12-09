@@ -215,13 +215,20 @@ a:-webkit-any-link {
 
 .edit-comics-pen{
     position: absolute;
+    right: 60px;
+    top: 10px;
+}
+
+.delete-comics-basket{
+    position: absolute;
     right: 10px;
     top: 10px;
 }
 
-.edit-comics-pen:hover{
+.edit-comics-pen:hover, .delete-comics-basket:hover{
     border-color: #990007;
     box-shadow: 0 0 5px rgba(72, 12, 16, 0.88), inset 0 0 5px rgba(82, 14, 14, 0.78), 0 2px 0 #000;
     outline: none;
     cursor: pointer;
 }
+
