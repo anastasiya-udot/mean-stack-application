@@ -95,8 +95,14 @@ comicsApp
                 if(currentComics){
                     if(response.data.comicsName)
                         parentScope.comicsName = response.data.comicsName;
-                    if(response.data.comicsDescription)
-                        parentScope.comicsDescription = response.data.comicsDescription;
+
+                    parentScope.comicsDescription = response.data.comicsDescription;
+                    if(parentScope.comicsDescription) {
+                        parentScope.haveDescr = true;
+                    }else {
+                        parentScope.haveDescr = false;
+                    }
+
                     if(response.data.comicsCover)
                         parentScope.comicsCover = response.data.comicsCover;
                 } else {

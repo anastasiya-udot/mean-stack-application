@@ -31,7 +31,6 @@ comicsApp
                 document.getElementById('load').innerHTML = inner;
         }
 
-
         deleteDialogCtrl.$inject = ['$scope'];
 
         function deleteDialogCtrl($scope){

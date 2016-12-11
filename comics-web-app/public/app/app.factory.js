@@ -86,11 +86,33 @@ comicsApp
         return {
             isLogged: false,
 
+
             observe: function(){
                 $rootScope.loggedIn = false;
-
+                this.checkPermission();
                 if ($window.sessionStorage.token){
                     return $rootScope.loggedIn = true;
+                }
+            },
+
+            getCurrentPageId: function(){
+                let url = $location.absUrl();
+                return url.split('/').splice(-1,1);
+            },
+
+            checkPermission: function(currentPageUserId){
+
+                if(!currentPageUserId)
+                    currentPageUserId = this.getCurrentPageId();
+
+                if (this.getSessionUserId()){
+                    if(this.getSessionUserId() == currentPageUserId){
+                        $rootScope.role = "owner";
+                    } else {
+                        $rootScope.role = "guest";
+                    }
+                } else {
+                    $rootScope.role = "unauthorized";
                 }
             },
 
@@ -100,7 +122,6 @@ comicsApp
 
             destroySession: function(){
                 delete $window.sessionStorage.token;
-                $location.path('/');
             },
 
             getSessionUserId : function(){
@@ -176,25 +197,6 @@ comicsApp
                 upload.then(function(response){
                     callback(response.data)
                 })
-            }
-        }
-    }])
-
-    .factory('UserRoleService', [ 'SessionService', function(SessionService){
-
-        return {
-
-            getRole: function(id){
-                let myId = SessionService.getSessionUserId();
-                if (myId){
-                    if(myId == id){
-                        return "owner";
-                    } else {
-                        return "guest";
-                    }
-                } else {
-                    return "unauthorized";
-                }
             }
         }
     }]);

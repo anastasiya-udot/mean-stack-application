@@ -6,7 +6,7 @@ let async = require('async');
 
 module.exports.new = function(req,res){
 
-    let comicsService = require('../../service/comics.service');
+    let comicsService = require('../../service/comics/new-comics.service.js');
 
     async.waterfall(
 
@@ -30,6 +30,27 @@ module.exports.new = function(req,res){
         }
     )
 
+};
+
+module.exports.get = function(req, res){
+
+    let id = req.url.split('/')[3];
+    let comicsService = require('../../service/comics/get-comics.service');
+
+    async.waterfall(
+
+        comicsService.initializeQueue(id),
+
+        function(err, result){
+            if(err){
+                res.json({"error" : err});
+                return;
+            }
+            if(result){
+                res.json({"comics" : result});
+            }
+        }
+    )
 };
 
 

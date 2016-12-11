@@ -80,7 +80,7 @@ module.exports.initializeComicsQueue = function(comics, data) {
 
     function analyzeComicsDescriptionChange(callback){
 
-        if(!(data.comicsDescription && (data.comicsDescription != comics.description))) {
+        if(!(data.comicsDescription != comics.description)) {
             callback(null);
             return;
         }

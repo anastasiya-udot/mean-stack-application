@@ -18,6 +18,7 @@ module.exports = function(app){
         app.post('/account/confirm-email', require('./../controller/user/change-info/confirm-email-change.controller.js').post);
         app.post('/account/avatar', require('./../controller/image.controller.js').avatar);
 
+        app.get('/comics/get/:id', require('../controller/comics/comics.controller').get);
         app.post('/comics/create-comics', require('../controller/comics/comics.controller').new);
         app.post('/comics/edit-comics/:id', require('../controller/comics/comics.controller').edit);
         app.post('/comics/cover', require('./../controller/image.controller.js').cover);

@@ -1,7 +1,7 @@
 /**
  * Created by anastasiya on 5.11.16.
  */
-var comicsApp = angular.module('comicsApp', [
+let comicsApp = angular.module('comicsApp', [
         'ngDialog',
         'ngRoute',
         'ngResource',
@@ -9,7 +9,22 @@ var comicsApp = angular.module('comicsApp', [
         'ngAnimate',
         'ngFileUpload'
     ])
-        .config(comicsappConfig);
+        .config(comicsappConfig)
+
+        .run(function($window, $rootScope) {
+            $rootScope.online = navigator.onLine;
+            $window.addEventListener("offline", function() {
+                $rootScope.$apply(function() {
+                    $rootScope.online = false;
+                });
+            }, false);
+
+            $window.addEventListener("online", function() {
+                $rootScope.$apply(function() {
+                    $rootScope.online = true;
+                });
+            }, false);
+        });
 
     function comicsappConfig ($routeProvider) {
 
@@ -38,6 +53,10 @@ var comicsApp = angular.module('comicsApp', [
             .when('/account/confirm-change-email/:token', {
                 controller: 'confirmEmailChangeCtrl',
                 templateUrl: 'app/components/front-page/front-page.html'
+            })
+            .when('/comics/:token', {
+                controller: 'comicsPageCtrl',
+                templateUrl: 'app/components/comics/comics-page/comics-page.html'
             });
 
     }

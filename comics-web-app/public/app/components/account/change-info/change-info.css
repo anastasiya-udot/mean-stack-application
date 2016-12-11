@@ -50,7 +50,7 @@ canvas {
 }
 
 
-.change-user-avatar .img-center:hover, .new-comics-cover .img-center:hover {
+.change-user-avatar .img-center:hover, .new-comics-cover .img-center:hover, .page-add-button:hover {
     animation: shake 800ms ease-out alternate;
     outline: none;
     cursor: pointer;

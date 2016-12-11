@@ -1,0 +1,43 @@
+<div class="parallax-window comics-account-banner"
+     ng-style="{ 'background-image': 'url(' + comicsCover + ')' }">
+</div>
+<div class="site-greeting-comment quotation comics-page-quotation"
+     ng-show="haveDescr">
+    "{{comicsDescription}}..."
+</div>
+
+<div class="site-greeting-comment comics-account-name">
+    {{comicsName}}
+</div>
+
+<div class="site-greeting-comment comics-author-name">
+   <a href="#account/{{authorId}}">
+       {{authorName}}
+   </a>
+    <img class="edit-comics-pen comics-page-tools  comics-page-edit"
+         src="assets/images/settings.png"
+         ng-click="editComics()"
+         width="40px" height="40px"
+         ng-show="role == 'owner' && loggedIn ">
+    <img class="delete-comics-basket comics-page-tools comics-page-delete"
+         src="assets/images/reject-512.png"
+         ng-click="deleteComics()"
+         width="40px" height="40px"
+         ng-show="role == 'owner' && loggedIn">
+</div>
+
+<div align="center">
+</div>
+
+<hr style="position:relative; top: 20px; height:20px;">
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="page-add-button"
+                 ng-show="role == 'owner' && loggedIn"
+                 ng-click="createNewPage()">
+
+            </div>
+        </div>
+    </div>
+</div>

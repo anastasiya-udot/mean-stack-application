@@ -66,6 +66,11 @@ comicsApp
                     if (elem && elem.username) {
                         $scope.currentUser.username = elem.username;
                         accScope.user.username = elem.username;
+
+                        if(accScope.comics)
+                            accScope.comics.forEach(function(comics){
+                                comics.authorName = elem.username;
+                            })
                     }
 
                     if (elem && elem.avatar) {

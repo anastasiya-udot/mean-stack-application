@@ -1,7 +1,7 @@
 /**
  * Created by anastasiya on 29.11.16.
  */
-let constant = require('../libs/constants').constant;
+let constant = require('../../libs/constants').constant;
 
 module.exports.initializeQueue = function(data){
     return [
@@ -12,7 +12,7 @@ module.exports.initializeQueue = function(data){
 
     function findUser(callback){
 
-        let getUserById  = require('./user.service').getUserById;
+        let getUserById  = require('./../user.service.js').getUserById;
 
         getUserById(data.id, function(user){
             if(user){
@@ -25,7 +25,7 @@ module.exports.initializeQueue = function(data){
 
     function createComics(user, callback){
 
-        let Comics = require('../models/comics').Comics;
+        let Comics = require('../../models/comics').Comics;
 
         let comics = new Comics();
 

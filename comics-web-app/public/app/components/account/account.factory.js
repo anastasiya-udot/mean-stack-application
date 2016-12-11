@@ -3,28 +3,29 @@
  */
 comicsApp
 
-    .factory('AccountGalleryLoader', ['GalleryLoader', 'UserRoleService', function(GalleryLoader){
+    .factory('AccountGalleryLoader', ['GalleryLoader', 'SessionService', function(GalleryLoader, SessionService){
         return {
             load: function ($scope) {
-                let url = `/gallery/get/${$scope.currentPageId}`;
+                let url = `/gallery/get/${SessionService.getCurrentPageId()}`;
                 GalleryLoader.load($scope, url);
             }
         }
     }])
 
-    .factory('AccountInfoService', ['GetData', '$location', function(GetData, $location){
+    .factory('AccountInfoService', ['GetData', 'SessionService', function(GetData, SessionService){
 
-        let spareAvatar = 'https://res.cloudinary.com/dq83k7kbp/image/upload/c_scale,h_200,w_200/v1479736672/batman_04_jbnqtq.jpg';
+        let spareAvatar = '../../../assets/images/batman_04_jbnqtq.jpg';
         let returnId;
 
         function resolve($scope, response){
+
             $scope.user = {
                 username : response.data.username,
                 avatar : response.data.avatar || spareAvatar,
                 email : response.data.email
             };
 
-            returnId(getId());
+            returnId(SessionService.getCurrentPageId());
         }
 
         function reject($scope, response){
@@ -33,15 +34,10 @@ comicsApp
             console.log(response);
         }
 
-        function getId(){
-            let url = $location.absUrl();
-            return url.split('/').splice(-1,1);
-        }
-
 
         return {
           getInfo: function($scope, callback){
-               let url = '/account/get/' + getId();
+               let url = '/account/get/' + SessionService.getCurrentPageId();
                returnId = callback;
                GetData($scope, url, resolve, reject);
            }

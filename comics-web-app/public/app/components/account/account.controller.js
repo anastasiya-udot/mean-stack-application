@@ -5,9 +5,9 @@ comicsApp
     .controller('browseAccountCtrl', browseAccountCtrl);
 
 
-    browseAccountCtrl.$inject =[ '$scope', '$q', 'AccountInfoService', 'UserRoleService', 'AccountButtonsService'];
+    browseAccountCtrl.$inject =[ '$scope', '$q', 'AccountInfoService', 'SessionService', 'AccountButtonsService'];
 
-    function browseAccountCtrl($scope, $q, AccountInfoService, UserRoleService, AccountButtonsService){
+    function browseAccountCtrl($scope, $q, AccountInfoService, SessionService, AccountButtonsService){
 
 
         function checkIsUserFound(id){
@@ -35,10 +35,9 @@ comicsApp
 
             function(currentPageId){
                 if(checkIsUserFound(currentPageId)){
-                    $scope.role = UserRoleService.getRole(currentPageId);
+                    SessionService.checkPermission();
                     AccountButtonsService.start($scope);
                     $scope.comics = [];
-                    $scope.currentPageId = currentPageId;
                 }
             }
         );

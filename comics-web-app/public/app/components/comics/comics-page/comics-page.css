@@ -1,0 +1,51 @@
+.comics-account-banner{
+    height: 600px;
+    width: 100%;
+    -webkit-filter: blur(3px);
+    -moz-filter: blur(3px);
+    -o-filter: blur(3px);
+    -ms-filter: blur(3px);
+    filter: blur(3px);
+}
+
+.comics-account-name{
+    font-size: 50px;
+    padding-top: 20px;
+}
+
+.comics-page-quotation{
+    position: absolute;
+    top: 240px;
+    left: 30%;
+    width: 40%;
+}
+
+.comics-author-name a{
+    color: #ff847f;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.comics-page-tools{
+    position: relative;
+    margin-top: -10px;
+
+}
+
+.comics-page-delete{
+    right: 0px;
+}
+
+
+.comics-page-edit{
+    right: 0px;
+}
+
+.page-add-button{
+    background-image: url('/assets/images/9-512.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    width: 210px;
+    height: 230px;
+}
