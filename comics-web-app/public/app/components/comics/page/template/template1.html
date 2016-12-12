@@ -1,0 +1,109 @@
+<div class="container comics-page-table">
+    <div class="row comics-page-row">
+        <div class="col-lg-12 ">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <img  id="currentFirstPicture"
+                      class="img-responsive img-center page-picture"
+                      ng-click="openFileDialog('inputFirstImage')"
+                      ng-src="{{image1}}"
+                      ng-mouseover="openTextCloud('inputFirstImage')"
+                      ng-mouseleave="closeTextCloud('inputFirstImage')">
+
+                <img class="img-cancel"
+                     ng-click="cancelImageUpload(image1, 'currentFirstPicture', 'previewFile1')"
+                     src="../../../../../assets/images/cancel.png"
+                     ng-show="(role == 'owner' && loggedIn)"/>
+
+                <textarea ng-trim="true"
+                          ng-show = "inputFirstImage"
+                          rows="10"
+                          cols="35"
+                          ng-model="pageText1"
+                          class="form-control cloud-page right-bottom-cloud"
+                          ng-mouseover="openTextCloud('inputFirstImage')"
+                          ng-mouseleave="closeTextCloud('inputFirstImage')"
+                          ng-disabled="!(role == 'owner' && loggedIn)">
+
+                </textarea>
+
+                <input id="inputFirstImage"
+                       class="input-user-avatar"
+                       type="file"
+                       onchange="angular.element(this).scope().previewImage(this, 'currentFirstPicture', 'previewFile1')"
+                       ng-model="previewFile1"
+                       ngf-pattern="'image/*'"
+                       accept="image/*"
+                       ng-disabled="!(role == 'owner' && loggedIn)"/>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <img  id="currentSecondPicture"
+                      class="img-responsive img-center page-picture"
+                      ng-click="openFileDialog('inputSecondPicture')"
+                      ng-src="{{image2}}"
+                      ng-mouseover="openTextCloud('inputSecondImage')"
+                      ng-mouseleave="closeTextCloud('inputSecondImage')">
+
+                <img class="img-cancel"
+                     ng-click="cancelImageUpload(image2, 'currentSecondPicture', 'previewFile2')"
+                     src="../../../../../assets/images/cancel.png"
+                     ng-show="(role == 'owner' && loggedIn)"/>
+
+                <input id="inputSecondPicture"
+                       class="input-user-avatar"
+                       type="file"
+                       onchange="angular.element(this).scope().previewImage(this, 'currentSecondPicture', 'previewFile2')"
+                       ng-model="previewFile2"
+                       ngf-pattern="'image/*'"
+                       accept="image/*"
+                       ng-disabled="!(role == 'owner' && loggedIn)"/>
+
+                <textarea ng-trim="true"
+                          ng-show = "inputSecondImage"
+                          rows="10"
+                          cols="35"
+                          ng-model="pageText2"
+                          class="form-control cloud-page left-top-cloud"
+                          ng-mouseover="openTextCloud('inputSecondImage')"
+                          ng-mouseleave="closeTextCloud('inputSecondImage')"
+                          ng-disabled="!(role == 'owner' && loggedIn)">
+                </textarea>
+
+            </div>
+        </div>
+    </div>
+    <div class="row comics-page-row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <img  id="currentThirdImage"
+                  class="img-responsive img-center page-picture low-picture"
+                  ng-click="openFileDialog('inputThirdImage')"
+                  ng-src="{{image3}}"
+                  ng-mouseover="openTextCloud('inputThirdImage')"
+                  ng-mouseleave="closeTextCloud('inputThirdImage')">
+
+            <img class="img-cancel"
+                 ng-click="cancelImageUpload(image3, 'currentThirdImage', 'previewFile2')"
+                 src="../../../../../assets/images/cancel.png"
+                 ng-show="(role == 'owner' && loggedIn)"/>
+
+            <input id="inputThirdImage"
+                   class="input-user-avatar"
+                   type="file"
+                   onchange="angular.element(this).scope().previewImage(this, 'currentThirdImage', 'previewFile3')"
+                   ng-model="previewFile3"
+                   ngf-pattern="'image/*'"
+                   accept="image/*"
+                   ng-disabled="!(role == 'owner' && loggedIn)"/>
+
+            <textarea ng-trim="true"
+                      ng-show = "inputThirdImage"
+                      rows="10"
+                      cols="35"
+                      ng-model="pageText3"
+                      class="form-control cloud-page top-cloud"
+                      ng-mouseover="openTextCloud('inputThirdImage')"
+                      ng-mouseleave="closeTextCloud('inputThirdImage')"
+                      ng-disabled="!(role == 'owner' && loggedIn)">
+            </textarea>
+        </div>
+    </div>
+</div>

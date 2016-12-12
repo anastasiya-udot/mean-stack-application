@@ -90,6 +90,7 @@ comicsApp
             }
 
             function resolve(response){
+
                 showPageInfoChanges($scope, response);
 
                 response.forEach(function (elem) {

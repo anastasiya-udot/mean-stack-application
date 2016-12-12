@@ -54,9 +54,17 @@ let comicsApp = angular.module('comicsApp', [
                 controller: 'confirmEmailChangeCtrl',
                 templateUrl: 'app/components/front-page/front-page.html'
             })
-            .when('/comics/:token', {
-                controller: 'comicsPageCtrl',
-                templateUrl: 'app/components/comics/comics-page/comics-page.html'
-            });
+            .when('/comics/:id', {
+                controller: 'comicsCtrl',
+                templateUrl: 'app/components/comics/comics/comics.html'
+            })
+            .when('/page-create/:id/:id', {
+                controller: 'createPageCtrl',
+                templateUrl: 'app/components/comics/page/page.html'
+            })
+            .when('/page/:id/:id', {
+                controller: 'pageCtrl',
+                templateUrl: 'app/components/comics/page/page.html'
+            })
 
     }

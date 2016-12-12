@@ -25,19 +25,17 @@
          width="40px" height="40px"
          ng-show="role == 'owner' && loggedIn">
 </div>
-
-<div align="center">
-</div>
+>
 
 <hr style="position:relative; top: 20px; height:20px;">
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
-            <div class="page-add-button"
-                 ng-show="role == 'owner' && loggedIn"
-                 ng-click="createNewPage()">
-
-            </div>
+            <a href="#page-create/{{comicsId}}/{{authorId}}">
+                <div class="page-add-button"
+                     ng-show="role == 'owner' && loggedIn">
+                </div>
+            </a>
         </div>
     </div>
 </div>

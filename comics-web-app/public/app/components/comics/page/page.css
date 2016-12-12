@@ -1,0 +1,88 @@
+.comics-page-table{
+    position: relative;
+    top: 100px;
+}
+
+.templates-list{
+    top: 50px;
+    position: relative;
+}
+
+.choose-template-comment{
+    top: 20px;
+    position: relative;
+}
+
+.template1{
+    width: 100%;
+    height: 160px;
+    background-image: url('../../../../assets/images/template1.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.template2{
+    width: 100%;
+    height: 160px;
+    background-image: url('../../../../assets/images/template2.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+
+.template1:hover, .template2:hover{
+    cursor: pointer;
+    animation: shake 800ms ease-out alternate;
+    outline: none;
+}
+
+.low-picture{
+    top: 35px;
+}
+
+.page-picture{
+    width: 100%;
+    height: 520px;
+    border: 10px solid #999b95;
+    position: relative;
+
+}
+
+.page-picture:hover{
+    cursor: pointer;
+    animation: shake 800ms ease-out alternate;
+    outline: none;
+}
+
+.comics-page-row{
+    height: 520px;
+}
+
+.cloud-page{
+    position: absolute;
+    background-color: #ffe8ca;
+}
+
+.right-bottom-cloud{
+    top: 310px;
+    right: 25px;
+    width:40%;
+}
+
+.left-top-cloud{
+    top: 10px;
+    left: 25px;
+    width:60%;
+}
+
+.top-cloud {
+    width: 60%;
+    top: 40px;
+    left: 25px;
+}
+
+.bottom-cloud {
+    width: 60%;
+    top: 340px;
+    right: 25px;
+}

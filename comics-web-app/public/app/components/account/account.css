@@ -118,39 +118,6 @@ a:-webkit-any-link {
     background-image: url('../../../assets/images/405537.jpg');
 }
 
-/*.change-user-info:hover, .show-gallery:hover, .create-comics-dialog:hover {*/
-    /*animation: glow 800ms ease-out infinite alternate;*/
-    /*border-color: #990007;*/
-    /*box-shadow: 0 0 5px rgba(72, 12, 16, 0.88), inset 0 0 5px rgba(82, 14, 14, 0.78), 0 2px 0 #000;*/
-    /*color: #efe;*/
-    /*outline: none;*/
-    /*cursor: pointer;*/
-/*}*/
-
-
-/*
-.animate-follow
-{
-    -webkit-transition: 1s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    -moz-transition: 1s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    -ms-transition: 1s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    -o-transition: 1s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    transition: 1s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-}
-
-.animate-follow.ng-enter {
-    opacity
-}
-.animate-follow.ng-enter .ng-enter-active {
-    left: 0;
-}
-
-.animate-follow.ng-leave {
-    left: 0;
-}
-.animate-follow.ng-leave.ng-leave-active{
-    left: -100%;
-}*/
 
 .animate-gallery {
     transition: all linear 0.5s;

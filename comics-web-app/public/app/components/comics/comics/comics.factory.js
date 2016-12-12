@@ -2,7 +2,7 @@
  * Created by anastasiya on 9.12.16.
  */
 comicsApp
-    .factory('ComicsPageLoader', comicsPageFactory);
+    .factory('ComicsLoader', comicsPageFactory);
 
     comicsPageFactory.$inject = ['GetData','SessionService', 'ComicsDialog', 'DeleteDialog', '$location'];
 
@@ -33,6 +33,7 @@ comicsApp
 
         function reject($scope, response){
             console.log(response.error);
+            $scope.notAvailablle = true;
         }
 
 
@@ -40,6 +41,7 @@ comicsApp
             $scope.editComics = function(){
                 ComicsDialog.openEditComicsDlg($scope);
             };
+
 
             $scope.deleteComics = function(){
 
