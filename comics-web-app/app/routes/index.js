@@ -22,6 +22,8 @@ module.exports = function(app){
         app.post('/comics/create-comics', require('../controller/comics/comics.controller').new);
         app.post('/comics/edit-comics/:id', require('../controller/comics/comics.controller').edit);
         app.post('/comics/cover', require('./../controller/image.controller.js').cover);
-        app.delete('/comics/delete', require('./../controller/comics/comics.controller').delete)
+        app.delete('/comics/delete', require('./../controller/comics/comics.controller').delete);
+
+        app.post('/comics-page/create', require('./../controller/image.controller').page);
 
 };

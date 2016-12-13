@@ -16,7 +16,7 @@
 
                 <textarea ng-trim="true"
                           ng-show = "inputFirstImage"
-                          rows="10"
+                          rows="4"
                           cols="35"
                           ng-model="pageText1"
                           class="form-control cloud-page right-bottom-cloud"
@@ -59,7 +59,7 @@
 
                 <textarea ng-trim="true"
                           ng-show = "inputSecondImage"
-                          rows="10"
+                          rows="5"
                           cols="35"
                           ng-model="pageText2"
                           class="form-control cloud-page left-top-cloud"
@@ -96,9 +96,9 @@
 
             <textarea ng-trim="true"
                       ng-show = "inputThirdImage"
-                      rows="10"
+                      rows="3"
                       cols="35"
-                      ng-model="pageText3"
+                      ng-model="page.pageText3"
                       class="form-control cloud-page top-cloud"
                       ng-mouseover="openTextCloud('inputThirdImage')"
                       ng-mouseleave="closeTextCloud('inputThirdImage')"

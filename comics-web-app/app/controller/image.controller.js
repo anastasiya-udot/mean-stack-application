@@ -50,3 +50,30 @@ module.exports.cover = function(req,res){
     )
 
 };
+
+module.exports.page = function(req,res){
+
+    let pageService = require('../service/comics-page/comics-page.service');
+
+    async.waterfall(
+
+        pageService.initializeQueue(req.body),
+
+        function(err, result){
+
+            let response = {};
+            if (err){
+                response.error = [];
+                response.error.push({message : err.message});
+                return res.send(response);
+            }
+            if(result) {
+                response.message = [];
+                response.message.push({message : result.message});
+                response.data = result.data;
+                return res.send(response);
+            }
+        }
+    )
+
+};

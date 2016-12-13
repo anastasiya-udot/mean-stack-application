@@ -1,16 +1,16 @@
 /**
  * Created by anastasiya on 25.10.16.
  */
-var crypto      =  require('crypto');
-var jwt         = require('jsonwebtoken');
-var mongoose    = require('../libs/mongoose');
-var Schema      = mongoose.Schema;
-var constant    = require('../libs/constants').constant;
+let crypto      =  require('crypto');
+let jwt         = require('jsonwebtoken');
+let mongoose    = require('../libs/mongoose');
+let Schema      = mongoose.Schema;
+let constant    = require('../libs/constants').constant;
 
 
-var avatarSchema = new Schema({public_id: String, url: String});
+let avatarSchema = new Schema({public_id: String, url: String});
 
-var userSchema = new Schema({
+let userSchema = new Schema({
     username: {
         type: String,
         unique: true,
@@ -56,7 +56,7 @@ userSchema.methods.getHashPassword = function(password){
 };
 
 userSchema.methods.generateJwt = function(){
-    var expiry = new Date();
+    let expiry = new Date();
     expiry.setDate(expiry.getDate() + 7);
 
     return jwt.sign({

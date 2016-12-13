@@ -25,52 +25,51 @@
 
                 <textarea ng-trim="true"
                           ng-show = "inputFirstImage"
-                          rows="10"
+                          rows="4"
                           cols="35"
                           ng-model="pageText1"
                           class="form-control cloud-page top-cloud"
                           ng-mouseover="openTextCloud('inputFirstImage')"
                           ng-mouseleave="closeTextCloud('inputFirstImage')"
                           ng-disabled="!(role == 'owner' && loggedIn)">
-
                 </textarea>
-                </div>
             </div>
-            <div class="row comics-page-row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <img  id="currentSecondImage"
-                          class="img-responsive img-center page-picture low-picture"
-                          ng-click="openFileDialog('inputSecondImage')"
-                          ng-src="{{image2}}"
+        </div>
+        <div class="row comics-page-row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <img  id="currentSecondImage"
+                      class="img-responsive img-center page-picture low-picture"
+                      ng-click="openFileDialog('inputSecondImage')"
+                      ng-src="{{image2}}"
+                      ng-mouseover="openTextCloud('inputSecondImage')"
+                      ng-mouseleave="closeTextCloud('inputSecondImage')">
+
+                <img class="img-cancel"
+                     ng-click="cancelImageUpload(image2, 'currentSecondImage', 'previewFile2')"
+                     src="../../../../../assets/images/cancel.png"
+                     ng-show="(role == 'owner' && loggedIn)"/>
+
+                <input id="inputSecondImage"
+                       class="input-user-avatar"
+                       type="file"
+                       onchange="angular.element(this).scope().previewImage(this, 'currentSecondImage', 'previewFile2')"
+                       ng-model="previewFile2"
+                       ngf-pattern="'image/*'"
+                       accept="image/*"
+                       ng-disabled="!(role == 'owner' && loggedIn)"/>
+
+                <textarea ng-trim="true"
+                          ng-show = "inputSecondImage"
+                          rows="4"
+                          cols="35"
+                          ng-model="pageText2"
+                          class="form-control cloud-page bottom-cloud"
                           ng-mouseover="openTextCloud('inputSecondImage')"
-                          ng-mouseleave="closeTextCloud('inputSecondImage')">
-
-                    <img class="img-cancel"
-                         ng-click="cancelImageUpload(image2, 'currentSecondImage', 'previewFile2')"
-                         src="../../../../../assets/images/cancel.png"
-                         ng-show="(role == 'owner' && loggedIn)"/>
-
-                    <input id="inputSecondImage"
-                           class="input-user-avatar"
-                           type="file"
-                           onchange="angular.element(this).scope().previewImage(this, 'currentSecondImage', 'previewFile2')"
-                           ng-model="previewFile2"
-                           ngf-pattern="'image/*'"
-                           accept="image/*"
-                           ng-disabled="!(role == 'owner' && loggedIn)"/>
-
-                    <textarea ng-trim="true"
-                              ng-show = "inputSecondImage"
-                              rows="10"
-                              cols="35"
-                              ng-model="pageText2"
-                              class="form-control cloud-page bottom-cloud"
-                              ng-mouseover="openTextCloud('inputSecondImage')"
-                              ng-mouseleave="closeTextCloud('inputSecondImage')"
-                              ng-disabled="!(role == 'owner' && loggedIn)">
+                          ng-mouseleave="closeTextCloud('inputSecondImage')"
+                          ng-disabled="!(role == 'owner' && loggedIn)">
                     </textarea>
-                </div>
             </div>
         </div>
     </div>
+</div>
 </div>

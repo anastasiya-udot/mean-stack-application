@@ -19,10 +19,21 @@
         </div>
     </div>
 </div>
-
 <template-first-comics-page ng-show="firstTemplate">
 </template-first-comics-page>
 <template-second-comics-page ng-show="secondTemplate">
 </template-second-comics-page>
+<div class="col-lg-12" align="center">
+    <div class="save-page-button"
+         ng-show="(firstTemplate || secondTemplate) && (role == 'owner' && loggedIn) && beforeSending"
+         ng-click="savePage()">
+    </div>
+    <div class="site-greeting-comment choose-template-comment sending-page-comment"
+         ng-show="(firstTemplate || secondTemplate) && (role == 'owner' && loggedIn) && !beforeSending">
+        {{response}}
+    </div>
+</div>
 
-<hr style="position: relative; top: 1000px; border-top: 1px solid #141414">
+
+
+<hr style="position: relative; top: 1600px; border-top: 1px solid #141414">

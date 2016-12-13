@@ -22,10 +22,19 @@ comicsApp
 
     });
 
-    templateCtrl.$inject = ['$scope', 'ImageService'];
+    function clearTextBoxes(page){
+        for (let counter = 1; counter <= 3; counter++){
+            page[`pageText${counter}`] = null;
+        }
+    }
 
 
-    function templateCtrl($scope, ImageService){
+    templateCtrl.$inject = ['$scope', 'PageFormFactory', 'ImageService'];
+
+
+    function templateCtrl($scope, PageFormFactory, ImageService){
+
+        $scope.page = {};
 
         ImageService.clearInputImage($scope.previewFile1);
         ImageService.clearInputImage($scope.previewFile2);
@@ -37,7 +46,6 @@ comicsApp
 
         $scope.openFileDialog = ImageService.openFileDialog;
 
-
         $scope.openTextCloud = function(value){
             $scope[value] = true;
         };
@@ -48,10 +56,13 @@ comicsApp
 
         $scope.previewImage = function(input, imageId, triggerValue){
             ImageService.previewImage(input, $scope, imageId, triggerValue);
+            console.log($scope);
         };
 
         $scope.cancelImageUpload = function(previousImage, imageId, previewFile){
             ImageService.cancelImageUpload(previousImage, imageId);
             ImageService.clearInputImage($scope[previewFile]);
         };
+
+        PageFormFactory.start($scope);
     }
